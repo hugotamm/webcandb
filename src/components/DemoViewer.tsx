@@ -42,14 +42,14 @@ export default function DemoViewer() {
   return (
     <div
       onClick={close}
-      className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-md flex flex-col p-4 sm:p-6 lg:p-8 overflow-y-auto"
+      className="fixed inset-0 z-[70] bg-black/85 backdrop-blur-md flex flex-col p-3 sm:p-5 lg:p-6 overflow-hidden"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-6xl mx-auto flex flex-col"
+        className="relative w-full max-w-7xl mx-auto flex flex-col flex-1 min-h-0"
       >
         {/* Top bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-5 text-white">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4 text-white flex-shrink-0">
           <div>
             <div className="text-xs font-semibold uppercase tracking-widest text-white/50">
               Demo
@@ -112,7 +112,7 @@ export default function DemoViewer() {
         </div>
 
         {/* Frame area */}
-        <div className="flex-1 flex items-center justify-center min-h-[60vh]">
+        <div className="flex-1 min-h-0 flex items-center justify-center">
           {view === "phone" ? (
             <PhoneFrame key={current.url} url={current.url} name={current.name} />
           ) : (
@@ -120,7 +120,7 @@ export default function DemoViewer() {
           )}
         </div>
 
-        <div className="mt-4 text-center text-white/40 text-xs">
+        <div className="mt-3 text-center text-white/40 text-xs flex-shrink-0">
           Tryck <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white/60 font-mono">Esc</kbd> för att stänga · scrolla i ramen för att utforska sidan
         </div>
       </div>
@@ -129,9 +129,14 @@ export default function DemoViewer() {
 }
 
 /* ------------------------------------------------------------------ */
-/* iPhone 16 frame — actual logical viewport: 393 × 852                */
-/* Frame total: 408 × 868 (≈ real device aspect ratio)                 */
+/* iPhone 16 frame                                                     */
+/* Built at fixed reference dimensions (412×870), then scaled with     */
+/* CSS transform to fill the available viewport height. Aspect ratio   */
+/* is exactly the real iPhone 16 (147.6mm × 71.6mm).                   */
 /* ------------------------------------------------------------------ */
+
+const PHONE_W = 412;
+const PHONE_H = 870;
 
 type Phase = "home" | "opening" | "loading" | "loaded";
 
@@ -139,7 +144,6 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
   const [phase, setPhase] = useState<Phase>("home");
   const [typed, setTyped] = useState("");
 
-  // Animation timeline
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("opening"), 700);
     const t2 = setTimeout(() => setPhase("loading"), 1100);
@@ -151,7 +155,6 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
     };
   }, []);
 
-  // URL typing animation while loading
   useEffect(() => {
     if (phase !== "loading") return;
     const clean = url.replace(/^https?:\/\//, "");
@@ -164,16 +167,51 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
     return () => clearInterval(id);
   }, [phase, url]);
 
+  // Scale the entire phone to fit available height. Modal has ~150px overhead
+  // (top bar + bottom helper text + padding). Cap at 1.15× so it doesn't get
+  // gigantic on huge monitors.
+  const scaleExpr = `min(1.15, (100vh - 170px) / ${PHONE_H})`;
+
   return (
     <div
-      className="relative bg-zinc-900 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85)]"
+      className="relative"
       style={{
-        width: 408,
-        height: 868,
-        maxWidth: "100%",
-        maxHeight: "85vh",
-        borderRadius: 56,
-        padding: 7.5,
+        width: `calc(${PHONE_W}px * ${scaleExpr})`,
+        height: `calc(${PHONE_H}px * ${scaleExpr})`,
+      }}
+    >
+      <div
+        className="absolute top-0 left-0"
+        style={{
+          width: PHONE_W,
+          height: PHONE_H,
+          transform: `scale(${scaleExpr})`,
+          transformOrigin: "top left",
+        }}
+      >
+        <PhoneBody phase={phase} typed={typed} url={url} name={name} />
+      </div>
+    </div>
+  );
+}
+
+function PhoneBody({
+  phase,
+  typed,
+  url,
+  name,
+}: {
+  phase: Phase;
+  typed: string;
+  url: string;
+  name: string;
+}) {
+  return (
+    <div
+      className="relative bg-zinc-900 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.85)] w-full h-full"
+      style={{
+        borderRadius: 58,
+        padding: 8,
       }}
     >
       {/* Side buttons (decorative) */}
@@ -183,16 +221,15 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
       <div className="absolute right-[-3px] top-[180px] w-[3px] h-[80px] bg-zinc-800 rounded-r-sm" />
 
       {/* Dynamic island */}
-      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[120px] h-[34px] bg-black rounded-full z-20 flex items-center justify-end pr-2 pointer-events-none">
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-[122px] h-[35px] bg-black rounded-full z-20 flex items-center justify-end pr-2 pointer-events-none">
         <div className="w-2 h-2 rounded-full bg-zinc-700" />
       </div>
 
       {/* Screen */}
       <div
         className="overflow-hidden bg-white relative h-full w-full"
-        style={{ borderRadius: 49 }}
+        style={{ borderRadius: 50 }}
       >
-        {/* HOME SCREEN — visible during home + opening (fades during opening) */}
         {(phase === "home" || phase === "opening") && (
           <div
             className={`absolute inset-0 transition-all duration-500 ${
@@ -203,10 +240,8 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
           </div>
         )}
 
-        {/* SAFARI APP — appears during loading + loaded (zooms in) */}
         {(phase === "loading" || phase === "loaded") && (
           <div className="absolute inset-0 bg-zinc-100 flex flex-col animate-[zoomIn_0.35s_ease-out]">
-            {/* Status bar */}
             <div className="h-11 flex items-center justify-between px-7 text-[13px] text-zinc-900 font-semibold flex-shrink-0 pt-2">
               <span>9:41</span>
               <span className="flex items-center gap-1.5">
@@ -216,7 +251,6 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
               </span>
             </div>
 
-            {/* Safari URL bar */}
             <div className="px-3 pb-2 flex-shrink-0">
               <div className="bg-zinc-200/90 rounded-[10px] px-3 py-1.5 flex items-center gap-2 text-[13px]">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-zinc-500 flex-shrink-0">
@@ -232,19 +266,15 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
               </div>
             </div>
 
-            {/* Loading progress bar */}
             <div className="h-0.5 bg-zinc-200 relative overflow-hidden flex-shrink-0">
               {phase === "loading" && (
                 <div
                   className="absolute inset-y-0 left-0 bg-blue-500"
-                  style={{
-                    animation: "loadBar 1.2s ease-out forwards",
-                  }}
+                  style={{ animation: "loadBar 1.2s ease-out forwards" }}
                 />
               )}
             </div>
 
-            {/* Content area — iframe once loaded, white skeleton during loading */}
             <div className="flex-1 bg-white relative overflow-hidden">
               {phase === "loaded" ? (
                 <iframe
@@ -255,13 +285,12 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-6 h-6 rounded-full border-2 border-zinc-300 border-t-blue-500 animate-spin" />
+                  <div className="w-7 h-7 rounded-full border-[3px] border-zinc-300 border-t-blue-500 animate-spin" />
                 </div>
               )}
             </div>
 
-            {/* Bottom toolbar */}
-            <div className="h-11 bg-zinc-100/95 flex items-center justify-around px-6 flex-shrink-0 border-t border-zinc-200">
+            <div className="h-12 bg-zinc-100/95 flex items-center justify-around px-6 flex-shrink-0 border-t border-zinc-200">
               <ToolbarIcon><path d="M15 18l-6-6 6-6" /></ToolbarIcon>
               <ToolbarIcon><path d="M9 18l6-6-6-6" /></ToolbarIcon>
               <ToolbarIcon>
@@ -279,14 +308,12 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
               </ToolbarIcon>
             </div>
 
-            {/* Home indicator */}
             <div className="h-[18px] flex-shrink-0 flex items-center justify-center bg-zinc-100">
-              <div className="w-[120px] h-[5px] bg-black rounded-full" />
+              <div className="w-[124px] h-[5px] bg-black rounded-full" />
             </div>
           </div>
         )}
 
-        {/* Animations */}
         <style jsx>{`
           @keyframes zoomIn {
             from {
@@ -333,12 +360,11 @@ function HomeScreen({ tappingSafari }: { tappingSafari: boolean }) {
         </div>
       </div>
 
-      {/* Subtle dot pattern overlay */}
+      {/* Subtle dot pattern */}
       <div
         className="absolute inset-0 opacity-[0.07] pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
           backgroundSize: "20px 20px",
         }}
       />
@@ -361,11 +387,9 @@ function HomeScreen({ tappingSafari }: { tappingSafari: boolean }) {
 
       {/* Dock */}
       <div className="absolute bottom-6 left-4 right-4 h-[78px] bg-white/15 backdrop-blur-xl rounded-[28px] flex items-center justify-around px-4 border border-white/10">
-        {/* Phone, Mail, Messages */}
         <div className="w-[58px] h-[58px] rounded-[14px] bg-gradient-to-br from-green-400 to-green-600 shadow-md" />
         <div className="w-[58px] h-[58px] rounded-[14px] bg-gradient-to-br from-blue-400 to-blue-700 shadow-md" />
         <div className="w-[58px] h-[58px] rounded-[14px] bg-gradient-to-br from-green-300 to-green-500 shadow-md" />
-        {/* Safari — animated tap */}
         <div className="relative">
           <div
             className={`w-[58px] h-[58px] rounded-[14px] shadow-md transition-transform duration-300 ${
@@ -374,7 +398,6 @@ function HomeScreen({ tappingSafari }: { tappingSafari: boolean }) {
           >
             <SafariIcon />
           </div>
-          {/* Tap ripple */}
           {tappingSafari && (
             <div
               className="absolute inset-0 rounded-[14px] bg-white/40"
@@ -386,7 +409,7 @@ function HomeScreen({ tappingSafari }: { tappingSafari: boolean }) {
 
       {/* Home indicator */}
       <div className="absolute bottom-1.5 left-0 right-0 flex justify-center">
-        <div className="w-[120px] h-[5px] bg-white/80 rounded-full" />
+        <div className="w-[124px] h-[5px] bg-white/80 rounded-full" />
       </div>
 
       <style jsx>{`
@@ -410,7 +433,6 @@ function SafariIcon() {
     <div className="w-full h-full rounded-[14px] bg-gradient-to-br from-sky-300 via-blue-400 to-blue-600 flex items-center justify-center relative overflow-hidden">
       <div className="w-[80%] h-[80%] rounded-full bg-white shadow-inner relative flex items-center justify-center">
         <div className="absolute inset-1 rounded-full border border-zinc-200" />
-        {/* Tick marks */}
         {Array.from({ length: 12 }).map((_, i) => (
           <div
             key={i}
@@ -423,7 +445,6 @@ function SafariIcon() {
             }}
           />
         ))}
-        {/* Compass needle */}
         <div className="relative w-0 h-0">
           <div
             className="absolute"
