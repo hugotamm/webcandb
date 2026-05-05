@@ -59,12 +59,17 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-            <button className="absolute top-9 left-9 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full">
+            <a
+              href="https://karna-craft-coffeeshop.lovable.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-9 left-9 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full hover:bg-foreground/80 transition"
+            >
               Se live
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
-            </button>
+            </a>
           </div>
 
           <div className="mt-8">
@@ -72,17 +77,20 @@ export default function Hero() {
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">
             {[
-              { name: "Kärna", tag: "Kaffe" },
-              { name: "Sizewall", tag: "B2B Tech" },
-              { name: "Studio Norr", tag: "Salong" },
+              { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app" },
+              { name: "Sizewall", tag: "B2B Tech", url: "https://sizewall-precision-scan.lovable.app" },
+              { name: "Studio Norr", tag: "Salong", url: "https://studio-norr-editorial.lovable.app" },
             ].map((c) => (
-              <div
+              <a
                 key={c.name}
-                className="aspect-[4/5] rounded-xl bg-card border border-border p-3 flex flex-col justify-end hover:shadow-md transition"
+                href={c.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="aspect-[4/5] rounded-xl bg-card border border-border p-3 flex flex-col justify-end hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
                 <div className="text-[10px] uppercase tracking-widest text-muted/70">{c.tag}</div>
                 <div className="font-semibold text-sm mt-1">{c.name}</div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

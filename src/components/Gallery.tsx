@@ -5,6 +5,7 @@ const cases = [
     blurb: "Småskaligt rosteri & e-handel",
     accent: "from-stone-200 to-stone-300",
     text: "text-stone-900",
+    url: "https://karna-craft-coffeeshop.lovable.app",
   },
   {
     name: "Sizewall",
@@ -12,6 +13,7 @@ const cases = [
     blurb: "3D-skanning av kroppsmått",
     accent: "from-zinc-900 to-zinc-800",
     text: "text-white",
+    url: "https://sizewall-precision-scan.lovable.app",
   },
   {
     name: "Studio Norr",
@@ -19,6 +21,7 @@ const cases = [
     blurb: "Premium hår- & skönhetsstudio",
     accent: "from-rose-100 to-amber-100",
     text: "text-zinc-900",
+    url: "https://studio-norr-editorial.lovable.app",
   },
 ];
 
@@ -38,9 +41,12 @@ export default function Gallery() {
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {cases.map((c) => (
-            <article
+            <a
               key={c.name}
-              className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              href={c.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
             >
               <div className={`aspect-[4/3] bg-gradient-to-br ${c.accent} ${c.text} p-6 flex flex-col justify-between`}>
                 <div className="text-xs font-semibold uppercase tracking-widest opacity-70">
@@ -56,14 +62,14 @@ export default function Gallery() {
                 </div>
                 <h3 className="mt-2 text-xl font-bold">{c.name.toUpperCase()}</h3>
                 <p className="mt-1 text-sm text-muted">{c.blurb}</p>
-                <button className="mt-5 inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-brand-hover transition">
+                <span className="mt-5 inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-4 py-2 rounded-full group-hover:bg-brand-hover transition">
                   Se live
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M7 17L17 7M17 7H7M17 7v10" />
                   </svg>
-                </button>
+                </span>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>

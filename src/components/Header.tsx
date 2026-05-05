@@ -5,7 +5,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <a href="#" className="text-xl font-bold tracking-tight">
+          <a href="/" className="text-xl font-bold tracking-tight">
             Web <span className="text-brand">C&B</span>
           </a>
           <div className="hidden sm:flex items-center gap-1 rounded-full bg-brand-soft p-1 text-xs font-semibold">
@@ -26,7 +26,7 @@ export default function Header() {
           {navItems.map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`/#${item.toLowerCase()}`}
               className="text-foreground/80 hover:text-foreground transition"
             >
               {item}
@@ -35,7 +35,7 @@ export default function Header() {
         </nav>
 
         <a
-          href="#boka"
+          href="/#boka"
           className="inline-flex items-center gap-2 rounded-full bg-brand text-white px-5 py-3 text-sm font-semibold hover:bg-brand-hover transition shadow-sm"
         >
           Få en demo för 199 kr inkl. moms
