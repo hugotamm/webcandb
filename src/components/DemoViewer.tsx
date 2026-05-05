@@ -314,9 +314,37 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
 
 function HomeScreen({ tappingSafari }: { tappingSafari: boolean }) {
   return (
-    <div className="w-full h-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 relative">
+    <div
+      className="w-full h-full relative overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(circle at 30% 20%, #134e3a 0%, #0d4a3a 40%, #07261d 100%)",
+      }}
+    >
+      {/* Web C&B watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="text-center">
+          <div className="text-white text-6xl font-bold tracking-tight">
+            Web <span className="text-emerald-300">C&B</span>
+          </div>
+          <div className="mt-3 text-white/60 text-xs font-semibold uppercase tracking-[0.3em]">
+            Changer & Builder
+          </div>
+        </div>
+      </div>
+
+      {/* Subtle dot pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+
       {/* Status bar */}
-      <div className="h-11 flex items-center justify-between px-7 text-[13px] text-white font-semibold pt-2">
+      <div className="relative h-11 flex items-center justify-between px-7 text-[13px] text-white font-semibold pt-2">
         <span>9:41</span>
         <span className="flex items-center gap-1.5">
           <SignalIcon className="text-white" />
@@ -326,32 +354,13 @@ function HomeScreen({ tappingSafari }: { tappingSafari: boolean }) {
       </div>
 
       {/* Time + date */}
-      <div className="text-center text-white pt-6">
-        <div className="text-[14px] font-medium opacity-90">tisdag 5 maj</div>
-        <div className="text-[88px] font-thin leading-none mt-1">9:41</div>
-      </div>
-
-      {/* App grid (decorative) */}
-      <div className="grid grid-cols-4 gap-4 px-8 pt-12">
-        {[
-          { color: "from-green-400 to-green-600", letter: "" },
-          { color: "from-zinc-100 to-zinc-300", letter: "" },
-          { color: "from-yellow-300 to-yellow-500", letter: "" },
-          { color: "from-blue-300 to-blue-500", letter: "" },
-          { color: "from-red-400 to-red-600", letter: "" },
-          { color: "from-purple-400 to-purple-600", letter: "" },
-          { color: "from-orange-400 to-orange-600", letter: "" },
-          { color: "from-teal-400 to-teal-600", letter: "" },
-        ].map((app, i) => (
-          <div
-            key={i}
-            className={`aspect-square rounded-[14px] bg-gradient-to-br ${app.color} shadow-md`}
-          />
-        ))}
+      <div className="relative text-center text-white pt-3">
+        <div className="text-[13px] font-medium opacity-80">tisdag 5 maj</div>
+        <div className="text-[68px] font-thin leading-none mt-1">9:41</div>
       </div>
 
       {/* Dock */}
-      <div className="absolute bottom-6 left-4 right-4 h-[78px] bg-white/20 backdrop-blur-xl rounded-[28px] flex items-center justify-around px-4">
+      <div className="absolute bottom-6 left-4 right-4 h-[78px] bg-white/15 backdrop-blur-xl rounded-[28px] flex items-center justify-around px-4 border border-white/10">
         {/* Phone, Mail, Messages */}
         <div className="w-[58px] h-[58px] rounded-[14px] bg-gradient-to-br from-green-400 to-green-600 shadow-md" />
         <div className="w-[58px] h-[58px] rounded-[14px] bg-gradient-to-br from-blue-400 to-blue-700 shadow-md" />

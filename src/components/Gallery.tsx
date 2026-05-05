@@ -35,9 +35,30 @@ export default function Gallery() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
             3 exempel hemsidor för 3 olika branscher.
           </h2>
-          <p className="text-lg text-foreground/70 leading-relaxed max-w-md lg:justify-self-end">
-            Klicka på ett case för att förhandsgranska — välj mellan dator- och mobilvy.
-          </p>
+          <div className="lg:justify-self-end max-w-md space-y-4">
+            <p className="text-lg text-foreground/70 leading-relaxed">
+              Klicka på ett case för att förhandsgranska — sajten öppnas i en
+              live-preview där du kan växla mellan{" "}
+              <strong className="text-foreground">dator</strong> och{" "}
+              <strong className="text-foreground">telefon</strong>.
+            </p>
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand-soft px-4 py-2 text-xs font-semibold text-brand">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              Dator
+              <span className="text-brand/40">·</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" />
+              </svg>
+              Telefon
+              <span className="text-brand/40">·</span>
+              Live-preview
+            </div>
+          </div>
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
