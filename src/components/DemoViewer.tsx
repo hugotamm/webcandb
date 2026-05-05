@@ -143,6 +143,22 @@ type Phase = "home" | "opening" | "loading" | "loaded";
 function PhoneFrame({ url, name }: { url: string; name: string }) {
   const [phase, setPhase] = useState<Phase>("home");
   const [typed, setTyped] = useState("");
+  const [scale, setScale] = useState(1);
+
+  // Compute scale based on actual viewport size (CSS calc with mixed units
+  // is unreliable for transform values; JS measurement is rock-solid).
+  useEffect(() => {
+    const compute = () => {
+      // ~190px overhead: top bar (~60), helper text (~30), modal padding (~50),
+      // safety margin (~50). Cap at 1.15× on huge monitors.
+      const available = window.innerHeight - 190;
+      const s = Math.min(1.15, Math.max(0.5, available / PHONE_H));
+      setScale(s);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("opening"), 700);
@@ -167,17 +183,12 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
     return () => clearInterval(id);
   }, [phase, url]);
 
-  // Scale the entire phone to fit available height. Modal has ~150px overhead
-  // (top bar + bottom helper text + padding). Cap at 1.15× so it doesn't get
-  // gigantic on huge monitors.
-  const scaleExpr = `min(1.15, (100vh - 170px) / ${PHONE_H})`;
-
   return (
     <div
       className="relative"
       style={{
-        width: `calc(${PHONE_W}px * ${scaleExpr})`,
-        height: `calc(${PHONE_H}px * ${scaleExpr})`,
+        width: PHONE_W * scale,
+        height: PHONE_H * scale,
       }}
     >
       <div
@@ -185,7 +196,7 @@ function PhoneFrame({ url, name }: { url: string; name: string }) {
         style={{
           width: PHONE_W,
           height: PHONE_H,
-          transform: `scale(${scaleExpr})`,
+          transform: `scale(${scale})`,
           transformOrigin: "top left",
         }}
       >
