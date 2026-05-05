@@ -1,3 +1,5 @@
+import { orderMailto } from "@/lib/mailto";
+
 const tiers = [
   {
     name: "Start",
@@ -124,15 +126,16 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <button
-                className={`mt-8 w-full rounded-full py-3.5 text-sm font-semibold transition ${
+              <a
+                href={orderMailto(t.name, `${t.price} kr`)}
+                className={`mt-8 w-full inline-flex items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition ${
                   t.featured
                     ? "bg-brand text-white hover:bg-brand-hover"
                     : "bg-white text-foreground hover:bg-white/90"
                 }`}
               >
                 {t.cta} →
-              </button>
+              </a>
             </div>
           ))}
         </div>

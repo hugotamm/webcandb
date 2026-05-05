@@ -8,20 +8,21 @@ import DomainHosting from "@/components/DomainHosting";
 import Calculator from "@/components/Calculator";
 import Booking from "@/components/Booking";
 import FAQ from "@/components/FAQ";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <HowItWorks />
-      <Gallery />
-      <Quote />
-      <WhyUs />
-      <Pricing />
-      <DomainHosting />
-      <Calculator />
-      <Booking />
-      <FAQ />
+      <Reveal><HowItWorks /></Reveal>
+      <Reveal><Gallery /></Reveal>
+      <Reveal><Quote /></Reveal>
+      <Reveal><WhyUs /></Reveal>
+      <Reveal><Pricing /></Reveal>
+      <Reveal><DomainHosting /></Reveal>
+      <Reveal><Calculator /></Reveal>
+      <Reveal><Booking /></Reveal>
+      <Reveal><FAQ /></Reveal>
     </>
   );
 }

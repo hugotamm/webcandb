@@ -1,4 +1,16 @@
+"use client";
+
+import { useState } from "react";
+import { demoMailto } from "@/lib/mailto";
+
 export default function Hero() {
+  const [url, setUrl] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    window.location.href = demoMailto(url);
+  };
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" aria-hidden="true" />
@@ -26,9 +38,11 @@ export default function Hero() {
             </p>
           </div>
 
-          <form className="mt-10 flex flex-col sm:flex-row gap-3 max-w-lg">
+          <form onSubmit={handleSubmit} className="mt-10 flex flex-col sm:flex-row gap-3 max-w-lg">
             <input
               type="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               placeholder="https://din-hemsida.se"
               className="flex-1 rounded-full bg-card border border-border px-6 py-4 text-base placeholder:text-muted focus:outline-none focus:border-brand transition"
             />

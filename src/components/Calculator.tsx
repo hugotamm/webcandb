@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { demoMailto } from "@/lib/mailto";
 
 type Pages = "1" | "5" | "10";
 type Ecom = "no" | "small" | "large";
@@ -128,13 +129,16 @@ export default function Calculator() {
                 Engångsbelopp inkl. moms · Slutpris bekräftas i offerten
               </div>
             </div>
-            <button className="mt-10 w-full rounded-full bg-brand text-white py-4 font-semibold hover:bg-brand-hover transition flex items-center justify-center gap-2">
+            <a
+              href={demoMailto()}
+              className="mt-10 w-full rounded-full bg-brand text-white py-4 font-semibold hover:bg-brand-hover transition flex items-center justify-center gap-2"
+            >
               Få demo för 199 kr
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </div>
