@@ -49,28 +49,28 @@ export default function Hero() {
           <div className="mb-4">
             <span className="eyebrow">Hemsidoexempel</span>
           </div>
-          <div className="relative rounded-2xl bg-gradient-to-br from-stone-100 to-stone-200 p-6 shadow-xl border border-border overflow-hidden">
-            <div className="aspect-[4/3] rounded-xl bg-card shadow-md flex items-center justify-center text-muted">
-              <div className="text-center px-8">
-                <div className="font-serif text-3xl mb-2">Kärna</div>
-                <div className="text-xs uppercase tracking-widest text-muted/70">Specialkaffe · E-handel</div>
-                <div className="mt-6 text-sm leading-relaxed">
-                  Demo-sida byggd av Web C&B för att visa hur en kunds framtida hemsida skulle kunna se ut.
-                </div>
-              </div>
+          <a
+            href="https://karna-craft-coffeeshop.lovable.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block rounded-2xl bg-gradient-to-br from-stone-100 to-stone-200 p-3 shadow-xl border border-border overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+          >
+            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-card shadow-md">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://image.thum.io/get/width/1200/crop/900/https://karna-craft-coffeeshop.lovable.app"
+                alt="Skärmbild av Kärna-demon"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
             </div>
-            <a
-              href="https://karna-craft-coffeeshop.lovable.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute top-9 left-9 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full hover:bg-foreground/80 transition"
-            >
+            <span className="absolute top-6 left-6 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full">
               Se live
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
-            </a>
-          </div>
+            </span>
+          </a>
 
           <div className="mt-8">
             <span className="eyebrow">Fler exempel</span>
@@ -86,10 +86,21 @@ export default function Hero() {
                 href={c.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="aspect-[4/5] rounded-xl bg-card border border-border p-3 flex flex-col justify-end hover:shadow-md hover:-translate-y-0.5 transition-all"
+                className="group aspect-[4/5] rounded-xl bg-card border border-border overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
-                <div className="text-[10px] uppercase tracking-widest text-muted/70">{c.tag}</div>
-                <div className="font-semibold text-sm mt-1">{c.name}</div>
+                <div className="flex-1 overflow-hidden bg-stone-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://image.thum.io/get/width/600/crop/600/${c.url}`}
+                    alt={`Skärmbild av ${c.name}`}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-3">
+                  <div className="text-[10px] uppercase tracking-widest text-muted/70">{c.tag}</div>
+                  <div className="font-semibold text-sm mt-0.5">{c.name}</div>
+                </div>
               </a>
             ))}
           </div>
