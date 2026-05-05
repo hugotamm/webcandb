@@ -58,7 +58,7 @@ export default function Hero() {
             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-card shadow-md">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://image.thum.io/get/width/1200/crop/900/https://karna-craft-coffeeshop.lovable.app"
+                src="/cases/karna.png"
                 alt="Skärmbild av Kärna-demon"
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
@@ -77,9 +77,9 @@ export default function Hero() {
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">
             {[
-              { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app" },
-              { name: "Sizewall", tag: "B2B Tech", url: "https://sizewall-precision-scan.lovable.app" },
-              { name: "Studio Norr", tag: "Salong", url: "https://studio-norr-editorial.lovable.app" },
+              { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app", image: "/cases/karna.png" },
+              { name: "Sizewall", tag: "B2B Tech", url: "https://sizewall-precision-scan.lovable.app", image: "/cases/sizewall.png" },
+              { name: "Studio Norr", tag: "Salong", url: "https://studio-norr-editorial.lovable.app", image: "/cases/studio-norr.png" },
             ].map((c) => (
               <a
                 key={c.name}
@@ -91,7 +91,7 @@ export default function Hero() {
                 <div className="flex-1 overflow-hidden bg-stone-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`https://image.thum.io/get/width/600/crop/600/${c.url}`}
+                    src={c.image}
                     alt={`Skärmbild av ${c.name}`}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"

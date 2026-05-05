@@ -4,23 +4,23 @@ const cases = [
     industry: "E-handel · Specialkaffe",
     blurb: "Småskaligt rosteri & e-handel",
     url: "https://karna-craft-coffeeshop.lovable.app",
+    image: "/cases/karna.png",
   },
   {
     name: "Sizewall",
     industry: "B2B Tech · SaaS",
     blurb: "3D-skanning av kroppsmått",
     url: "https://sizewall-precision-scan.lovable.app",
+    image: "/cases/sizewall.png",
   },
   {
     name: "Studio Norr",
     industry: "Salong · Skönhet",
     blurb: "Premium hår- & skönhetsstudio",
     url: "https://studio-norr-editorial.lovable.app",
+    image: "/cases/studio-norr.png",
   },
 ];
-
-const shotUrl = (url: string) =>
-  `https://image.thum.io/get/width/1200/crop/900/${url}`;
 
 export default function Gallery() {
   return (
@@ -48,7 +48,7 @@ export default function Gallery() {
               <div className="aspect-[4/3] relative overflow-hidden bg-stone-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={shotUrl(c.url)}
+                  src={c.image}
                   alt={`Skärmbild av ${c.name}`}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
