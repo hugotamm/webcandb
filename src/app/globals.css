@@ -21,7 +21,8 @@
   --brand-soft: #0d3b2e;
   --card: #171717;
   --border: #2a2a2a;
-  --dark-bg: #050505;
+  /* Lighter than --background so the always-dark sections stand out */
+  --dark-bg: #161616;
 }
 
 @theme inline {

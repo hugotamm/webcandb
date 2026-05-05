@@ -1,3 +1,7 @@
+"use client";
+
+import { openDemo } from "./DemoViewer";
+
 const cases = [
   {
     name: "Kärna",
@@ -32,18 +36,16 @@ export default function Gallery() {
             3 exempel hemsidor för 3 olika branscher.
           </h2>
           <p className="text-lg text-foreground/70 leading-relaxed max-w-md lg:justify-self-end">
-            Riktiga, levererade demos. Klicka på ett case för att öppna live-versionen i en ny flik.
+            Klicka på ett case för att förhandsgranska — välj mellan dator- och mobilvy.
           </p>
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {cases.map((c) => (
-            <a
+            <button
               key={c.name}
-              href={c.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
+              onClick={() => openDemo({ url: c.url, name: c.name })}
+              className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left"
             >
               <div className="aspect-[4/3] relative overflow-hidden bg-stone-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -53,10 +55,15 @@ export default function Gallery() {
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <span className="absolute top-3 right-3 inline-flex items-center gap-1 bg-foreground/85 text-background backdrop-blur text-[10px] font-bold uppercase tracking-widest px-2.5 py-1.5 rounded-full">
-                  Öppnas i ny flik
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7M17 7H7M17 7v10" />
+                <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-foreground/85 text-background backdrop-blur text-[10px] font-bold uppercase tracking-widest px-2.5 py-1.5 rounded-full">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                  </svg>
+                  /
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                    <line x1="12" y1="18" x2="12.01" y2="18" />
                   </svg>
                 </span>
               </div>
@@ -67,13 +74,13 @@ export default function Gallery() {
                 <h3 className="mt-2 text-xl font-bold">{c.name.toUpperCase()}</h3>
                 <p className="mt-1 text-sm text-muted">{c.blurb}</p>
                 <span className="mt-5 inline-flex items-center gap-2 bg-brand text-white text-sm font-semibold px-4 py-2 rounded-full group-hover:bg-brand-hover transition">
-                  Se live
+                  Förhandsgranska
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </span>
               </div>
-            </a>
+            </button>
           ))}
         </div>
       </div>

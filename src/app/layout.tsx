@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import DemoViewer from "@/components/DemoViewer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -61,6 +62,7 @@ export default function RootLayout({
         <Footer />
         <CookieBanner />
         <StickyMobileCTA />
+        <DemoViewer />
       </body>
     </html>
   );

@@ -84,7 +84,7 @@ export default function Pricing() {
               key={t.name}
               className={`relative rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
                 t.featured
-                  ? "bg-white text-foreground shadow-2xl"
+                  ? "bg-white text-zinc-900 shadow-2xl"
                   : "bg-white/[0.03] border border-white/10 text-white"
               }`}
             >
@@ -100,7 +100,7 @@ export default function Pricing() {
                 <span className="text-5xl font-bold tracking-tight">{t.price}</span>
                 <span className="text-xl font-semibold opacity-60">kr</span>
               </div>
-              <div className={`mt-1 text-xs uppercase tracking-widest ${t.featured ? "text-muted" : "text-white/50"}`}>
+              <div className={`mt-1 text-xs uppercase tracking-widest ${t.featured ? "text-zinc-500" : "text-white/50"}`}>
                 Engångsbelopp · Inkl. moms
               </div>
               <div className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${t.featured ? "text-brand" : "text-brand"}`}>
@@ -109,20 +109,20 @@ export default function Pricing() {
                 </svg>
                 {t.delivery}
               </div>
-              <p className={`mt-6 text-sm leading-relaxed ${t.featured ? "text-muted" : "text-white/70"}`}>
+              <p className={`mt-6 text-sm leading-relaxed ${t.featured ? "text-zinc-600" : "text-white/70"}`}>
                 {t.blurb}
               </p>
-              <hr className={`my-6 ${t.featured ? "border-border" : "border-white/10"}`} />
-              <div className={`text-xs font-bold uppercase tracking-widest mb-4 ${t.featured ? "text-foreground" : "text-white"}`}>
+              <hr className={`my-6 ${t.featured ? "border-zinc-200" : "border-white/10"}`} />
+              <div className={`text-xs font-bold uppercase tracking-widest mb-4 ${t.featured ? "text-zinc-900" : "text-white"}`}>
                 Det här ingår
               </div>
               <ul className="space-y-3 text-sm">
                 {t.features.map((f) => (
                   <li key={f} className="flex gap-3">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand flex-shrink-0 mt-0.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`${t.featured ? "text-emerald-700" : "text-brand"} flex-shrink-0 mt-0.5`}>
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
-                    <span className={t.featured ? "" : "text-white/80"}>{f}</span>
+                    <span className={t.featured ? "text-zinc-800" : "text-white/80"}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -130,8 +130,8 @@ export default function Pricing() {
                 href={orderMailto(t.name, `${t.price} kr`)}
                 className={`mt-8 w-full inline-flex items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition ${
                   t.featured
-                    ? "bg-brand text-white hover:bg-brand-hover"
-                    : "bg-white text-foreground hover:bg-white/90"
+                    ? "bg-emerald-700 text-white hover:bg-emerald-800"
+                    : "bg-white text-zinc-900 hover:bg-white/90"
                 }`}
               >
                 {t.cta} →
