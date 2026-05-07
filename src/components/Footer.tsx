@@ -1,3 +1,5 @@
+import CookieSettingsLink from "./CookieSettingsLink";
+
 export default function Footer() {
   return (
     <footer className="bg-dark-bg text-white pt-20 pb-10">
@@ -49,6 +51,9 @@ export default function Footer() {
                 <a href="/cookies" className="text-white/80 hover:text-brand transition">
                   Cookie-policy
                 </a>
+              </li>
+              <li>
+                <CookieSettingsLink />
               </li>
             </ul>
 

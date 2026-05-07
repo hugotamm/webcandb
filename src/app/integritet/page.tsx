@@ -34,15 +34,16 @@ export default function IntegritetPage() {
 
       <LegalSection id="ansvarig" number={1} title="Personuppgiftsansvarig">
         <div className="rounded-xl border border-border bg-card p-5 not-prose">
-          <div className="font-bold">Web C&B AB</div>
+          <div className="font-bold">Web C&B</div>
           <div className="text-sm text-muted mt-2 space-y-1">
-            <div>Org.nr: [DITT ORG.NR]</div>
-            <div>Adress: [DIN ADRESS]</div>
             <div>
               E-post:{" "}
               <a href="mailto:web.candb@gmail.com" className="text-brand font-semibold hover:underline">
                 web.candb@gmail.com
               </a>
+            </div>
+            <div className="text-xs italic text-muted/80 pt-1">
+              Fullständiga företagsuppgifter (organisationsnummer och registrerad adress) publiceras här när registreringen hos Bolagsverket är slutförd.
             </div>
           </div>
         </div>

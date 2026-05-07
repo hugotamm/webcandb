@@ -32,7 +32,7 @@ export default function VillkorPage() {
       sections={sections}
     >
       <p>
-        Web C&B AB ("vi", "oss", "vårt"), org.nr [DITT ORG.NR], adress [DIN ADRESS].
+        Web C&B ("vi", "oss", "vårt"). Fullständiga företagsuppgifter (organisationsnummer och registrerad adress) publiceras här när registreringen hos Bolagsverket är slutförd.
       </p>
 
       <LegalSection id="tjansterna" number={1} title="Om tjänsterna">

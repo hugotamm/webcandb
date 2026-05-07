@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import DemoViewer from "@/components/DemoViewer";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -46,6 +47,24 @@ const themeInitScript = `
 })();
 `;
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Web C&B",
+  url: "https://webcandb.com",
+  email: "web.candb@gmail.com",
+  description:
+    "Svensk webbyrå som bygger om trötta hemsidor till moderna, snabba sajter — fast pris, levererat på 5–15 dagar.",
+  areaServed: { "@type": "Country", name: "Sverige" },
+  serviceType: "Webbutveckling",
+  priceRange: "4900–24900 SEK",
+  offers: [
+    { "@type": "Offer", name: "Start", price: "4900", priceCurrency: "SEK" },
+    { "@type": "Offer", name: "Klassisk", price: "11900", priceCurrency: "SEK" },
+    { "@type": "Offer", name: "Premium", price: "24900", priceCurrency: "SEK" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,6 +74,10 @@ export default function RootLayout({
     <html lang="sv" className={`${inter.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Header />
@@ -63,6 +86,7 @@ export default function RootLayout({
         <CookieBanner />
         <StickyMobileCTA />
         <DemoViewer />
+        <Analytics />
       </body>
     </html>
   );

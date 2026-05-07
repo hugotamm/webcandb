@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { demoMailto } from "@/lib/mailto";
 
 export default function Hero() {
@@ -27,9 +28,18 @@ export default function Hero() {
             <span className="text-brand italic font-bold">Helt ny igen.</span>
           </h1>
 
-          <p className="mt-8 text-lg text-foreground/70 max-w-md leading-relaxed">
-            Klistra in er nuvarande webbadress — vi bygger en modern, snyggare version på 5 dagar. Fast pris. Inga prenumerationer.
+          <p className="mt-8 text-lg text-foreground/70 max-w-lg leading-relaxed">
+            Klistra in er nuvarande webbadress — inom <strong className="text-foreground">48 timmar</strong> levererar vi en personlig demo. Ni finjusterar med oss, lägger in era bilder, och vi tar fram en plan tillsammans.
           </p>
+
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-soft border border-brand/20 px-4 py-2 text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand flex-shrink-0">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span className="text-foreground">
+              <strong>Inget köpkrav.</strong> <span className="text-muted">Demo:n är inspiration.</span>
+            </span>
+          </div>
 
           <div className="mt-6 flex items-start gap-3">
             <div className="w-10 h-px bg-foreground mt-3" />
@@ -69,13 +79,14 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="group relative block rounded-2xl bg-gradient-to-br from-stone-100 to-stone-200 p-3 shadow-xl border border-border overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
           >
-            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-card shadow-md">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-card shadow-md relative">
+              <Image
                 src="/cases/karna.png"
                 alt="Skärmbild av Kärna-demon"
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 600px"
+                className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                priority
               />
             </div>
             <span className="absolute top-6 left-6 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full">
@@ -102,13 +113,13 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="group aspect-[4/5] rounded-xl bg-card border border-border overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
-                <div className="flex-1 overflow-hidden bg-stone-100">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="flex-1 overflow-hidden bg-stone-100 relative">
+                  <Image
                     src={c.image}
                     alt={`Skärmbild av ${c.name}`}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
+                    fill
+                    sizes="200px"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-3">

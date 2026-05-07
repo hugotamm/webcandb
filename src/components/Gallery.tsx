@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { openDemo } from "./DemoViewer";
 
 const cases = [
@@ -69,12 +70,12 @@ export default function Gallery() {
               className="group rounded-2xl bg-card border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left"
             >
               <div className="aspect-[4/3] relative overflow-hidden bg-stone-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={c.image}
                   alt={`Skärmbild av ${c.name}`}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 400px"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-foreground/85 text-background backdrop-blur text-[10px] font-bold uppercase tracking-widest px-2.5 py-1.5 rounded-full">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

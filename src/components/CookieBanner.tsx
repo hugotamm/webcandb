@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+export function openCookieSettings() {
+  localStorage.removeItem("cookie_consent");
+  window.dispatchEvent(new CustomEvent("cookies:reopen"));
+}
+
 export default function CookieBanner() {
   const [show, setShow] = useState(false);
 
@@ -12,6 +17,12 @@ export default function CookieBanner() {
       const t = setTimeout(() => setShow(true), 800);
       return () => clearTimeout(t);
     }
+  }, []);
+
+  useEffect(() => {
+    const handler = () => setShow(true);
+    window.addEventListener("cookies:reopen", handler);
+    return () => window.removeEventListener("cookies:reopen", handler);
   }, []);
 
   const setChoice = (value: "all" | "necessary") => {
