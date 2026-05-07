@@ -1,7 +1,20 @@
-import { orderMailto } from "@/lib/mailto";
+"use client";
 
-const tiers = [
+import { startCheckout } from "@/lib/checkout";
+import type { PackageId } from "@/lib/stripe-products";
+
+const tiers: Array<{
+  id: PackageId;
+  name: string;
+  price: string;
+  delivery: string;
+  blurb: string;
+  features: string[];
+  cta: string;
+  featured: boolean;
+}> = [
   {
+    id: "start",
     name: "Start",
     price: "4 900",
     delivery: "Live på 5 dagar",
@@ -18,6 +31,7 @@ const tiers = [
     featured: false,
   },
   {
+    id: "klassisk",
     name: "Klassisk",
     price: "11 900",
     delivery: "Live på 10 dagar",
@@ -34,6 +48,7 @@ const tiers = [
     featured: true,
   },
   {
+    id: "premium",
     name: "Premium",
     price: "24 900",
     delivery: "Live på 15 dagar",
@@ -126,8 +141,8 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={orderMailto(t.name, `${t.price} kr`)}
+              <button
+                onClick={() => startCheckout(t.id)}
                 className={`mt-8 w-full inline-flex items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition ${
                   t.featured
                     ? "bg-emerald-700 text-white hover:bg-emerald-800"
@@ -135,7 +150,7 @@ export default function Pricing() {
                 }`}
               >
                 {t.cta} →
-              </a>
+              </button>
             </div>
           ))}
         </div>

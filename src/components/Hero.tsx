@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { demoMailto } from "@/lib/mailto";
+import { startCheckout } from "@/lib/checkout";
 
 export default function Hero() {
   const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = demoMailto(url);
+    setLoading(true);
+    await startCheckout("demo", url || undefined);
+    setLoading(false);
   };
 
   return (
@@ -58,13 +61,26 @@ export default function Hero() {
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand text-white px-7 py-4 text-base font-semibold hover:bg-brand-hover transition shadow-md hover:shadow-lg whitespace-nowrap"
+              disabled={loading}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand text-white px-7 py-4 text-base font-semibold hover:bg-brand-hover transition shadow-md hover:shadow-lg whitespace-nowrap disabled:opacity-70 disabled:cursor-wait"
             >
-              Få demo för 199 kr
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
+              {loading ? (
+                <>
+                  <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="10" strokeOpacity="0.3" />
+                    <path d="M22 12a10 10 0 0 1-10 10" strokeLinecap="round" />
+                  </svg>
+                  Öppnar checkout…
+                </>
+              ) : (
+                <>
+                  Få demo för 199 kr
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </>
+              )}
             </button>
           </form>
         </div>
