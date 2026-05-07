@@ -8,16 +8,17 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 22,
-          background: "#0d4a3a",
           width: "100%",
           height: "100%",
+          background: "#0d4a3a",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           color: "white",
-          fontWeight: 700,
-          letterSpacing: -1,
+          fontWeight: 800,
+          fontSize: 18,
+          letterSpacing: -0.5,
+          fontFamily: "sans-serif",
         }}
       >
         C&B
