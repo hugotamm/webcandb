@@ -119,8 +119,8 @@ export default function Hero() {
           <div className="mt-4 grid grid-cols-3 gap-3">
             {[
               { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app", image: "/cases/karna.png" },
-              { name: "Sizewall", tag: "B2B Tech", url: "https://sizewall-precision-scan.lovable.app", image: "/cases/sizewall.png" },
-              { name: "Studio Norr", tag: "Salong", url: "https://studio-norr-editorial.lovable.app", image: "/cases/studio-norr.png" },
+              { name: "Sizewall", tag: "B2B Tech", url: "https://demo-sizewall-precision-scan.lovable.app", image: "/cases/sizewall.png" },
+              { name: "Studio Norr", tag: "Salong", url: "https://demo-studio-norr-editorial.lovable.app", image: "/cases/studio-norr.png" },
             ].map((c) => (
               <a
                 key={c.name}

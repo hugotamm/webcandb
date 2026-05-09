@@ -15,14 +15,14 @@ const cases = [
     name: "Sizewall",
     industry: "B2B Tech · SaaS",
     blurb: "3D-skanning av kroppsmått",
-    url: "https://sizewall-precision-scan.lovable.app",
+    url: "https://demo-sizewall-precision-scan.lovable.app",
     image: "/cases/sizewall.png",
   },
   {
     name: "Studio Norr",
     industry: "Salong · Skönhet",
     blurb: "Premium hår- & skönhetsstudio",
-    url: "https://studio-norr-editorial.lovable.app",
+    url: "https://demo-studio-norr-editorial.lovable.app",
     image: "/cases/studio-norr.png",
   },
 ];
