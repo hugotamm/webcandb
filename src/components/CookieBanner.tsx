@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export function openCookieSettings() {
   localStorage.removeItem("cookie_consent");
@@ -9,13 +10,13 @@ export function openCookieSettings() {
 
 export default function CookieBanner() {
   const [show, setShow] = useState(false);
+  const t = useTranslations("CookieBanner");
 
   useEffect(() => {
     const choice = localStorage.getItem("cookie_consent");
     if (!choice) {
-      // Slight delay so it doesn't flash on page load
-      const t = setTimeout(() => setShow(true), 800);
-      return () => clearTimeout(t);
+      const timer = setTimeout(() => setShow(true), 800);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -55,11 +56,11 @@ export default function CookieBanner() {
             </svg>
           </span>
           <div>
-            <h3 className="font-bold text-base">Vi använder cookies</h3>
+            <h3 className="font-bold text-base">{t("title")}</h3>
             <p className="text-sm text-muted mt-1 leading-relaxed">
-              Nödvändiga cookies används alltid. Vi vill också gärna mäta hur sajten används för att kunna göra den bättre.{" "}
+              {t("description")}{" "}
               <a href="/cookies" className="text-brand font-semibold hover:underline">
-                Läs mer
+                {t("linkMore")}
               </a>
             </p>
           </div>
@@ -70,13 +71,13 @@ export default function CookieBanner() {
             onClick={() => setChoice("necessary")}
             className="flex-1 px-4 py-2.5 text-sm font-semibold rounded-full border border-border hover:border-foreground/40 transition"
           >
-            Bara nödvändiga
+            {t("buttonNecessary")}
           </button>
           <button
             onClick={() => setChoice("all")}
             className="flex-1 px-4 py-2.5 text-sm font-semibold rounded-full bg-brand text-white hover:bg-brand-hover transition"
           >
-            Godkänn alla
+            {t("buttonAll")}
           </button>
         </div>
       </div>

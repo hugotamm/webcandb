@@ -1,6 +1,20 @@
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import CookieSettingsLink from "./CookieSettingsLink";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+  const tHeader = useTranslations("Header");
+
+  const navItems = [
+    { key: "tjanster", label: tHeader("navTjanster") },
+    { key: "galleri", label: tHeader("navGalleri") },
+    { key: "priser", label: tHeader("navPriser") },
+    { key: "kalkylator", label: tHeader("navKalkylator") },
+    { key: "boka", label: tHeader("navBoka") },
+    { key: "faq", label: tHeader("navFAQ") },
+  ];
+
   return (
     <footer className="bg-dark-bg text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -10,22 +24,22 @@ export default function Footer() {
               Web <span className="text-brand">C&B</span>
             </div>
             <p className="mt-4 text-sm text-white/60 leading-relaxed max-w-xs">
-              Svensk webbyrå som förändrar det som finns och bygger det som borde finnas.
+              {t("tagline")}
             </p>
           </div>
 
           <div>
             <div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">
-              Sajt
+              {t("sectionSite")}
             </div>
             <ul className="space-y-2.5 text-sm">
-              {["Tjänster", "Galleri", "Priser", "Kalkylator", "Boka", "FAQ"].map((l) => (
-                <li key={l}>
+              {navItems.map((item) => (
+                <li key={item.key}>
                   <a
-                    href={`/#${l.toLowerCase()}`}
+                    href={`/#${item.key}`}
                     className="text-white/80 hover:text-brand transition"
                   >
-                    {l}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -34,23 +48,23 @@ export default function Footer() {
 
           <div>
             <div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">
-              Juridiskt
+              {t("sectionLegal")}
             </div>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="/villkor" className="text-white/80 hover:text-brand transition">
-                  Allmänna villkor
-                </a>
+                <Link href="/villkor" className="text-white/80 hover:text-brand transition">
+                  {t("linkTerms")}
+                </Link>
               </li>
               <li>
-                <a href="/integritet" className="text-white/80 hover:text-brand transition">
-                  Integritetspolicy
-                </a>
+                <Link href="/integritet" className="text-white/80 hover:text-brand transition">
+                  {t("linkPrivacy")}
+                </Link>
               </li>
               <li>
-                <a href="/cookies" className="text-white/80 hover:text-brand transition">
-                  Cookie-policy
-                </a>
+                <Link href="/cookies" className="text-white/80 hover:text-brand transition">
+                  {t("linkCookies")}
+                </Link>
               </li>
               <li>
                 <CookieSettingsLink />
@@ -58,7 +72,7 @@ export default function Footer() {
             </ul>
 
             <div className="mt-6 text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
-              Kontakt
+              {t("sectionContact")}
             </div>
             <a
               href="mailto:web.candb@gmail.com"
@@ -67,15 +81,15 @@ export default function Footer() {
               web.candb@gmail.com
             </a>
             <p className="mt-2 text-xs text-white/50 leading-relaxed">
-              Svar inom 48 timmar. Vardagar 09–18.
+              {t("contactHours")}
             </p>
           </div>
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
-          <div>© {new Date().getFullYear()} Web C&B AB · Alla rättigheter förbehållna</div>
+          <div>{t("copyright", { year: new Date().getFullYear() })}</div>
           <div className="flex items-center gap-2">
-            <span>Byggd med</span>
+            <span>{t("builtLabel")}</span>
             <span className="font-semibold text-white/70">Next.js</span>
             <span>·</span>
             <span className="font-semibold text-white/70">Tailwind</span>

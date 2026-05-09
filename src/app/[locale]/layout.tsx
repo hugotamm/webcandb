@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { notFound } from "next/navigation";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import DemoViewer from "@/components/DemoViewer";
 import { Analytics } from "@vercel/analytics/next";
+import { routing } from "@/i18n/routing";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,62 +18,80 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://webcandb.com"),
-  title: {
-    default: "Web C&B — Din gamla hemsida. Helt ny igen.",
-    template: "%s · Web C&B",
-  },
-  description:
-    "Web C&B är en svensk webbyrå som bygger om trötta hemsidor till moderna, snabba sajter — fast pris, levererat på 5 dagar. Inga prenumerationer, du äger sidan.",
-  applicationName: "Web C&B",
-  keywords: [
-    "Web C&B",
-    "webcandb",
-    "webbyrå",
-    "webbdesign",
-    "hemsida",
-    "ny hemsida",
-    "bygga hemsida",
-    "AI webbdesign",
-    "Sverige",
-    "fast pris",
-    "Stockholm webbyrå",
-  ],
-  authors: [{ name: "Web C&B" }],
-  creator: "Web C&B",
-  publisher: "Web C&B",
-  alternates: {
-    canonical: "https://webcandb.com",
-  },
-  openGraph: {
-    title: "Web C&B — Din gamla hemsida. Helt ny igen.",
-    description:
-      "Svensk webbyrå. Modern, snabb sajt på 5 dagar — fast pris. Inga prenumerationer.",
-    url: "https://webcandb.com",
-    type: "website",
-    locale: "sv_SE",
-    siteName: "Web C&B",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Web C&B — Din gamla hemsida. Helt ny igen.",
-      },
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const isDefault = locale === routing.defaultLocale;
+  const baseUrl = "https://webcandb.com";
+  const canonical = isDefault ? baseUrl : `${baseUrl}/${locale}`;
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: {
+      default: t("title"),
+      template: t("titleTemplate"),
+    },
+    description: t("description"),
+    applicationName: "Web C&B",
+    keywords: [
+      "Web C&B",
+      "webcandb",
+      "webbyrå",
+      "webbdesign",
+      "hemsida",
+      "ny hemsida",
+      "bygga hemsida",
+      "AI webbdesign",
+      "Sverige",
+      "fast pris",
+      "Stockholm webbyrå",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Web C&B — Din gamla hemsida. Helt ny igen.",
-    description: "Modern, snabb sajt på 5 dagar — fast pris.",
-    images: ["/opengraph-image"],
-  },
-  icons: {
-    icon: "/icon",
-    apple: "/apple-icon",
-  },
-};
+    authors: [{ name: "Web C&B" }],
+    creator: "Web C&B",
+    publisher: "Web C&B",
+    alternates: {
+      canonical,
+      languages: {
+        sv: baseUrl,
+        en: `${baseUrl}/en`,
+      },
+    },
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      url: canonical,
+      type: "website",
+      locale: locale === "sv" ? "sv_SE" : "en_US",
+      siteName: "Web C&B",
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: t("ogTitle"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("ogTitle"),
+      description: t("twitterDescription"),
+      images: ["/opengraph-image"],
+    },
+    icons: {
+      icon: "/icon",
+      apple: "/apple-icon",
+    },
+  };
+}
 
 const themeInitScript = `
 (function(){
@@ -135,23 +157,33 @@ const jsonLd = {
   },
 };
 
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Web C&B",
-  alternateName: ["Web CB", "WebCB", "webcandb"],
-  url: "https://webcandb.com",
-  publisher: { "@id": "https://webcandb.com/#organization" },
-  inLanguage: "sv-SE",
-};
-
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Web C&B",
+    alternateName: ["Web CB", "WebCB", "webcandb"],
+    url: "https://webcandb.com",
+    publisher: { "@id": "https://webcandb.com/#organization" },
+    inLanguage: locale === "sv" ? "sv-SE" : "en-US",
+  };
+
   return (
-    <html lang="sv" className={`${inter.variable} h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
@@ -164,12 +196,14 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <CookieBanner />
-        <StickyMobileCTA />
-        <DemoViewer />
+        <NextIntlClientProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CookieBanner />
+          <StickyMobileCTA />
+          <DemoViewer />
+        </NextIntlClientProvider>
         <Analytics />
       </body>
     </html>

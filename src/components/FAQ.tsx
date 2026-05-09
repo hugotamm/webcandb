@@ -1,43 +1,23 @@
 "use client";
 
 import { useState } from "react";
-
-const faqs = [
-  {
-    q: "Hur snabbt kan ni leverera?",
-    a: "Vi levererar enligt det paket ni väljer: Start på 5 dagar, Klassisk på 10 dagar och Premium på 15 dagar. Demo-versionen får ni inom 24–48 timmar efter ni klistrat in er nuvarande webbadress.",
-  },
-  {
-    q: "Vad händer efter att sidan är levererad?",
-    a: "Ni äger sajten — det finns ingen lock-in. Vi hjälper er sätta upp domän och hosting i ert eget namn. Behöver ni uppdateringar senare återkommer ni till oss eller hanterar det själva.",
-  },
-  {
-    q: "Vad ingår i 199 kr-demon?",
-    a: "Ni får en fungerande, designad version av er nya hemsida — byggd specifikt för er. Ingen mall. Beloppet dras av om ni väljer att gå vidare med ett av paketen.",
-  },
-  {
-    q: "Tillkommer det några löpande kostnader?",
-    a: "Endast hosting (ca 99 kr/mån) och domän (ca 150 kr/år), som ni betalar direkt till leverantören — inte till oss. Inga prenumerationer eller månadsavgifter från Web C&B.",
-  },
-  {
-    q: "Kan jag flytta min befintliga domän hit?",
-    a: "Ja. Vi hjälper er peka om DNS:en så att er befintliga adress fungerar med den nya sidan. Nedtid är normalt under en timme och vi planerar in det när det stör minst.",
-  },
-  {
-    q: "Vad händer med min Stripe / betalning / e-post?",
-    a: "Allt sådant är frikopplat från sajten och påverkas inte. Ert Stripe-konto, era e-postadresser och era integrationer fortsätter fungera som tidigare — vi kopplar bara in dem i den nya sidan.",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
+  const t = useTranslations("FAQ");
+
+  const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({
+    q: t(`q${n}.question`),
+    a: t(`q${n}.answer`),
+  }));
 
   return (
     <section id="faq" className="py-24 lg:py-32 bg-background">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
-        <span className="eyebrow">Vanliga frågor</span>
+        <span className="eyebrow">{t("eyebrow")}</span>
         <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-          Allt ni undrar — utan krångel.
+          {t("title")}
         </h2>
 
         <div className="mt-12 divide-y divide-border border-y border-border">

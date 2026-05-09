@@ -1,0 +1,320 @@
+{
+  "Metadata": {
+    "title": "Web C&B — Din gamla hemsida. Helt ny igen.",
+    "titleTemplate": "%s · Web C&B",
+    "description": "Web C&B är en svensk webbyrå som bygger om trötta hemsidor till moderna, snabba sajter — fast pris, levererat på 5 dagar. Inga prenumerationer, du äger sidan.",
+    "ogTitle": "Web C&B — Din gamla hemsida. Helt ny igen.",
+    "ogDescription": "Svensk webbyrå. Modern, snabb sajt på 5 dagar — fast pris. Inga prenumerationer.",
+    "twitterDescription": "Modern, snabb sajt på 5 dagar — fast pris."
+  },
+  "Header": {
+    "navTjanster": "Tjänster",
+    "navGalleri": "Galleri",
+    "navPriser": "Priser",
+    "navKalkylator": "Kalkylator",
+    "navBoka": "Boka",
+    "navFAQ": "FAQ",
+    "ctaFull": "Få en demo för 199 kr inkl. moms",
+    "ctaShort": "Få demo",
+    "openMenu": "Öppna meny"
+  },
+  "Hero": {
+    "eyebrow": "AI-driven webdesign · Sverige",
+    "titleLine1": "Din gamla hemsida.",
+    "titleLine2": "Helt ny igen.",
+    "subtitle": "Klistra in er nuvarande webbadress — inom <strong>48 timmar</strong> levererar vi en personlig demo. Ni finjusterar med oss, lägger in era bilder, och vi tar fram en plan tillsammans.",
+    "badge": "Inget köpkrav.",
+    "badgeSubtitle": "Demo:n är inspiration.",
+    "quote": "Det finns inget företag utan en hemsida.",
+    "inputPlaceholder": "https://din-hemsida.se",
+    "buttonLoading": "Öppnar checkout…",
+    "buttonPrimary": "Få demo för 199 kr",
+    "examplesEyebrow": "Hemsidoexempel",
+    "moreExamplesEyebrow": "Fler exempel",
+    "viewLive": "Se live",
+    "screenshotAlt": "Skärmbild av {name}-demon"
+  },
+  "Pricing": {
+    "eyebrow": "Priser & Paket",
+    "titleLine1": "Fast pris. Tydlig leverans.",
+    "titleLine2": "Inga överraskningar.",
+    "description": "Web C&B är en svensk webbyrå som gör om trötta, daterade hemsidor till moderna, snabba och konverteringsstarka sajter — med hjälp av AI och svensk designhantverk. Du klistrar in din nuvarande webbadress, vi levererar en helt ny version på några dagar. Allt till ett fast pris, utan prenumerationer eller bindningstider.",
+    "badge1": "Fast pris från start",
+    "badge2": "Leverans på 5–15 dagar",
+    "badge3": "Du äger hemsidan",
+    "badge4": "Inga månadsavgifter",
+    "popularBadge": "Populärast",
+    "priceUnit": "kr",
+    "priceLabel": "Engångsbelopp · Inkl. moms",
+    "includes": "Det här ingår",
+    "footer": "Alla priser är engångsbelopp inkl. moms. Utöver det fasta priset tillkommer endast hosting (ca 99 kr/mån) och domän (ca 150 kr/år) — vi hjälper er sätta upp det. Återkundsförmånen ger upp till 30% rabatt nästa gång.",
+    "tiers": {
+      "start": {
+        "name": "Start",
+        "price": "4 900",
+        "delivery": "Live på 5 dagar",
+        "blurb": "Perfekt för småföretag, frilansare och enmansbolag som behöver en snygg digital närvaro.",
+        "feature1": "1-sidig landing page (one-pager)",
+        "feature2": "Mobilanpassad & snabbladdad",
+        "feature3": "Kontaktformulär kopplat till er e-post",
+        "feature4": "Hjälp att koppla domän (.se / .com)",
+        "feature5": "Vi hjälper er sätta upp hosting",
+        "feature6": "Grundläggande SEO & Google-indexering",
+        "cta": "Beställ Start"
+      },
+      "klassisk": {
+        "name": "Klassisk",
+        "price": "11 900",
+        "delivery": "Live på 10 dagar",
+        "blurb": "För restauranger, salonger, butiker och tjänsteföretag som vill ha en komplett sida.",
+        "feature1": "Allt i Start",
+        "feature2": "Upp till 5 sidor (meny, om oss, tjänster m.m.)",
+        "feature3": "Bokning- eller bordsbokning-integration",
+        "feature4": "SEO-grunder + Google Business-koppling",
+        "feature5": "Bildgalleri och Instagram-flöde",
+        "feature6": "1 omgång designjusteringar ingår",
+        "cta": "Beställ Klassisk"
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "24 900",
+        "delivery": "Live på 15 dagar",
+        "blurb": "För växande företag som vill ha en helt skräddarsydd sajt med mer funktionalitet.",
+        "feature1": "Allt i Klassisk",
+        "feature2": "Helt custom-design (unik för er)",
+        "feature3": "Bloggfunktion / nyhetsmodul",
+        "feature4": "E-handel-grund (upp till 20 produkter)",
+        "feature5": "Analytics & konverteringsspårning",
+        "feature6": "2 omgångar designjusteringar ingår",
+        "cta": "Beställ Premium"
+      }
+    }
+  },
+  "Gallery": {
+    "eyebrow": "Utvalda case",
+    "title": "3 exempel hemsidor för 3 olika branscher.",
+    "description": "Klicka på ett case för att förhandsgranska — sajten öppnas i en live-preview där du kan växla mellan dator och telefon.",
+    "badgePreview": "Live-preview",
+    "industryLabel": "Bransch · {industry}",
+    "button": "Förhandsgranska",
+    "screenshotAlt": "Skärmbild av {name}",
+    "cases": {
+      "karna": {
+        "name": "Kärna",
+        "industry": "E-handel · Specialkaffe",
+        "blurb": "Småskaligt rosteri & e-handel"
+      },
+      "sizewall": {
+        "name": "Sizewall",
+        "industry": "B2B Tech · SaaS",
+        "blurb": "3D-skanning av kroppsmått"
+      },
+      "studioNorr": {
+        "name": "Studio Norr",
+        "industry": "Salong · Skönhet",
+        "blurb": "Premium hår- & skönhetsstudio"
+      }
+    }
+  },
+  "Booking": {
+    "eyebrow": "Boka en genomgång",
+    "title": "Vill ni ha en personlig genomgång?",
+    "description": "Mejla oss så bokar vi in ett kort samtal — vi går igenom hur det fungerar, svarar på frågor och visar exempel. Helt utan förpliktelser.",
+    "benefit1Title": "15–20 min",
+    "benefit1Body": "Kort och konkret. Vi går rakt på sak.",
+    "benefit2Title": "Vi svarar på allt",
+    "benefit2Body": "Pris, tidsplan, hosting, äganderätt — allt.",
+    "benefit3Title": "Flexibla tider",
+    "benefit3Body": "Vardagar 09–18, även kvällar vid behov.",
+    "contactLabel": "Email",
+    "contactNote": "Skriv gärna när det passar er — så återkommer vi med tider.",
+    "contactCta": "Mejla oss"
+  },
+  "FAQ": {
+    "eyebrow": "Vanliga frågor",
+    "title": "Allt ni undrar — utan krångel.",
+    "q1": {
+      "question": "Hur snabbt kan ni leverera?",
+      "answer": "Vi levererar enligt det paket ni väljer: Start på 5 dagar, Klassisk på 10 dagar och Premium på 15 dagar. Demo-versionen får ni inom 24–48 timmar efter ni klistrat in er nuvarande webbadress."
+    },
+    "q2": {
+      "question": "Vad händer efter att sidan är levererad?",
+      "answer": "Ni äger sajten — det finns ingen lock-in. Vi hjälper er sätta upp domän och hosting i ert eget namn. Behöver ni uppdateringar senare återkommer ni till oss eller hanterar det själva."
+    },
+    "q3": {
+      "question": "Vad ingår i 199 kr-demon?",
+      "answer": "Ni får en fungerande, designad version av er nya hemsida — byggd specifikt för er. Ingen mall. Beloppet dras av om ni väljer att gå vidare med ett av paketen."
+    },
+    "q4": {
+      "question": "Tillkommer det några löpande kostnader?",
+      "answer": "Endast hosting (ca 99 kr/mån) och domän (ca 150 kr/år), som ni betalar direkt till leverantören — inte till oss. Inga prenumerationer eller månadsavgifter från Web C&B."
+    },
+    "q5": {
+      "question": "Kan jag flytta min befintliga domän hit?",
+      "answer": "Ja. Vi hjälper er peka om DNS:en så att er befintliga adress fungerar med den nya sidan. Nedtid är normalt under en timme och vi planerar in det när det stör minst."
+    },
+    "q6": {
+      "question": "Vad händer med min Stripe / betalning / e-post?",
+      "answer": "Allt sådant är frikopplat från sajten och påverkas inte. Ert Stripe-konto, era e-postadresser och era integrationer fortsätter fungera som tidigare — vi kopplar bara in dem i den nya sidan."
+    }
+  },
+  "HowItWorks": {
+    "eyebrow": "Hur det fungerar",
+    "title": "Från trött länk till ny hemsida — på 5 dagar.",
+    "step1Title": "Skicka oss er nuvarande länk",
+    "step1Body": "Klistra in webbadressen till er befintliga sida. Inget annat behövs.",
+    "step2Title": "Vi bygger en demo för 199 kr",
+    "step2Body": "Inom 24–48 timmar får ni se en helt ny version — designad bara för er. 199 kr inkl. moms.",
+    "step3Title": "Ni godkänner designen",
+    "step3Body": "Vi finjusterar tillsammans tills den känns precis rätt. Inget dragna ut.",
+    "step4Title": "Vi levererar live på 5 dagar",
+    "step4Body": "Vi sätter upp domän, hosting och allt tekniskt. Ni får en sida som rullar."
+  },
+  "WhyUs": {
+    "eyebrow": "Varför Web C&B",
+    "titleLine1": "Snabbare. Tydligare.",
+    "titleLine2": "Helt utan krångel.",
+    "reason1Title": "Fast pris från 4 900 kr inkl. moms",
+    "reason1Body": "Inga konsultarvoden, inga överraskningar. Du vet exakt vad du betalar innan vi börjar.",
+    "reason2Title": "Levererat på 5 dagar",
+    "reason2Body": "Tack vare AI-driven design jobbar vi 10x snabbare än traditionella byråer. Utan att tumma på kvalitén.",
+    "reason3Title": "Inga prenumerationer",
+    "reason3Body": "Du äger din hemsida. Inga månadsavgifter, inga bindningstider, ingen lock-in."
+  },
+  "DomainHosting": {
+    "label": "Vad är hosting & domän?",
+    "domainTitle": "Domän",
+    "domainDescription": "Adressen folk skriver in för att hitta er sida — t.ex. dittforetag.se. Ni hyr den per år (ca 150 kr/år) och äger rätten till namnet så länge ni förnyar.",
+    "hostingTitle": "Hosting",
+    "hostingDescription": "Servern där hemsidan ligger och som gör att den är tillgänglig 24/7. Ungefär som hyran för butikslokalen — fast på nätet. Cirka 99 kr/mån.",
+    "processTitle": "Så här sätter ni upp det — vi hjälper hela vägen",
+    "step1": "Vi rekommenderar en leverantör (t.ex. Loopia, One.com eller Google) baserat på era behov.",
+    "step2": "Ni registrerar konto och köper domän + hosting i ert eget namn — då äger ni allt.",
+    "step3": "Ni delar inloggningen med oss tillfälligt, eller bjuder in oss som teknisk kontakt.",
+    "step4": "Vi pekar om domänen, laddar upp sidan och sätter upp SSL (https) — klart på under en dag."
+  },
+  "Calculator": {
+    "eyebrow": "Priskalkylator",
+    "title": "Räkna ut ditt pris.",
+    "description": "Justera valen — priset uppdateras direkt. Allt är fast pris inkl. moms.",
+    "labelPages": "Antal sidor",
+    "pillPages1": "1 sida (one-pager)",
+    "pillPages5": "Upp till 5 sidor",
+    "pillPages10": "10+ sidor",
+    "labelEcom": "E-handel",
+    "pillEcomNo": "Nej",
+    "pillEcomSmall": "Ja, upp till 20 produkter",
+    "pillEcomLarge": "Ja, 20+ produkter",
+    "labelIncludes": "Alltid ingår",
+    "include1": "Mobilanpassad design",
+    "include2": "SEO-grunder & SSL",
+    "include3": "Hjälp med domän & hosting",
+    "include4": "Du äger sajten",
+    "priceLabel": "Uppskattat fast pris",
+    "priceNote": "Engångsbelopp inkl. moms · Slutpris bekräftas i offerten",
+    "button": "Få demo för 199 kr"
+  },
+  "Quote": {
+    "label": "Vad står namnet för?",
+    "quote": "Web C&B står för Changer & Builder — vi förändrar det som finns och bygger det som borde finnas.",
+    "attribution": "— Filosofin bakom Web C&B"
+  },
+  "Footer": {
+    "tagline": "Svensk webbyrå som förändrar det som finns och bygger det som borde finnas.",
+    "sectionSite": "Sajt",
+    "sectionLegal": "Juridiskt",
+    "linkTerms": "Allmänna villkor",
+    "linkPrivacy": "Integritetspolicy",
+    "linkCookies": "Cookie-policy",
+    "linkCookieSettings": "Cookie-inställningar",
+    "sectionContact": "Kontakt",
+    "contactHours": "Svar inom 48 timmar. Vardagar 09–18.",
+    "copyright": "© {year} Web C&B AB · Alla rättigheter förbehållna",
+    "builtLabel": "Byggd med"
+  },
+  "CookieBanner": {
+    "title": "Vi använder cookies",
+    "description": "Nödvändiga cookies används alltid. Vi vill också gärna mäta hur sajten används för att kunna göra den bättre.",
+    "linkMore": "Läs mer",
+    "buttonNecessary": "Bara nödvändiga",
+    "buttonAll": "Godkänn alla"
+  },
+  "CookieSettings": {
+    "label": "Cookie-inställningar"
+  },
+  "StickyMobileCTA": {
+    "button": "Få demo för 199 kr"
+  },
+  "DemoViewer": {
+    "labelDemo": "Demo",
+    "viewPhone": "Telefon",
+    "viewDesktop": "Dator",
+    "buttonOpen": "Öppna i ny flik",
+    "buttonClose": "Stäng",
+    "keyboardInstruction": "Tryck <kbd>Esc</kbd> för att stänga · scrolla i ramen för att utforska sidan",
+    "framePhoneTitle": "Mobil-förhandsvisning av {name}",
+    "frameDesktopTitle": "Dator-förhandsvisning av {name}",
+    "homescreenDate": "tisdag 5 maj",
+    "homescreenTime": "9:41"
+  },
+  "ThemeToggle": {
+    "ariaLabel": "Byt till {theme} läge",
+    "themeLight": "ljust",
+    "themeDark": "mörkt"
+  },
+  "NotFound": {
+    "title": "Sidan hittades inte",
+    "errorLabel": "Fel 404",
+    "heading": "Sidan hittades inte.",
+    "description": "Sidan ni letade efter finns inte här — antingen flyttades den, togs bort, eller skrev ni fel adress.",
+    "buttonHome": "Tillbaka till start",
+    "buttonContact": "Kontakta oss",
+    "footerNote": "Om ni klickade på en länk på vår sajt — mejla web.candb@gmail.com så fixar vi det."
+  },
+  "Success": {
+    "title": "Tack — vi hörs snart!",
+    "badge": "Beställning bekräftad",
+    "heading": "Tack — vi hörs snart!",
+    "descriptionPrefix": "Er beställning av",
+    "descriptionSuffix": "är registrerad och betalningen är genomförd.",
+    "receiptPrefix": "En kvittokopia är skickad till",
+    "stepsLabel": "Så här går det till nu",
+    "buttonHome": "Tillbaka till start",
+    "buttonEmail": "Mejla oss",
+    "footerNote": "Frågor? Mejla web.candb@gmail.com — vi svarar inom 48 timmar.",
+    "packageDemo": "Demo",
+    "packageStart": "Start-paketet",
+    "packageKlassisk": "Klassisk-paketet",
+    "packagePremium": "Premium-paketet",
+    "fallbackPackage": "ert paket",
+    "stepsDemo1": "Vi hör av oss inom någon timme för att bekräfta er beställning.",
+    "stepsDemo2": "Inom 48 timmar levererar vi en första version av demon.",
+    "stepsDemo3": "Ni får ett email med länk där ni kan se demon och ge feedback.",
+    "stepsDemo4": "Inget köpkrav — om demon inte träffar rätt, är det OK.",
+    "stepsStart1": "Vi mejlar er inom 24 timmar för att starta projektet.",
+    "stepsStart2": "Ni får en kort intervju (15 min) där vi går igenom innehåll & känsla.",
+    "stepsStart3": "Vi levererar en första version inom 5 arbetsdagar.",
+    "stepsStart4": "Ni godkänner — vi sätter live + hjälper med domän/hosting.",
+    "stepsKlassisk1": "Vi mejlar er inom 24 timmar för att starta projektet.",
+    "stepsKlassisk2": "Ni får en intervju (30 min) där vi går igenom alla 5 sidor.",
+    "stepsKlassisk3": "Vi levererar första versionen inom 10 arbetsdagar.",
+    "stepsKlassisk4": "1 omgång designjusteringar ingår innan vi sätter live.",
+    "stepsPremium1": "Vi mejlar er inom 24 timmar för att starta projektet.",
+    "stepsPremium2": "Vi bokar in ett strategimöte för att skräddarsy designen.",
+    "stepsPremium3": "Vi levererar första versionen inom 15 arbetsdagar.",
+    "stepsPremium4": "2 omgångar designjusteringar + analytics-setup ingår."
+  },
+  "Cancelled": {
+    "title": "Beställningen avbröts",
+    "badge": "Beställning avbruten",
+    "heading": "Inga problem.",
+    "description": "Ingen betalning har dragits. Ni är alltid välkomna tillbaka när ni är redo — eller mejla oss om ni har frågor om paketen, processen eller priser.",
+    "option1Label": "Tveksam?",
+    "option1Title": "Jämför paketen igen",
+    "option1Description": "Tillbaka till priser och vad som ingår",
+    "option2Label": "Osäker?",
+    "option2Title": "Mejla oss en fråga",
+    "option2Description": "Svar inom 48 timmar — vi hjälper er välja rätt",
+    "buttonHome": "Tillbaka till start"
+  }
+}

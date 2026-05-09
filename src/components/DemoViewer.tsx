@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Demo = { url: string; name: string };
 
@@ -11,6 +12,7 @@ export function openDemo(demo: Demo) {
 export default function DemoViewer() {
   const [current, setCurrent] = useState<Demo | null>(null);
   const [view, setView] = useState<"phone" | "desktop">("phone");
+  const t = useTranslations("DemoViewer");
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -52,7 +54,7 @@ export default function DemoViewer() {
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4 text-white flex-shrink-0">
           <div>
             <div className="text-xs font-semibold uppercase tracking-widest text-white/50">
-              Demo
+              {t("labelDemo")}
             </div>
             <div className="text-xl font-bold">{current.name}</div>
           </div>
@@ -69,7 +71,7 @@ export default function DemoViewer() {
                   <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
                   <line x1="12" y1="18" x2="12.01" y2="18" />
                 </svg>
-                Telefon
+                {t("viewPhone")}
               </button>
               <button
                 onClick={() => setView("desktop")}
@@ -82,7 +84,7 @@ export default function DemoViewer() {
                   <line x1="8" y1="21" x2="16" y2="21" />
                   <line x1="12" y1="17" x2="12" y2="21" />
                 </svg>
-                Dator
+                {t("viewDesktop")}
               </button>
             </div>
 
@@ -92,7 +94,7 @@ export default function DemoViewer() {
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-brand-hover transition"
             >
-              Öppna i ny flik
+              {t("buttonOpen")}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
@@ -100,7 +102,7 @@ export default function DemoViewer() {
 
             <button
               onClick={close}
-              aria-label="Stäng"
+              aria-label={t("buttonClose")}
               className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -121,7 +123,9 @@ export default function DemoViewer() {
         </div>
 
         <div className="mt-3 text-center text-white/40 text-xs flex-shrink-0">
-          Tryck <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white/60 font-mono">Esc</kbd> för att stänga · scrolla i ramen för att utforska sidan
+          {t.rich("keyboardInstruction", {
+            kbd: (chunks) => <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white/60 font-mono">{chunks}</kbd>,
+          })}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Gallery from "@/components/Gallery";
@@ -10,7 +11,14 @@ import Booking from "@/components/Booking";
 import FAQ from "@/components/FAQ";
 import Reveal from "@/components/Reveal";
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <Hero />

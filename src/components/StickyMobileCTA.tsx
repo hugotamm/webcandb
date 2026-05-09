@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function StickyMobileCTA() {
   const [show, setShow] = useState(false);
+  const t = useTranslations("StickyMobileCTA");
 
   useEffect(() => {
     const onScroll = () => {
-      // Show after user scrolls past the hero (~600px)
       setShow(window.scrollY > 600);
     };
     onScroll();
@@ -25,7 +26,7 @@ export default function StickyMobileCTA() {
         href="/#boka"
         className="flex items-center justify-center gap-2 w-full rounded-full bg-brand text-white px-6 py-4 font-semibold shadow-2xl hover:bg-brand-hover transition"
       >
-        Få demo för 199 kr
+        {t("button")}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <line x1="5" y1="12" x2="19" y2="12" />
           <polyline points="12 5 19 12 12 19" />

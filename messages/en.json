@@ -1,0 +1,320 @@
+{
+  "Metadata": {
+    "title": "Web C&B — Your old website. Brand new again.",
+    "titleTemplate": "%s · Web C&B",
+    "description": "Web C&B is a Swedish web agency that rebuilds tired websites into modern, fast sites — fixed price, delivered in 5 days. No subscriptions, you own the site.",
+    "ogTitle": "Web C&B — Your old website. Brand new again.",
+    "ogDescription": "Swedish web agency. Modern, fast site in 5 days — fixed price. No subscriptions.",
+    "twitterDescription": "Modern, fast site in 5 days — fixed price."
+  },
+  "Header": {
+    "navTjanster": "Services",
+    "navGalleri": "Gallery",
+    "navPriser": "Pricing",
+    "navKalkylator": "Calculator",
+    "navBoka": "Book",
+    "navFAQ": "FAQ",
+    "ctaFull": "Get a demo for 199 SEK incl. VAT",
+    "ctaShort": "Get demo",
+    "openMenu": "Open menu"
+  },
+  "Hero": {
+    "eyebrow": "AI-powered web design · Sweden",
+    "titleLine1": "Your old website.",
+    "titleLine2": "Brand new again.",
+    "subtitle": "Paste your current web address — within <strong>48 hours</strong> we deliver a personal demo. You fine-tune it with us, add your photos, and we plan the rest together.",
+    "badge": "No purchase required.",
+    "badgeSubtitle": "The demo is inspiration.",
+    "quote": "There's no business without a website.",
+    "inputPlaceholder": "https://your-website.com",
+    "buttonLoading": "Opening checkout…",
+    "buttonPrimary": "Get demo for 199 SEK",
+    "examplesEyebrow": "Website examples",
+    "moreExamplesEyebrow": "More examples",
+    "viewLive": "View live",
+    "screenshotAlt": "Screenshot of the {name} demo"
+  },
+  "Pricing": {
+    "eyebrow": "Pricing & Packages",
+    "titleLine1": "Fixed price. Clear delivery.",
+    "titleLine2": "No surprises.",
+    "description": "Web C&B is a Swedish web agency that turns tired, outdated websites into modern, fast and conversion-focused sites — using AI and Swedish design craft. You paste your current web address, we deliver a brand new version in days. All for a fixed price, no subscriptions or commitments.",
+    "badge1": "Fixed price from the start",
+    "badge2": "Delivered in 5–15 days",
+    "badge3": "You own the website",
+    "badge4": "No monthly fees",
+    "popularBadge": "Most popular",
+    "priceUnit": "SEK",
+    "priceLabel": "One-time fee · VAT included",
+    "includes": "What's included",
+    "footer": "All prices are one-time fees including VAT. Beyond the fixed price, only hosting (~99 SEK/month) and domain (~150 SEK/year) apply — we help you set them up. Returning customers get up to 30% off next time.",
+    "tiers": {
+      "start": {
+        "name": "Start",
+        "price": "4,900",
+        "delivery": "Live in 5 days",
+        "blurb": "Perfect for small businesses, freelancers, and solo entrepreneurs who need a polished digital presence.",
+        "feature1": "1-page landing page (one-pager)",
+        "feature2": "Mobile-friendly & fast loading",
+        "feature3": "Contact form connected to your email",
+        "feature4": "Help connecting your domain (.se / .com)",
+        "feature5": "We help you set up hosting",
+        "feature6": "Basic SEO & Google indexing",
+        "cta": "Order Start"
+      },
+      "klassisk": {
+        "name": "Classic",
+        "price": "11,900",
+        "delivery": "Live in 10 days",
+        "blurb": "For restaurants, salons, shops and service businesses who want a complete site.",
+        "feature1": "Everything in Start",
+        "feature2": "Up to 5 pages (menu, about, services, etc.)",
+        "feature3": "Booking or table-reservation integration",
+        "feature4": "SEO basics + Google Business connection",
+        "feature5": "Image gallery and Instagram feed",
+        "feature6": "1 round of design adjustments included",
+        "cta": "Order Classic"
+      },
+      "premium": {
+        "name": "Premium",
+        "price": "24,900",
+        "delivery": "Live in 15 days",
+        "blurb": "For growing businesses who want a fully tailored site with more functionality.",
+        "feature1": "Everything in Classic",
+        "feature2": "Fully custom design (unique to you)",
+        "feature3": "Blog / news module",
+        "feature4": "E-commerce foundation (up to 20 products)",
+        "feature5": "Analytics & conversion tracking",
+        "feature6": "2 rounds of design adjustments included",
+        "cta": "Order Premium"
+      }
+    }
+  },
+  "Gallery": {
+    "eyebrow": "Featured cases",
+    "title": "3 example websites for 3 different industries.",
+    "description": "Click a case to preview — the site opens in a live preview where you can switch between desktop and phone view.",
+    "badgePreview": "Live preview",
+    "industryLabel": "Industry · {industry}",
+    "button": "Preview",
+    "screenshotAlt": "Screenshot of {name}",
+    "cases": {
+      "karna": {
+        "name": "Kärna",
+        "industry": "E-commerce · Specialty coffee",
+        "blurb": "Small-scale roastery & online shop"
+      },
+      "sizewall": {
+        "name": "Sizewall",
+        "industry": "B2B Tech · SaaS",
+        "blurb": "3D body measurement scanning"
+      },
+      "studioNorr": {
+        "name": "Studio Norr",
+        "industry": "Salon · Beauty",
+        "blurb": "Premium hair & beauty studio"
+      }
+    }
+  },
+  "Booking": {
+    "eyebrow": "Book a walkthrough",
+    "title": "Want a personal walkthrough?",
+    "description": "Email us and we'll set up a quick call — we'll go through how it works, answer questions, and show examples. No obligations.",
+    "benefit1Title": "15–20 min",
+    "benefit1Body": "Short and concrete. We get to the point.",
+    "benefit2Title": "We answer everything",
+    "benefit2Body": "Price, timeline, hosting, ownership — everything.",
+    "benefit3Title": "Flexible times",
+    "benefit3Body": "Weekdays 9 AM–6 PM, evenings on request.",
+    "contactLabel": "Email",
+    "contactNote": "Just write when works for you — we'll get back with available times.",
+    "contactCta": "Email us"
+  },
+  "FAQ": {
+    "eyebrow": "Common questions",
+    "title": "Everything you're wondering — no fuss.",
+    "q1": {
+      "question": "How fast can you deliver?",
+      "answer": "We deliver according to the package you choose: Start in 5 days, Classic in 10 days, and Premium in 15 days. The demo is delivered within 24–48 hours after you paste your current web address."
+    },
+    "q2": {
+      "question": "What happens after the site is delivered?",
+      "answer": "You own the site — there's no lock-in. We help you set up domain and hosting in your own name. If you need updates later, you can return to us or handle it yourself."
+    },
+    "q3": {
+      "question": "What's included in the 199 SEK demo?",
+      "answer": "You get a working, designed version of your new website — built specifically for you. No template. The amount is deducted if you choose to continue with one of the packages."
+    },
+    "q4": {
+      "question": "Are there any ongoing costs?",
+      "answer": "Only hosting (~99 SEK/month) and domain (~150 SEK/year), which you pay directly to the provider — not us. No subscriptions or monthly fees from Web C&B."
+    },
+    "q5": {
+      "question": "Can I move my existing domain here?",
+      "answer": "Yes. We help you point your DNS so your existing address works with the new site. Downtime is normally under an hour and we schedule it when it disrupts least."
+    },
+    "q6": {
+      "question": "What happens to my Stripe / payments / email?",
+      "answer": "All of that is decoupled from the site and isn't affected. Your Stripe account, your email addresses and your integrations keep working — we just connect them to the new site."
+    }
+  },
+  "HowItWorks": {
+    "eyebrow": "How it works",
+    "title": "From tired link to new website — in 5 days.",
+    "step1Title": "Send us your current link",
+    "step1Body": "Paste the address of your existing site. Nothing else needed.",
+    "step2Title": "We build a demo for 199 SEK",
+    "step2Body": "Within 24–48 hours you'll see a brand new version — designed just for you. 199 SEK incl. VAT.",
+    "step3Title": "You approve the design",
+    "step3Body": "We fine-tune together until it feels just right. No back-and-forth dragging on.",
+    "step4Title": "We deliver live in 5 days",
+    "step4Body": "We set up domain, hosting and everything technical. You get a site that's ready to roll."
+  },
+  "WhyUs": {
+    "eyebrow": "Why Web C&B",
+    "titleLine1": "Faster. Clearer.",
+    "titleLine2": "No fuss.",
+    "reason1Title": "Fixed price from 4,900 SEK incl. VAT",
+    "reason1Body": "No consultancy fees, no surprises. You know exactly what you're paying before we start.",
+    "reason2Title": "Delivered in 5 days",
+    "reason2Body": "Thanks to AI-powered design we work 10x faster than traditional agencies. Without compromising quality.",
+    "reason3Title": "No subscriptions",
+    "reason3Body": "You own your website. No monthly fees, no commitments, no lock-in."
+  },
+  "DomainHosting": {
+    "label": "What is hosting & domain?",
+    "domainTitle": "Domain",
+    "domainDescription": "The address people type to find your site — e.g. yourcompany.com. You rent it per year (~150 SEK/year) and own the rights to the name as long as you renew.",
+    "hostingTitle": "Hosting",
+    "hostingDescription": "The server where the website lives, making it available 24/7. Like rent for a shop — but online. Around 99 SEK/month.",
+    "processTitle": "How to set it up — we help all the way",
+    "step1": "We recommend a provider (e.g. Loopia, One.com or Google) based on your needs.",
+    "step2": "You register an account and buy domain + hosting in your own name — so you own everything.",
+    "step3": "You share the login with us temporarily, or invite us as a technical contact.",
+    "step4": "We point the domain, upload the site, and set up SSL (https) — done in under a day."
+  },
+  "Calculator": {
+    "eyebrow": "Price calculator",
+    "title": "Calculate your price.",
+    "description": "Adjust the choices — price updates instantly. All fixed price incl. VAT.",
+    "labelPages": "Number of pages",
+    "pillPages1": "1 page (one-pager)",
+    "pillPages5": "Up to 5 pages",
+    "pillPages10": "10+ pages",
+    "labelEcom": "E-commerce",
+    "pillEcomNo": "No",
+    "pillEcomSmall": "Yes, up to 20 products",
+    "pillEcomLarge": "Yes, 20+ products",
+    "labelIncludes": "Always included",
+    "include1": "Mobile-friendly design",
+    "include2": "SEO basics & SSL",
+    "include3": "Help with domain & hosting",
+    "include4": "You own the site",
+    "priceLabel": "Estimated fixed price",
+    "priceNote": "One-time fee incl. VAT · Final price confirmed in the quote",
+    "button": "Get demo for 199 SEK"
+  },
+  "Quote": {
+    "label": "What does the name mean?",
+    "quote": "Web C&B stands for Changer & Builder — we change what exists and build what should exist.",
+    "attribution": "— The philosophy behind Web C&B"
+  },
+  "Footer": {
+    "tagline": "Swedish web agency that changes what exists and builds what should exist.",
+    "sectionSite": "Site",
+    "sectionLegal": "Legal",
+    "linkTerms": "Terms of service",
+    "linkPrivacy": "Privacy policy",
+    "linkCookies": "Cookie policy",
+    "linkCookieSettings": "Cookie settings",
+    "sectionContact": "Contact",
+    "contactHours": "Reply within 48 hours. Weekdays 9 AM–6 PM.",
+    "copyright": "© {year} Web C&B AB · All rights reserved",
+    "builtLabel": "Built with"
+  },
+  "CookieBanner": {
+    "title": "We use cookies",
+    "description": "Necessary cookies are always used. We'd also like to measure how the site is used so we can improve it.",
+    "linkMore": "Read more",
+    "buttonNecessary": "Necessary only",
+    "buttonAll": "Accept all"
+  },
+  "CookieSettings": {
+    "label": "Cookie settings"
+  },
+  "StickyMobileCTA": {
+    "button": "Get demo for 199 SEK"
+  },
+  "DemoViewer": {
+    "labelDemo": "Demo",
+    "viewPhone": "Phone",
+    "viewDesktop": "Desktop",
+    "buttonOpen": "Open in new tab",
+    "buttonClose": "Close",
+    "keyboardInstruction": "Press <kbd>Esc</kbd> to close · scroll inside the frame to explore the page",
+    "framePhoneTitle": "Mobile preview of {name}",
+    "frameDesktopTitle": "Desktop preview of {name}",
+    "homescreenDate": "Tuesday, May 5",
+    "homescreenTime": "9:41"
+  },
+  "ThemeToggle": {
+    "ariaLabel": "Switch to {theme} mode",
+    "themeLight": "light",
+    "themeDark": "dark"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "errorLabel": "Error 404",
+    "heading": "Page not found.",
+    "description": "The page you were looking for isn't here — it was either moved, removed, or you typed the wrong address.",
+    "buttonHome": "Back to home",
+    "buttonContact": "Contact us",
+    "footerNote": "If you clicked a link on our site — email web.candb@gmail.com and we'll fix it."
+  },
+  "Success": {
+    "title": "Thanks — we'll be in touch!",
+    "badge": "Order confirmed",
+    "heading": "Thanks — we'll be in touch!",
+    "descriptionPrefix": "Your order of",
+    "descriptionSuffix": "is registered and the payment is complete.",
+    "receiptPrefix": "A receipt has been sent to",
+    "stepsLabel": "Here's what happens next",
+    "buttonHome": "Back to home",
+    "buttonEmail": "Email us",
+    "footerNote": "Questions? Email web.candb@gmail.com — we reply within 48 hours.",
+    "packageDemo": "Demo",
+    "packageStart": "Start package",
+    "packageKlassisk": "Classic package",
+    "packagePremium": "Premium package",
+    "fallbackPackage": "your package",
+    "stepsDemo1": "We'll get in touch within an hour to confirm your order.",
+    "stepsDemo2": "Within 48 hours we deliver a first version of the demo.",
+    "stepsDemo3": "You'll get an email with a link where you can see the demo and give feedback.",
+    "stepsDemo4": "No purchase required — if the demo doesn't hit the mark, that's OK.",
+    "stepsStart1": "We'll email you within 24 hours to start the project.",
+    "stepsStart2": "You'll get a short interview (15 min) where we go through content & feel.",
+    "stepsStart3": "We deliver a first version within 5 working days.",
+    "stepsStart4": "You approve — we go live + help with domain/hosting.",
+    "stepsKlassisk1": "We'll email you within 24 hours to start the project.",
+    "stepsKlassisk2": "You'll get an interview (30 min) where we go through all 5 pages.",
+    "stepsKlassisk3": "We deliver the first version within 10 working days.",
+    "stepsKlassisk4": "1 round of design adjustments included before we go live.",
+    "stepsPremium1": "We'll email you within 24 hours to start the project.",
+    "stepsPremium2": "We schedule a strategy meeting to tailor the design.",
+    "stepsPremium3": "We deliver the first version within 15 working days.",
+    "stepsPremium4": "2 rounds of design adjustments + analytics setup included."
+  },
+  "Cancelled": {
+    "title": "Order cancelled",
+    "badge": "Order cancelled",
+    "heading": "No problem.",
+    "description": "No payment was made. You're always welcome back when you're ready — or email us if you have questions about packages, process, or pricing.",
+    "option1Label": "Hesitant?",
+    "option1Title": "Compare the packages again",
+    "option1Description": "Back to pricing and what's included",
+    "option2Label": "Unsure?",
+    "option2Title": "Email us a question",
+    "option2Description": "Reply within 48 hours — we help you choose right",
+    "buttonHome": "Back to home"
+  }
+}

@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { startCheckout } from "@/lib/checkout";
 
 export default function Hero() {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("Hero");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,6 +17,12 @@ export default function Hero() {
     setLoading(false);
   };
 
+  const cases = [
+    { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app", image: "/cases/karna.png" },
+    { name: "Sizewall", tag: "B2B Tech", url: "https://demo-sizewall-precision-scan.lovable.app", image: "/cases/sizewall.png" },
+    { name: "Studio Norr", tag: "Salong", url: "https://demo-studio-norr-editorial.lovable.app", image: "/cases/studio-norr.png" },
+  ];
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" aria-hidden="true" />
@@ -22,17 +30,19 @@ export default function Hero() {
         <div>
           <span className="inline-flex items-center text-xs font-semibold tracking-widest uppercase text-brand bg-brand-soft px-4 py-2 rounded-full">
             <span className="w-1.5 h-1.5 rounded-full bg-brand mr-2" />
-            AI-driven webdesign · Sverige
+            {t("eyebrow")}
           </span>
 
           <h1 className="mt-8 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-            Din gamla hemsida.
+            {t("titleLine1")}
             <br />
-            <span className="text-brand italic font-bold">Helt ny igen.</span>
+            <span className="text-brand italic font-bold">{t("titleLine2")}</span>
           </h1>
 
           <p className="mt-8 text-lg text-foreground/70 max-w-lg leading-relaxed">
-            Klistra in er nuvarande webbadress — inom <strong className="text-foreground">48 timmar</strong> levererar vi en personlig demo. Ni finjusterar med oss, lägger in era bilder, och vi tar fram en plan tillsammans.
+            {t.rich("subtitle", {
+              strong: (chunks) => <strong className="text-foreground">{chunks}</strong>,
+            })}
           </p>
 
           <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-soft border border-brand/20 px-4 py-2 text-sm">
@@ -40,14 +50,14 @@ export default function Hero() {
               <polyline points="20 6 9 17 4 12" />
             </svg>
             <span className="text-foreground">
-              <strong>Inget köpkrav.</strong> <span className="text-muted">Demo:n är inspiration.</span>
+              <strong>{t("badge")}</strong> <span className="text-muted">{t("badgeSubtitle")}</span>
             </span>
           </div>
 
           <div className="mt-6 flex items-start gap-3">
             <div className="w-10 h-px bg-foreground mt-3" />
             <p className="text-base font-semibold italic">
-              Det finns inget företag utan en hemsida.
+              {t("quote")}
             </p>
           </div>
 
@@ -56,7 +66,7 @@ export default function Hero() {
               type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              placeholder="https://din-hemsida.se"
+              placeholder={t("inputPlaceholder")}
               className="flex-1 rounded-full bg-card border border-border px-6 py-4 text-base placeholder:text-muted focus:outline-none focus:border-brand transition"
             />
             <button
@@ -70,11 +80,11 @@ export default function Hero() {
                     <circle cx="12" cy="12" r="10" strokeOpacity="0.3" />
                     <path d="M22 12a10 10 0 0 1-10 10" strokeLinecap="round" />
                   </svg>
-                  Öppnar checkout…
+                  {t("buttonLoading")}
                 </>
               ) : (
                 <>
-                  Få demo för 199 kr
+                  {t("buttonPrimary")}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
@@ -87,7 +97,7 @@ export default function Hero() {
 
         <div className="relative">
           <div className="mb-4">
-            <span className="eyebrow">Hemsidoexempel</span>
+            <span className="eyebrow">{t("examplesEyebrow")}</span>
           </div>
           <a
             href="https://karna-craft-coffeeshop.lovable.app"
@@ -98,7 +108,7 @@ export default function Hero() {
             <div className="aspect-[4/3] rounded-xl overflow-hidden bg-card shadow-md relative">
               <Image
                 src="/cases/karna.png"
-                alt="Skärmbild av Kärna-demon"
+                alt={t("screenshotAlt", { name: "Kärna" })}
                 fill
                 sizes="(max-width: 1024px) 100vw, 600px"
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
@@ -106,7 +116,7 @@ export default function Hero() {
               />
             </div>
             <span className="absolute top-6 left-6 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full">
-              Se live
+              {t("viewLive")}
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
@@ -114,14 +124,10 @@ export default function Hero() {
           </a>
 
           <div className="mt-8">
-            <span className="eyebrow">Fler exempel</span>
+            <span className="eyebrow">{t("moreExamplesEyebrow")}</span>
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">
-            {[
-              { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app", image: "/cases/karna.png" },
-              { name: "Sizewall", tag: "B2B Tech", url: "https://demo-sizewall-precision-scan.lovable.app", image: "/cases/sizewall.png" },
-              { name: "Studio Norr", tag: "Salong", url: "https://demo-studio-norr-editorial.lovable.app", image: "/cases/studio-norr.png" },
-            ].map((c) => (
+            {cases.map((c) => (
               <a
                 key={c.name}
                 href={c.url}
@@ -132,7 +138,7 @@ export default function Hero() {
                 <div className="flex-1 overflow-hidden bg-stone-100 relative">
                   <Image
                     src={c.image}
-                    alt={`Skärmbild av ${c.name}`}
+                    alt={t("screenshotAlt", { name: c.name })}
                     fill
                     sizes="200px"
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"

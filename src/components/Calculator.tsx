@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { startCheckout } from "@/lib/checkout";
 
 type Pages = "1" | "5" | "10";
@@ -12,14 +13,20 @@ const priceMatrix: Record<Pages, Record<Ecom, number>> = {
   "10": { no: 19900, small: 22900, large: 24900 },
 };
 
-const formatKr = (n: number) =>
-  n.toLocaleString("sv-SE").replace(/,/g, " ") + " kr";
-
 export default function Calculator() {
   const [pages, setPages] = useState<Pages>("5");
   const [ecom, setEcom] = useState<Ecom>("small");
+  const t = useTranslations("Calculator");
+  const locale = useLocale();
+
+  const formatPrice = (n: number) => {
+    const formatted = n.toLocaleString(locale === "sv" ? "sv-SE" : "en-US").replace(/,/g, " ");
+    return `${formatted} ${locale === "sv" ? "kr" : "SEK"}`;
+  };
 
   const price = priceMatrix[pages][ecom];
+
+  const includes = [t("include1"), t("include2"), t("include3"), t("include4")];
 
   const Pill = ({
     active,
@@ -46,46 +53,46 @@ export default function Calculator() {
   return (
     <section id="kalkylator" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <span className="eyebrow">Priskalkylator</span>
+        <span className="eyebrow">{t("eyebrow")}</span>
         <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-          Räkna ut ditt pris.
+          {t("title")}
         </h2>
         <p className="mt-6 text-lg text-foreground/70 max-w-xl leading-relaxed">
-          Justera valen — priset uppdateras direkt. Allt är fast pris inkl. moms.
+          {t("description")}
         </p>
 
         <div className="mt-12 grid lg:grid-cols-2 gap-6">
           <div className="rounded-2xl bg-card border border-border p-7 lg:p-9">
             <div>
               <div className="text-xs font-bold uppercase tracking-widest text-muted mb-4">
-                Antal sidor
+                {t("labelPages")}
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Pill active={pages === "1"} onClick={() => setPages("1")}>
-                  1 sida (one-pager)
+                  {t("pillPages1")}
                 </Pill>
                 <Pill active={pages === "5"} onClick={() => setPages("5")}>
-                  Upp till 5 sidor
+                  {t("pillPages5")}
                 </Pill>
                 <Pill active={pages === "10"} onClick={() => setPages("10")}>
-                  10+ sidor
+                  {t("pillPages10")}
                 </Pill>
               </div>
             </div>
 
             <div className="mt-8">
               <div className="text-xs font-bold uppercase tracking-widest text-muted mb-4">
-                E-handel
+                {t("labelEcom")}
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Pill active={ecom === "no"} onClick={() => setEcom("no")}>
-                  Nej
+                  {t("pillEcomNo")}
                 </Pill>
                 <Pill active={ecom === "small"} onClick={() => setEcom("small")}>
-                  Ja, upp till 20 produkter
+                  {t("pillEcomSmall")}
                 </Pill>
                 <Pill active={ecom === "large"} onClick={() => setEcom("large")}>
-                  Ja, 20+ produkter
+                  {t("pillEcomLarge")}
                 </Pill>
               </div>
             </div>
@@ -93,15 +100,10 @@ export default function Calculator() {
             <hr className="my-8 border-border" />
 
             <div className="text-xs font-bold uppercase tracking-widest text-muted mb-4">
-              Alltid ingår
+              {t("labelIncludes")}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
-              {[
-                "Mobilanpassad design",
-                "SEO-grunder & SSL",
-                "Hjälp med domän & hosting",
-                "Du äger sajten",
-              ].map((item) => (
+              {includes.map((item) => (
                 <div key={item} className="flex items-center gap-2 text-sm">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand flex-shrink-0">
                     <polyline points="20 6 9 17 4 12" />
@@ -120,20 +122,20 @@ export default function Calculator() {
                   <path d="M3 9h18" />
                   <path d="M9 21V9" />
                 </svg>
-                Uppskattat fast pris
+                {t("priceLabel")}
               </span>
               <div className="mt-8 text-6xl lg:text-7xl font-bold tracking-tight tabular-nums">
-                {formatKr(price)}
+                {formatPrice(price)}
               </div>
               <div className="mt-3 text-sm text-white/60">
-                Engångsbelopp inkl. moms · Slutpris bekräftas i offerten
+                {t("priceNote")}
               </div>
             </div>
             <button
               onClick={() => startCheckout("demo")}
               className="mt-10 w-full rounded-full bg-brand text-white py-4 font-semibold hover:bg-brand-hover transition flex items-center justify-center gap-2"
             >
-              Få demo för 199 kr
+              {t("button")}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
