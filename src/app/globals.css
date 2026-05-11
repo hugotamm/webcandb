@@ -31,7 +31,8 @@
 }
 
 /* Always-dark sections — text must remain readable in any theme.
-   Overrides palette vars locally inside the section. */
+   Overrides palette vars locally AND sets explicit color so elements
+   without an explicit color class still inherit a light value. */
 .bg-dark-bg {
   --foreground: #f5f2e8;
   --muted: #b8b3a8;
@@ -40,6 +41,14 @@
   --brand-soft: #1a1814;
   --card: #131210;
   --border: rgba(245, 242, 232, 0.12);
+  --color-foreground: #f5f2e8;
+  --color-muted: #b8b3a8;
+  --color-brand: #d9c89a;
+  --color-brand-hover: #ead9a8;
+  --color-brand-soft: #1a1814;
+  --color-card: #131210;
+  --color-border: rgba(245, 242, 232, 0.12);
+  color: #f5f2e8;
 }
 
 @theme inline {
