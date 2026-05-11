@@ -68,7 +68,11 @@ export default function IntroGate() {
 
   useEffect(() => {
     setMounted(true);
-    if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("intro_passed") === "1") {
+    // ?intro=1 forces the trailer to replay (clears the session flag)
+    const force = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("intro");
+    if (force) {
+      sessionStorage.removeItem("intro_passed");
+    } else if (typeof sessionStorage !== "undefined" && sessionStorage.getItem("intro_passed") === "1") {
       setPhase("dismissed");
       return;
     }
