@@ -98,6 +98,9 @@
     "industryLabel": "Industry · {industry}",
     "button": "Preview",
     "screenshotAlt": "Screenshot of {name}",
+    "languageNoteLabel": "Language",
+    "languageNoteTitle": "The demos above are in Swedish — but your site can be in any language",
+    "languageNoteBody": "We build in Swedish, English or other languages as needed. Just let us know when we start the project which language (or languages) you want.",
     "cases": {
       "karna": {
         "name": "Kärna",
