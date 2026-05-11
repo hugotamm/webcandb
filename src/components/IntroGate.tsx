@@ -83,10 +83,12 @@ export default function IntroGate() {
     // 0.4s - 4.0s : Hero pair emerges/dissolves
     // 1.8s - 5.4s : Steps emerge
     // 3.2s - 6.8s : Pricing emerges
-    // 5.0s - 8.5s : Whyus closing
-    // 8.5s : ready — WEB C&B sharp + PRESS visible
+    // Timeline (total 6.5s):
+    // 0.2-3.3s : hero pair, 1.2-4.5s : steps,
+    // 2.2-5.9s : pricing, 3.4-6.5s : closing whisper
+    // 6.5s : ready — WEB C&B fully zoomed-in + sharp + PRESS visible
     const t0 = setTimeout(() => setPhase("trailer"), 100);
-    const t1 = setTimeout(() => setPhase("ready"), 8500);
+    const t1 = setTimeout(() => setPhase("ready"), 6500);
 
     return () => {
       clearTimeout(t0);
@@ -163,8 +165,8 @@ export default function IntroGate() {
           <div
             className="absolute left-[6%] top-[14%] text-5xl md:text-7xl lg:text-8xl text-foreground"
             style={{
-              animation: "emergeL 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "0.4s",
+              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "0.2s",
               opacity: 0,
               textShadow:
                 "0 4px 30px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.7)",
@@ -175,8 +177,8 @@ export default function IntroGate() {
           <div
             className="absolute right-[6%] top-[22%] text-5xl md:text-7xl lg:text-8xl italic text-brand text-right"
             style={{
-              animation: "emergeR 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "0.8s",
+              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "0.5s",
               opacity: 0,
               textShadow:
                 "0 4px 30px rgba(0,0,0,0.95), 0 0 70px rgba(217,200,154,0.4)",
@@ -189,8 +191,8 @@ export default function IntroGate() {
           <div
             className="absolute left-[4%] top-[78%] flex items-baseline gap-5"
             style={{
-              animation: "emergeL 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "1.8s",
+              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "1.2s",
               opacity: 0,
             }}
           >
@@ -205,8 +207,8 @@ export default function IntroGate() {
           <div
             className="absolute right-[4%] top-[78%] flex items-baseline gap-5 justify-end"
             style={{
-              animation: "emergeR 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "2.2s",
+              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "1.5s",
               opacity: 0,
             }}
           >
@@ -223,8 +225,8 @@ export default function IntroGate() {
           <div
             className="absolute left-[4%] top-[14%] flex items-baseline gap-6"
             style={{
-              animation: "emergeL 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "3.4s",
+              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "2.2s",
               opacity: 0,
             }}
           >
@@ -245,8 +247,8 @@ export default function IntroGate() {
           <div
             className="absolute right-[4%] top-[14%] flex items-baseline gap-6 justify-end"
             style={{
-              animation: "emergeR 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "3.8s",
+              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "2.5s",
               opacity: 0,
             }}
           >
@@ -268,8 +270,8 @@ export default function IntroGate() {
           <div
             className="absolute left-[4%] top-[78%] flex items-baseline gap-6"
             style={{
-              animation: "emergeL 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "4.2s",
+              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "2.8s",
               opacity: 0,
             }}
           >
@@ -290,8 +292,8 @@ export default function IntroGate() {
           <div
             className="absolute right-[4%] top-[78%] flex items-baseline gap-5 justify-end"
             style={{
-              animation: "emergeR 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "4.6s",
+              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "3.1s",
               opacity: 0,
             }}
           >
@@ -308,8 +310,8 @@ export default function IntroGate() {
           <div
             className="absolute left-[10%] top-[14%] text-3xl md:text-5xl lg:text-6xl italic text-foreground/95"
             style={{
-              animation: "emergeL 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "5.4s",
+              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "3.4s",
               opacity: 0,
               textShadow: "0 4px 40px rgba(0,0,0,0.9)",
             }}
@@ -319,8 +321,8 @@ export default function IntroGate() {
           <div
             className="absolute right-[10%] top-[78%] text-3xl md:text-5xl lg:text-6xl italic text-brand text-right"
             style={{
-              animation: "emergeR 3.6s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "5.8s",
+              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
+              animationDelay: "3.7s",
               opacity: 0,
               textShadow: "0 4px 40px rgba(217,200,154,0.35)",
             }}
@@ -339,7 +341,7 @@ export default function IntroGate() {
           className="flex flex-col items-center gap-14"
           style={{
             animation: logoIsInShadow
-              ? "logoEmerge 8s cubic-bezier(0.22,1,0.36,1) forwards"
+              ? "logoEmerge 6.5s cubic-bezier(0.16,1,0.3,1) forwards"
               : undefined,
             opacity: logoIsHidden ? 0 : logoIsBright ? 1 : undefined,
             filter: logoIsHidden ? "blur(40px)" : logoIsBright ? "blur(0)" : undefined,
@@ -413,11 +415,14 @@ export default function IntroGate() {
           100% { transform: translateX(-35px) scale(0.94); opacity: 0; filter: blur(18px) brightness(0.1); }
         }
         @keyframes logoEmerge {
-          0%   { opacity: 0;    filter: blur(40px); transform: scale(0.85); }
-          18%  { opacity: 0.18; filter: blur(28px); transform: scale(0.88); }
-          45%  { opacity: 0.45; filter: blur(14px); transform: scale(0.93); }
-          75%  { opacity: 0.78; filter: blur(6px);  transform: scale(0.97); }
-          100% { opacity: 0.95; filter: blur(2px);  transform: scale(0.99); }
+          /* Zoom in from far away — small + very blurry + dim → close + sharp */
+          0%   { opacity: 0;    filter: blur(60px); transform: scale(0.40); }
+          15%  { opacity: 0.10; filter: blur(50px); transform: scale(0.48); }
+          35%  { opacity: 0.30; filter: blur(34px); transform: scale(0.60); }
+          55%  { opacity: 0.55; filter: blur(20px); transform: scale(0.75); }
+          75%  { opacity: 0.78; filter: blur(10px); transform: scale(0.88); }
+          90%  { opacity: 0.90; filter: blur(4px);  transform: scale(0.96); }
+          100% { opacity: 0.97; filter: blur(1px);  transform: scale(0.99); }
         }
         @keyframes pressPulse {
           0%, 100% { opacity: 0.55; }
