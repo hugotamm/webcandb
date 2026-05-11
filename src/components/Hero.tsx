@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { startCheckout } from "@/lib/checkout";
+import { openDemo } from "./DemoViewer";
 
 export default function Hero() {
   const [url, setUrl] = useState("");
@@ -116,12 +117,12 @@ export default function Hero() {
           <div className="mb-4">
             <span className="eyebrow">{t("examplesEyebrow")}</span>
           </div>
-          {/* Featured card — atmospheric photo, not a website screenshot */}
-          <a
-            href="https://karna-craft-coffeeshop.lovable.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block overflow-hidden border border-border hover:border-brand/60 transition-all duration-700"
+          {/* Featured card — opens the phone/desktop preview modal */}
+          <button
+            type="button"
+            onClick={() => openDemo({ url: "https://karna-craft-coffeeshop.lovable.app", name: "Kärna" })}
+            className="group relative block overflow-hidden border border-border hover:border-brand/60 transition-all duration-700 text-left cursor-pointer w-full"
+            aria-label="Förhandsgranska Kärna"
           >
             <div
               className="aspect-[4/3] relative"
@@ -137,33 +138,45 @@ export default function Hero() {
                 style={{ textShadow: "0 1px 4px rgba(0,0,0,0.95)" }}>
                 — Kaffe · Specialkaffe
               </div>
+              {/* Phone/desktop preview indicator */}
+              <div className="absolute top-5 right-5 inline-flex items-center gap-2 text-[9px] tracking-[0.35em] uppercase text-foreground/90"
+                style={{ textShadow: "0 1px 4px rgba(0,0,0,0.95)" }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="1" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                </svg>
+                <span className="text-foreground/70">/</span>
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                </svg>
+              </div>
               <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
                 <h3 className="text-3xl lg:text-4xl text-foreground"
                   style={{ fontFamily: "var(--font-playfair), serif", textShadow: "0 2px 8px rgba(0,0,0,0.95)" }}>
                   Kärna
                 </h3>
-                <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-foreground/95"
+                <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-foreground/95 group-hover:text-brand transition-colors duration-700"
                   style={{ textShadow: "0 1px 4px rgba(0,0,0,0.95)" }}>
                   {t("viewLive")}
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </span>
               </div>
             </div>
-          </a>
+          </button>
 
           <div className="mt-8">
             <span className="eyebrow">{t("moreExamplesEyebrow")}</span>
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">
             {cases.map((c) => (
-              <a
+              <button
                 key={c.name}
-                href={c.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group aspect-[4/5] border border-border overflow-hidden flex flex-col hover:border-brand/60 transition-all duration-700"
+                type="button"
+                onClick={() => openDemo({ url: c.url, name: c.name })}
+                className="group aspect-[4/5] border border-border overflow-hidden flex flex-col hover:border-brand/60 transition-all duration-700 text-left cursor-pointer"
+                aria-label={`Förhandsgranska ${c.name}`}
               >
                 <div
                   className="flex-1 relative"
@@ -180,7 +193,7 @@ export default function Hero() {
                   <div className="text-[10px] uppercase tracking-[0.3em] text-brand">{c.tag}</div>
                   <div className="text-base mt-1" style={{ fontFamily: "var(--font-playfair), serif" }}>{c.name}</div>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         </div>
