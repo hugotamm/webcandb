@@ -187,13 +187,10 @@ export default function IntroGate() {
 
       <style jsx>{`
         @keyframes logoEmerge {
-          /* Smooth zoom-in from shadow into the light */
-          0%   { opacity: 0;    filter: blur(24px); transform: scale(0.50); }
-          20%  { opacity: 0.20; filter: blur(20px); transform: scale(0.58); }
-          45%  { opacity: 0.50; filter: blur(12px); transform: scale(0.72); }
-          70%  { opacity: 0.82; filter: blur(5px);  transform: scale(0.88); }
-          88%  { opacity: 0.96; filter: blur(1px);  transform: scale(0.97); }
-          100% { opacity: 1;    filter: blur(0);    transform: scale(1); }
+          /* Single segment — no intermediate keyframes so easing drives
+             ONE continuous interpolation. No micro-stops between steps. */
+          from { opacity: 0; filter: blur(24px); transform: scale(0.5); }
+          to   { opacity: 1; filter: blur(0);    transform: scale(1); }
         }
         @keyframes pressPulse {
           0%, 100% { opacity: 0.55; }
