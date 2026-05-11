@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,28 +55,30 @@ export default function Header() {
                 href={pathname}
                 locale="sv"
                 className={`transition-colors duration-700 ${
-                  locale === "sv" ? "text-brand" : "text-foreground/40 hover:text-foreground"
+                  locale === "sv" ? "text-brand" : "text-foreground/60 hover:text-foreground"
                 }`}
               >
                 SV
               </Link>
-              <span className="text-foreground/20">·</span>
+              <span className="text-foreground/30">·</span>
               <Link
                 href={pathname}
                 locale="en"
                 className={`transition-colors duration-700 ${
-                  locale === "en" ? "text-brand" : "text-foreground/40 hover:text-foreground"
+                  locale === "en" ? "text-brand" : "text-foreground/60 hover:text-foreground"
                 }`}
               >
                 EN
               </Link>
+              <span className="text-foreground/30 mx-1">·</span>
+              <ThemeToggle />
             </div>
           </div>
 
           <div className="flex items-center gap-6">
             <a
               href="/#boka"
-              className="hidden sm:inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/60 hover:text-brand transition-colors duration-700"
+              className="hidden sm:inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/85 hover:text-brand transition-colors duration-700"
             >
               {t("ctaShort")}
               <span className="w-8 h-px bg-current" />
@@ -85,7 +88,7 @@ export default function Header() {
               onClick={() => setMenuOpen(true)}
               aria-label={t("openMenu")}
               aria-expanded={menuOpen}
-              className="group flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/70 hover:text-brand transition-colors duration-700 cursor-pointer"
+              className="group flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/90 hover:text-brand transition-colors duration-700 cursor-pointer"
             >
               <span className="hidden sm:inline">Menu</span>
               <span className="flex flex-col gap-1.5">

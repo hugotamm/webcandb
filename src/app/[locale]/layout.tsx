@@ -105,9 +105,10 @@ const themeInitScript = `
 (function(){
   try {
     var t = localStorage.getItem('theme');
-    var d = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    // Default to dark for the cinematic playground experience.
+    var d = t !== 'light';
     if (d) document.documentElement.classList.add('dark');
-  } catch(e) {}
+  } catch(e) { document.documentElement.classList.add('dark'); }
 })();
 `;
 
@@ -191,7 +192,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${inter.variable} ${playfair.variable} dark h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
@@ -214,6 +215,8 @@ export default async function LocaleLayout({
           <StickyMobileCTA />
           <DemoViewer />
         </NextIntlClientProvider>
+        <div className="cinema-light-leak" aria-hidden="true" />
+        <div className="cinema-flare" aria-hidden="true" />
         <div className="cinema-vignette" aria-hidden="true" />
         <div className="film-grain" aria-hidden="true" />
         <Analytics />

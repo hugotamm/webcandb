@@ -4,15 +4,13 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const t = useTranslations("ThemeToggle");
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    const isDark =
-      stored === "dark" ||
-      (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setTheme(isDark ? "dark" : "light");
+    // Default to dark for cinematic playground
+    setTheme(stored === "light" ? "light" : "dark");
   }, []);
 
   const toggle = () => {
@@ -28,15 +26,17 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={t("ariaLabel", { theme: nextTheme })}
-      className="hidden sm:flex w-8 h-8 rounded-full border border-border items-center justify-center text-muted hover:text-foreground hover:border-foreground/40 transition"
+      className="flex items-center justify-center text-foreground/60 hover:text-brand transition-colors duration-700"
     >
       {theme === "dark" ? (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        // Sun icon = "switch to light"
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
         </svg>
       ) : (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        // Moon icon = "switch to dark"
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       )}

@@ -32,7 +32,7 @@ export default function Pricing() {
           <br />
           <em className="text-brand">{t("titleLine2")}</em>
         </h2>
-        <p className="mt-10 text-lg text-foreground/50 max-w-2xl leading-relaxed font-light">
+        <p className="mt-10 text-lg text-foreground/80 max-w-2xl leading-relaxed font-light">
           {t("description")}
         </p>
 
@@ -59,14 +59,14 @@ export default function Pricing() {
                         </span>
                       )}
                     </div>
-                    <p className="mt-6 text-base lg:text-lg text-foreground/55 max-w-xl leading-relaxed font-light">
+                    <p className="mt-6 text-base lg:text-lg text-foreground/85 max-w-xl leading-relaxed font-light">
                       {tier.blurb}
                     </p>
 
                     {/* Click to expand features */}
                     <button
                       onClick={() => setOpenTier(isOpen ? null : tier.id)}
-                      className="mt-8 inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/50 hover:text-brand transition-colors duration-700"
+                      className="mt-8 inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/80 hover:text-brand transition-colors duration-700"
                       aria-expanded={isOpen}
                     >
                       <span>{isOpen ? "—" : "+"} {t("includes")}</span>
@@ -83,7 +83,7 @@ export default function Pricing() {
                           {tier.features.map((f, i) => (
                             <li
                               key={f}
-                              className={`flex gap-4 text-sm text-foreground/70 font-light leading-relaxed transition-all duration-[800ms] ease-out ${
+                              className={`flex gap-4 text-sm text-foreground/90 font-light leading-relaxed transition-all duration-[800ms] ease-out ${
                                 isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                               }`}
                               style={{ transitionDelay: isOpen ? `${i * 80}ms` : "0ms" }}
@@ -99,7 +99,7 @@ export default function Pricing() {
 
                   <div className="lg:text-right space-y-6">
                     <div>
-                      <div className="text-[10px] tracking-[0.4em] uppercase text-foreground/40 mb-3">
+                      <div className="text-[10px] tracking-[0.4em] uppercase text-foreground/90 mb-3">
                         {tier.delivery}
                       </div>
                       <div
@@ -107,9 +107,9 @@ export default function Pricing() {
                         style={{ fontFamily: "var(--font-playfair), serif" }}
                       >
                         {tier.price}
-                        <span className="text-lg text-foreground/40 ml-2 font-light">{t("priceUnit")}</span>
+                        <span className="text-lg text-foreground/90 ml-2 font-light">{t("priceUnit")}</span>
                       </div>
-                      <div className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mt-2">
+                      <div className="text-[10px] tracking-[0.3em] uppercase text-foreground/90 mt-2">
                         {t("priceLabel")}
                       </div>
                     </div>
@@ -128,7 +128,7 @@ export default function Pricing() {
           })}
         </div>
 
-        <p className="mt-16 text-xs text-foreground/40 max-w-2xl leading-relaxed font-light">
+        <p className="mt-16 text-xs text-foreground/90 max-w-2xl leading-relaxed font-light">
           {t("footer")}
         </p>
       </div>

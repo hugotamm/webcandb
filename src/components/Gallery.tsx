@@ -29,7 +29,7 @@ export default function Gallery() {
             {t("title")}
           </h2>
           <div className="lg:justify-self-end max-w-md">
-            <p className="text-lg text-foreground/60 leading-relaxed font-light">
+            <p className="text-lg text-foreground/85 leading-relaxed font-light">
               {t("description")}
             </p>
           </div>
@@ -37,13 +37,13 @@ export default function Gallery() {
 
         {/* Language note — slim, mysterious */}
         <div className="mt-12 max-w-2xl">
-          <div className="text-[10px] tracking-[0.4em] uppercase text-brand/70 mb-3">
+          <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-3">
             — {t("languageNoteLabel")}
           </div>
-          <div className="text-lg text-foreground/70 leading-relaxed font-light italic" style={{ fontFamily: "var(--font-playfair), serif" }}>
+          <div className="text-lg text-foreground/95 leading-relaxed font-light italic" style={{ fontFamily: "var(--font-playfair), serif" }}>
             {t("languageNoteTitle")}
           </div>
-          <p className="mt-3 text-sm text-foreground/40 leading-relaxed">
+          <p className="mt-3 text-sm text-foreground/75 leading-relaxed">
             {t("languageNoteBody")}
           </p>
         </div>
@@ -64,14 +64,15 @@ export default function Gallery() {
                   alt={t("screenshotAlt", { name: c.name })}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 400px"
-                  className="object-cover object-top transition-all duration-[1500ms] ease-out grayscale brightness-[0.55] group-hover:grayscale-0 group-hover:brightness-90 group-hover:scale-[1.03]"
+                  className="object-cover object-top transition-all duration-[1500ms] ease-out brightness-95 contrast-105 group-hover:brightness-100 group-hover:scale-[1.03]"
                 />
 
-                {/* Dark overlay that lifts on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-100 group-hover:opacity-30 transition-opacity duration-[1500ms] ease-out" />
+                {/* Soft gradient overlay — only at bottom to ensure text legibility */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background via-background/70 to-transparent group-hover:via-background/55 group-hover:from-background/95 transition-all duration-[1500ms] ease-out" />
 
-                {/* Index number — always visible top-left */}
-                <div className="absolute top-5 left-5 text-[10px] tracking-[0.4em] uppercase text-foreground/40 tabular-nums font-light">
+                {/* Index number — always visible top-left, brighter */}
+                <div className="absolute top-5 left-5 text-[10px] tracking-[0.4em] uppercase text-foreground/85 tabular-nums font-light"
+                  style={{ textShadow: "0 1px 4px rgba(0,0,0,0.85)" }}>
                   0{i + 1} &nbsp;/&nbsp; 0{cases.length}
                 </div>
 
@@ -80,7 +81,7 @@ export default function Gallery() {
                   {/* Always-visible: name */}
                   <h3
                     className="text-3xl lg:text-4xl text-foreground transition-transform duration-[1200ms] ease-out group-hover:-translate-y-2"
-                    style={{ fontFamily: "var(--font-playfair), serif" }}
+                    style={{ fontFamily: "var(--font-playfair), serif", textShadow: "0 2px 8px rgba(0,0,0,0.85)" }}
                   >
                     {c.name}
                   </h3>
@@ -88,13 +89,16 @@ export default function Gallery() {
                   {/* Hover-revealed: industry + blurb */}
                   <div className="overflow-hidden">
                     <div className="opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-[1200ms] ease-out delay-150">
-                      <div className="mt-2 text-[10px] tracking-[0.3em] uppercase text-brand">
+                      <div className="mt-2 text-[10px] tracking-[0.3em] uppercase text-brand"
+                        style={{ textShadow: "0 1px 3px rgba(0,0,0,0.85)" }}>
                         {c.industry}
                       </div>
-                      <p className="mt-3 text-sm text-foreground/70 leading-relaxed font-light max-w-xs">
+                      <p className="mt-3 text-sm text-foreground/95 leading-relaxed font-light max-w-xs"
+                        style={{ textShadow: "0 1px 4px rgba(0,0,0,0.85)" }}>
                         {c.blurb}
                       </p>
-                      <div className="mt-5 inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/70">
+                      <div className="mt-5 inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/95"
+                        style={{ textShadow: "0 1px 3px rgba(0,0,0,0.85)" }}>
                         <span>{t("button")}</span>
                         <span className="w-6 h-px bg-current" />
                       </div>

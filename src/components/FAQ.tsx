@@ -30,12 +30,12 @@ export default function FAQ() {
                   className="group w-full py-8 flex items-center gap-8 text-left transition-colors duration-700"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-xs tracking-[0.3em] uppercase text-foreground/30 tabular-nums w-8">
+                  <span className="text-xs tracking-[0.3em] uppercase text-foreground/70 tabular-nums w-8">
                     0{i + 1}
                   </span>
                   <span
                     className={`flex-1 text-xl lg:text-2xl leading-snug transition-colors duration-700 ${
-                      isOpen ? "text-foreground" : "text-foreground/70 group-hover:text-foreground"
+                      isOpen ? "text-foreground" : "text-foreground/90 group-hover:text-foreground"
                     }`}
                     style={{ fontFamily: "var(--font-playfair), serif" }}
                   >
@@ -61,7 +61,7 @@ export default function FAQ() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-base lg:text-lg text-foreground/60 leading-relaxed font-light pl-16 pr-12 max-w-3xl">
+                    <p className="text-base lg:text-lg text-foreground/85 leading-relaxed font-light pl-16 pr-12 max-w-3xl">
                       {f.a}
                     </p>
                   </div>

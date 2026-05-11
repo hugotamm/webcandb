@@ -1,27 +1,29 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Cinematic palette — dark, muted, mysterious.
+   Cinematic palette — dual mode (dark default, light optional).
    ============================================================ */
 
+/* Light cinematic — warm parchment/cream paper feel */
 :root {
-  --background: #0c0b0a;
-  --foreground: #e8e5dc;
-  --muted: #8a857d;
-  --brand: #c9b78a;          /* warm muted gold replaces emerald */
-  --brand-hover: #d9c89a;
-  --brand-soft: #1a1814;
-  --card: #131210;
-  --border: #2a2723;
-  --dark-bg: #050403;
+  --background: #efece2;
+  --foreground: #1a1612;
+  --muted: #6b6358;
+  --brand: #9a7a3a;
+  --brand-hover: #b08f4a;
+  --brand-soft: #e5dec7;
+  --card: #f5f1e4;
+  --border: #d4cebf;
+  --dark-bg: #1a1612;
 }
 
+/* Dark cinematic — the main filmic vibe */
 .dark {
   --background: #0c0b0a;
-  --foreground: #e8e5dc;
-  --muted: #8a857d;
-  --brand: #c9b78a;
-  --brand-hover: #d9c89a;
+  --foreground: #f5f2e8;
+  --muted: #b8b3a8;
+  --brand: #d9c89a;
+  --brand-hover: #ead9a8;
   --brand-soft: #1a1814;
   --card: #131210;
   --border: #2a2723;
@@ -53,19 +55,40 @@ body {
   transition: background-color 1.2s ease, color 1.2s ease;
 }
 
+/* Subtle cinematic shadow on all text in dark mode for that "lit on film" feel */
+.dark body,
+.dark p,
+.dark span,
+.dark a,
+.dark li,
+.dark h1, .dark h2, .dark h3, .dark h4 {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
 h1, h2, h3, blockquote {
   font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
   letter-spacing: -0.02em;
   font-weight: 400;
 }
 
-/* Film grain — fixed full-viewport overlay, pointer-events none */
+/* Bigger glow on big headings in dark mode */
+.dark h1, .dark h2 {
+  text-shadow: 0 2px 6px rgba(0,0,0,0.75), 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Brand-colored / italic text gets a warm gold glow */
+.dark .text-brand,
+.dark em {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7), 0 0 28px rgba(217, 200, 154, 0.18);
+}
+
+/* Film grain — fixed full-viewport overlay */
 .film-grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.12;
+  opacity: 0.09;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
   background-size: 400px 400px;
@@ -82,7 +105,7 @@ h1, h2, h3, blockquote {
   100% { transform: translate(0, 0); }
 }
 
-/* Soft vignette to enhance cinematic depth */
+/* Soft vignette for cinematic depth */
 .cinema-vignette {
   position: fixed;
   inset: 0;
@@ -91,9 +114,62 @@ h1, h2, h3, blockquote {
   background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
 }
 
+.dark .cinema-vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Warm light leak from top-right — slow breath */
+.cinema-light-leak {
+  position: fixed;
+  top: -25%;
+  right: -15%;
+  width: 55%;
+  height: 65%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(217, 200, 154, 0.10) 0%,
+    rgba(217, 200, 154, 0.05) 30%,
+    transparent 65%
+  );
+  filter: blur(60px);
+  animation: leakBreathe 14s ease-in-out infinite;
+}
+
+:root:not(.dark) .cinema-light-leak {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(154, 122, 58, 0.10) 0%,
+    transparent 60%
+  );
+}
+
+@keyframes leakBreathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* Counter-color anamorphic flare from bottom-left */
+.cinema-flare {
+  position: fixed;
+  bottom: -15%;
+  left: -10%;
+  width: 45%;
+  height: 45%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(120, 140, 180, 0.06) 0%,
+    transparent 60%
+  );
+  filter: blur(50px);
+}
+
 .eyebrow {
-  font-size: 0.7rem;
-  font-weight: 300;
+  font-size: 0.72rem;
+  font-weight: 400;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--brand);
@@ -104,15 +180,19 @@ h1, h2, h3, blockquote {
   content: "—";
   margin-right: 0.75rem;
   color: var(--brand);
-  opacity: 0.6;
+  opacity: 0.75;
 }
 
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(232, 229, 220, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(245, 242, 232, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* Scroll-fade animation — slower, more deliberate */
+:root:not(.dark) .dot-grid {
+  background-image: radial-gradient(circle, rgba(26, 22, 18, 0.08) 1px, transparent 1px);
+}
+
+/* Slower, more cinematic fade-in */
 .fade-in-up {
   opacity: 0;
   transform: translateY(40px);
@@ -136,17 +216,16 @@ h1, h2, h3, blockquote {
   pointer-events: none;
   z-index: 9997;
   transform: translate(-50%, -50%);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-              width 0.4s ease, height 0.4s ease,
+  transition: width 0.4s ease, height 0.4s ease,
               border-color 0.4s ease, opacity 0.6s ease;
   mix-blend-mode: difference;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 #cursor-ring.is-hover {
   width: 56px;
   height: 56px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -167,5 +246,6 @@ a, button {
   html { scroll-behavior: auto; }
   .fade-in-up { opacity: 1; transform: none; transition: none; }
   .film-grain { animation: none; }
+  .cinema-light-leak { animation: none; }
   body { transition: none; }
 }
