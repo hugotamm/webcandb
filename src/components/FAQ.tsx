@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   const t = useTranslations("FAQ");
 
   const faqs = [1, 2, 3, 4, 5, 6].map((n) => ({
@@ -13,41 +13,57 @@ export default function FAQ() {
   }));
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-background">
+    <section id="faq" className="py-32 lg:py-48 bg-background">
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
         <span className="eyebrow">{t("eyebrow")}</span>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+        <h2 className="mt-8 text-4xl sm:text-5xl lg:text-6xl leading-tight">
           {t("title")}
         </h2>
 
-        <div className="mt-12 divide-y divide-border border-y border-border">
+        <div className="mt-16 border-t border-foreground/10">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={i}>
+              <div key={i} className="border-b border-foreground/10">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full py-6 flex items-center justify-between gap-6 text-left hover:text-brand transition"
+                  className="group w-full py-8 flex items-center gap-8 text-left transition-colors duration-700"
+                  aria-expanded={isOpen}
                 >
-                  <span className="font-bold text-lg">{f.q}</span>
+                  <span className="text-xs tracking-[0.3em] uppercase text-foreground/30 tabular-nums w-8">
+                    0{i + 1}
+                  </span>
                   <span
-                    className={`flex-shrink-0 w-8 h-8 rounded-full border border-border flex items-center justify-center transition-transform ${
-                      isOpen ? "rotate-45 bg-brand text-white border-brand" : ""
+                    className={`flex-1 text-xl lg:text-2xl leading-snug transition-colors duration-700 ${
+                      isOpen ? "text-foreground" : "text-foreground/70 group-hover:text-foreground"
                     }`}
+                    style={{ fontFamily: "var(--font-playfair), serif" }}
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
+                    {f.q}
+                  </span>
+                  <span
+                    className={`flex-shrink-0 flex items-center justify-center w-6 h-6 transition-transform duration-[900ms] ease-out ${
+                      isOpen ? "rotate-45" : "rotate-0"
+                    }`}
+                    aria-hidden="true"
+                  >
+                    <span className="absolute w-5 h-px bg-current" />
+                    <span
+                      className={`absolute w-5 h-px bg-current rotate-90 transition-opacity duration-700 ${
+                        isOpen ? "opacity-100" : "opacity-100"
+                      }`}
+                    />
                   </span>
                 </button>
                 <div
-                  className={`grid transition-all duration-300 ${
-                    isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"
+                  className={`grid transition-[grid-template-rows,opacity] duration-[1000ms] ease-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100 pb-10" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="text-foreground/70 leading-relaxed pr-12">{f.a}</p>
+                    <p className="text-base lg:text-lg text-foreground/60 leading-relaxed font-light pl-16 pr-12 max-w-3xl">
+                      {f.a}
+                    </p>
                   </div>
                 </div>
               </div>

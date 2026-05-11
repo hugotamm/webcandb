@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { startCheckout } from "@/lib/checkout";
 import type { PackageId } from "@/lib/stripe-products";
@@ -9,6 +10,7 @@ const featuredId: PackageId = "klassisk";
 
 export default function Pricing() {
   const t = useTranslations("Pricing");
+  const [openTier, setOpenTier] = useState<PackageId | null>(null);
 
   const tiers = tierIds.map((id) => ({
     id,
@@ -21,97 +23,112 @@ export default function Pricing() {
     featured: id === featuredId,
   }));
 
-  const badges = [t("badge1"), t("badge2"), t("badge3"), t("badge4")];
-
   return (
-    <section id="priser" className="py-24 lg:py-32 bg-dark-bg text-white">
+    <section id="priser" className="py-32 lg:py-48 bg-dark-bg">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <span className="text-xs font-semibold tracking-widest uppercase text-brand">
-          • {t("eyebrow")}
-        </span>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight max-w-3xl">
+        <span className="eyebrow">{t("eyebrow")}</span>
+        <h2 className="mt-8 text-4xl sm:text-5xl lg:text-6xl leading-tight max-w-3xl">
           {t("titleLine1")}
           <br />
-          {t("titleLine2")}
+          <em className="text-brand">{t("titleLine2")}</em>
         </h2>
-        <p className="mt-8 text-lg text-white/70 max-w-3xl leading-relaxed">
+        <p className="mt-10 text-lg text-foreground/50 max-w-2xl leading-relaxed font-light">
           {t("description")}
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          {badges.map((b) => (
-            <span key={b} className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-4 py-2 text-sm">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              {b}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={`relative rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${
-                tier.featured
-                  ? "bg-white text-zinc-900 shadow-2xl"
-                  : "bg-white/[0.03] border border-white/10 text-white"
-              }`}
-            >
-              {tier.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">
-                  {t("popularBadge")}
-                </span>
-              )}
-              <div className="text-sm font-semibold uppercase tracking-widest opacity-60 mb-3">
-                {tier.name}
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-5xl font-bold tracking-tight">{tier.price}</span>
-                <span className="text-xl font-semibold opacity-60">{t("priceUnit")}</span>
-              </div>
-              <div className={`mt-1 text-xs uppercase tracking-widest ${tier.featured ? "text-zinc-500" : "text-white/50"}`}>
-                {t("priceLabel")}
-              </div>
-              <div className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${tier.featured ? "text-brand" : "text-brand"}`}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-                {tier.delivery}
-              </div>
-              <p className={`mt-6 text-sm leading-relaxed ${tier.featured ? "text-zinc-600" : "text-white/70"}`}>
-                {tier.blurb}
-              </p>
-              <hr className={`my-6 ${tier.featured ? "border-zinc-200" : "border-white/10"}`} />
-              <div className={`text-xs font-bold uppercase tracking-widest mb-4 ${tier.featured ? "text-zinc-900" : "text-white"}`}>
-                {t("includes")}
-              </div>
-              <ul className="space-y-3 text-sm">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex gap-3">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`${tier.featured ? "text-emerald-700" : "text-brand"} flex-shrink-0 mt-0.5`}>
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    <span className={tier.featured ? "text-zinc-800" : "text-white/80"}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => startCheckout(tier.id)}
-                className={`mt-8 w-full inline-flex items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition ${
-                  tier.featured
-                    ? "bg-emerald-700 text-white hover:bg-emerald-800"
-                    : "bg-white text-zinc-900 hover:bg-white/90"
-                }`}
+        <div className="mt-20 divide-y divide-foreground/10 border-y border-foreground/10">
+          {tiers.map((tier) => {
+            const isOpen = openTier === tier.id;
+            return (
+              <div
+                key={tier.id}
+                className="group relative py-12 lg:py-16"
               >
-                {tier.cta} →
-              </button>
-            </div>
-          ))}
+                <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-16 items-start">
+                  <div>
+                    <div className="flex items-baseline gap-6 flex-wrap">
+                      <h3
+                        className="text-5xl lg:text-7xl text-foreground/80 group-hover:text-foreground transition-colors duration-700"
+                        style={{ fontFamily: "var(--font-playfair), serif" }}
+                      >
+                        {tier.name}
+                      </h3>
+                      {tier.featured && (
+                        <span className="text-[10px] tracking-[0.4em] uppercase text-brand">
+                          — {t("popularBadge")}
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-6 text-base lg:text-lg text-foreground/55 max-w-xl leading-relaxed font-light">
+                      {tier.blurb}
+                    </p>
+
+                    {/* Click to expand features */}
+                    <button
+                      onClick={() => setOpenTier(isOpen ? null : tier.id)}
+                      className="mt-8 inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/50 hover:text-brand transition-colors duration-700"
+                      aria-expanded={isOpen}
+                    >
+                      <span>{isOpen ? "—" : "+"} {t("includes")}</span>
+                    </button>
+
+                    {/* Features — slow expand */}
+                    <div
+                      className={`grid transition-[grid-template-rows,opacity] duration-[1000ms] ease-out ${
+                        isOpen ? "grid-rows-[1fr] opacity-100 mt-8" : "grid-rows-[0fr] opacity-0 mt-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <ul className="grid sm:grid-cols-2 gap-x-10 gap-y-3 max-w-2xl">
+                          {tier.features.map((f, i) => (
+                            <li
+                              key={f}
+                              className={`flex gap-4 text-sm text-foreground/70 font-light leading-relaxed transition-all duration-[800ms] ease-out ${
+                                isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                              }`}
+                              style={{ transitionDelay: isOpen ? `${i * 80}ms` : "0ms" }}
+                            >
+                              <span className="text-brand text-xs tabular-nums pt-1">0{i + 1}</span>
+                              <span>{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="lg:text-right space-y-6">
+                    <div>
+                      <div className="text-[10px] tracking-[0.4em] uppercase text-foreground/40 mb-3">
+                        {tier.delivery}
+                      </div>
+                      <div
+                        className="text-5xl lg:text-6xl text-foreground/90 tabular-nums"
+                        style={{ fontFamily: "var(--font-playfair), serif" }}
+                      >
+                        {tier.price}
+                        <span className="text-lg text-foreground/40 ml-2 font-light">{t("priceUnit")}</span>
+                      </div>
+                      <div className="text-[10px] tracking-[0.3em] uppercase text-foreground/40 mt-2">
+                        {t("priceLabel")}
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => startCheckout(tier.id)}
+                      className="inline-flex items-center gap-4 text-[11px] tracking-[0.3em] uppercase text-brand hover:text-foreground transition-colors duration-700"
+                    >
+                      <span>{tier.cta}</span>
+                      <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <p className="mt-10 text-center text-sm text-white/50 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-16 text-xs text-foreground/40 max-w-2xl leading-relaxed font-light">
           {t("footer")}
         </p>
       </div>
