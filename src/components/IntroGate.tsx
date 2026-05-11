@@ -6,18 +6,6 @@ import { useLocale } from "next-intl";
 type Phase = "boot" | "trailer" | "ready" | "fading-out" | "dismissed";
 
 type Copy = {
-  heroLine1: string;
-  heroLine2: string;
-  step1: string;
-  step2: string;
-  step3: string;
-  step4: string;
-  tierStart: string;
-  tierKlassisk: string;
-  tierPremium: string;
-  priceUnit: string;
-  whyLine1: string;
-  whyLine2: string;
   press: string;
   taglineSub: string;
   skipHint: string;
@@ -25,35 +13,11 @@ type Copy = {
 
 const COPY_BY_LOCALE: Record<string, Copy> = {
   sv: {
-    heroLine1: "Din gamla hemsida.",
-    heroLine2: "Helt ny igen.",
-    step1: "Skicka er länk",
-    step2: "Vi bygger en demo",
-    step3: "Ni godkänner",
-    step4: "Live på 5 dagar",
-    tierStart: "Start",
-    tierKlassisk: "Klassisk",
-    tierPremium: "Premium",
-    priceUnit: "kr",
-    whyLine1: "Snabbare. Tydligare.",
-    whyLine2: "Helt utan krångel.",
     press: "Tryck för att öppna",
     taglineSub: "Changer · Builder",
     skipHint: "Esc för att hoppa över",
   },
   en: {
-    heroLine1: "Your old website.",
-    heroLine2: "Brand new again.",
-    step1: "Send us your link",
-    step2: "We build a demo",
-    step3: "You approve",
-    step4: "Live in 5 days",
-    tierStart: "Start",
-    tierKlassisk: "Classic",
-    tierPremium: "Premium",
-    priceUnit: "SEK",
-    whyLine1: "Faster. Clearer.",
-    whyLine2: "No fuss.",
     press: "Press to enter",
     taglineSub: "Changer · Builder",
     skipHint: "Esc to skip",
@@ -78,17 +42,10 @@ export default function IntroGate() {
     }
     document.body.style.overflow = "hidden";
 
-    // Slower, more dramatic timeline:
-    // 0s: trailer begins
-    // 0.4s - 4.0s : Hero pair emerges/dissolves
-    // 1.8s - 5.4s : Steps emerge
-    // 3.2s - 6.8s : Pricing emerges
-    // Timeline (total 6.5s):
-    // 0.2-3.3s : hero pair, 1.2-4.5s : steps,
-    // 2.2-5.9s : pricing, 3.4-6.5s : closing whisper
-    // 6.5s : ready — WEB C&B fully zoomed-in + sharp + PRESS visible
+    // Minimal intro: just the logo emerging from shadow into the light.
+    // ~4.5s to PRESS becoming visible.
     const t0 = setTimeout(() => setPhase("trailer"), 100);
-    const t1 = setTimeout(() => setPhase("ready"), 6500);
+    const t1 = setTimeout(() => setPhase("ready"), 4500);
 
     return () => {
       clearTimeout(t0);
@@ -122,9 +79,6 @@ export default function IntroGate() {
 
   if (!mounted || phase === "dismissed") return null;
 
-  const playing = phase === "trailer" || phase === "ready";
-
-  // Logo states — shadow → bright
   const logoIsHidden = phase === "boot";
   const logoIsInShadow = phase === "trailer";
   const logoIsBright = phase === "ready" || phase === "fading-out";
@@ -136,8 +90,6 @@ export default function IntroGate() {
       }`}
       style={{
         fontFamily: "var(--font-playfair), Georgia, serif",
-        // Force dark-mode colors inside the gate regardless of site theme.
-        // Override both the raw variables and the Tailwind theme aliases.
         "--foreground": "#f5f2e8",
         "--brand": "#ecd9a3",
         "--color-foreground": "#f5f2e8",
@@ -150,7 +102,7 @@ export default function IntroGate() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(217,200,154,0.10) 0%, transparent 50%), radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.92) 100%)",
+            "radial-gradient(ellipse at center, rgba(236,217,163,0.10) 0%, transparent 50%), radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.92) 100%)",
         }}
         aria-hidden="true"
       />
@@ -165,192 +117,14 @@ export default function IntroGate() {
       </div>
 
       {/* =================================================================
-          TRAILER — phrases EMERGE from shadow, hold, DISSOLVE back
-          BIGGER, SLOWER, MORE DRAMATIC
-          ================================================================= */}
-      {playing && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          {/* === Hero pair === */}
-          <div
-            className="absolute left-[6%] top-[14%] text-5xl md:text-7xl lg:text-8xl text-foreground"
-            style={{
-              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "0.2s",
-              opacity: 0,
-              textShadow:
-                "0 4px 30px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.7)",
-            }}
-          >
-            {c.heroLine1}
-          </div>
-          <div
-            className="absolute right-[6%] top-[22%] text-5xl md:text-7xl lg:text-8xl italic text-brand text-right"
-            style={{
-              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "0.5s",
-              opacity: 0,
-              textShadow:
-                "0 4px 30px rgba(0,0,0,0.95), 0 0 70px rgba(217,200,154,0.4)",
-            }}
-          >
-            {c.heroLine2}
-          </div>
-
-          {/* === Steps === */}
-          <div
-            className="absolute left-[4%] top-[78%] flex items-baseline gap-5"
-            style={{
-              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "1.2s",
-              opacity: 0,
-            }}
-          >
-            <span className="text-base text-brand tabular-nums tracking-[0.3em] font-sans">01</span>
-            <span
-              className="text-3xl md:text-5xl lg:text-6xl text-foreground"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
-            >
-              {c.step1}
-            </span>
-          </div>
-          <div
-            className="absolute right-[4%] top-[78%] flex items-baseline gap-5 justify-end"
-            style={{
-              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "1.5s",
-              opacity: 0,
-            }}
-          >
-            <span className="text-base text-brand tabular-nums tracking-[0.3em] font-sans">02</span>
-            <span
-              className="text-3xl md:text-5xl lg:text-6xl text-foreground"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
-            >
-              {c.step2}
-            </span>
-          </div>
-
-          {/* === Pricing — big numbers, dramatic === */}
-          <div
-            className="absolute left-[4%] top-[14%] flex items-baseline gap-6"
-            style={{
-              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "2.2s",
-              opacity: 0,
-            }}
-          >
-            <span
-              className="text-4xl md:text-6xl lg:text-7xl text-foreground"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
-            >
-              {c.tierStart}
-            </span>
-            <span className="text-xl md:text-3xl text-brand tabular-nums font-sans"
-              style={{ textShadow: "0 0 30px rgba(217,200,154,0.4)" }}>
-              4 900
-            </span>
-            <span className="text-xs md:text-sm text-foreground/70 tracking-[0.3em] uppercase font-sans">
-              {c.priceUnit}
-            </span>
-          </div>
-          <div
-            className="absolute right-[4%] top-[14%] flex items-baseline gap-6 justify-end"
-            style={{
-              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "2.5s",
-              opacity: 0,
-            }}
-          >
-            <span
-              className="text-4xl md:text-6xl lg:text-7xl text-foreground"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
-            >
-              {c.tierKlassisk}
-            </span>
-            <span className="text-xl md:text-3xl text-brand tabular-nums font-sans"
-              style={{ textShadow: "0 0 30px rgba(217,200,154,0.4)" }}>
-              11 900
-            </span>
-            <span className="text-xs md:text-sm text-foreground/70 tracking-[0.3em] uppercase font-sans">
-              {c.priceUnit}
-            </span>
-          </div>
-
-          <div
-            className="absolute left-[4%] top-[78%] flex items-baseline gap-6"
-            style={{
-              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "2.8s",
-              opacity: 0,
-            }}
-          >
-            <span
-              className="text-4xl md:text-6xl lg:text-7xl text-foreground"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
-            >
-              {c.tierPremium}
-            </span>
-            <span className="text-xl md:text-3xl text-brand tabular-nums font-sans"
-              style={{ textShadow: "0 0 30px rgba(217,200,154,0.4)" }}>
-              24 900
-            </span>
-            <span className="text-xs md:text-sm text-foreground/70 tracking-[0.3em] uppercase font-sans">
-              {c.priceUnit}
-            </span>
-          </div>
-          <div
-            className="absolute right-[4%] top-[78%] flex items-baseline gap-5 justify-end"
-            style={{
-              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "3.1s",
-              opacity: 0,
-            }}
-          >
-            <span className="text-base text-brand tabular-nums tracking-[0.3em] font-sans">03</span>
-            <span
-              className="text-3xl md:text-5xl lg:text-6xl text-foreground"
-              style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)" }}
-            >
-              {c.step4}
-            </span>
-          </div>
-
-          {/* === WhyUs final whisper === */}
-          <div
-            className="absolute left-[10%] top-[14%] text-3xl md:text-5xl lg:text-6xl italic text-foreground/95"
-            style={{
-              animation: "emergeL 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "3.4s",
-              opacity: 0,
-              textShadow: "0 4px 40px rgba(0,0,0,0.9)",
-            }}
-          >
-            {c.whyLine1}
-          </div>
-          <div
-            className="absolute right-[10%] top-[78%] text-3xl md:text-5xl lg:text-6xl italic text-brand text-right"
-            style={{
-              animation: "emergeR 2.8s cubic-bezier(0.16,1,0.3,1) forwards",
-              animationDelay: "3.7s",
-              opacity: 0,
-              textShadow: "0 4px 40px rgba(217,200,154,0.35)",
-            }}
-          >
-            {c.whyLine2}
-          </div>
-        </div>
-      )}
-
-      {/* =================================================================
-          CENTER LOGO — emerges gradually from deep shadow throughout the
-          trailer (parallel with side phrases), then sharpens fully on ready.
+          CENTER LOGO — emerges from shadow into the light
           ================================================================= */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-8 pointer-events-none">
         <div
           className="flex flex-col items-center gap-14"
           style={{
             animation: logoIsInShadow
-              ? "logoEmerge 6.5s cubic-bezier(0.16,1,0.3,1) forwards"
+              ? "logoEmerge 4.5s cubic-bezier(0.16,1,0.3,1) forwards"
               : undefined,
             opacity: logoIsHidden ? 0 : logoIsBright ? 1 : undefined,
             filter: logoIsHidden ? "blur(40px)" : logoIsBright ? "blur(0)" : undefined,
@@ -366,7 +140,7 @@ export default function IntroGate() {
               className="text-7xl sm:text-8xl lg:text-[10rem] tracking-[-0.02em] font-normal leading-none"
               style={{
                 textShadow:
-                  "0 8px 80px rgba(0,0,0,0.95), 0 0 80px rgba(217,200,154,0.25)",
+                  "0 8px 80px rgba(0,0,0,0.95), 0 0 80px rgba(236,217,163,0.25)",
               }}
             >
               <span className="text-foreground">Web</span>{" "}
@@ -412,22 +186,8 @@ export default function IntroGate() {
       </div>
 
       <style jsx>{`
-        @keyframes emergeL {
-          /* Glide in from far off-screen left, hold, drift gently */
-          0%   { transform: translateX(-240px) scale(0.92); opacity: 0; filter: blur(10px); }
-          35%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
-          70%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
-          100% { transform: translateX(70px)   scale(0.95); opacity: 0; filter: blur(8px); }
-        }
-        @keyframes emergeR {
-          0%   { transform: translateX(240px)  scale(0.92); opacity: 0; filter: blur(10px); }
-          35%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
-          70%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
-          100% { transform: translateX(-70px)  scale(0.95); opacity: 0; filter: blur(8px); }
-        }
         @keyframes logoEmerge {
-          /* Smoother zoom-in, capped blur for GPU performance.
-             Ends at full final state so the transition to 'ready' is seamless. */
+          /* Smooth zoom-in from shadow into the light */
           0%   { opacity: 0;    filter: blur(24px); transform: scale(0.50); }
           20%  { opacity: 0.20; filter: blur(20px); transform: scale(0.58); }
           45%  { opacity: 0.50; filter: blur(12px); transform: scale(0.72); }
