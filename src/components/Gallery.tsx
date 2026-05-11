@@ -75,14 +75,20 @@ export default function Gallery() {
               className="group relative text-left cursor-pointer"
               aria-label={`${t("button")}: ${c.name}`}
             >
-              {/* Card with atmospheric photo backdrop (industry mood, NOT website screenshot) */}
+              {/* Card with atmospheric photo backdrop (industry mood, NOT website screenshot).
+                  Forces dark-mode text colors locally because the photo is always dark. */}
               <div
                 className="aspect-[3/4] relative overflow-hidden border border-border bg-card transition-all duration-[1200ms] ease-out group-hover:border-brand/60"
                 style={{
                   backgroundImage: `url(${c.photo})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                }}
+                  "--foreground": "#f5f2e8",
+                  "--brand": "#d9c89a",
+                  "--color-foreground": "#f5f2e8",
+                  "--color-brand": "#d9c89a",
+                  color: "#f5f2e8",
+                } as React.CSSProperties}
               >
                 {/* Cinematic overlays — dim + sepia for atmosphere */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/50 to-black/85 transition-opacity duration-[1500ms] ease-out group-hover:opacity-80" />

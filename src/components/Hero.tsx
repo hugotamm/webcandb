@@ -130,7 +130,13 @@ export default function Hero() {
                 backgroundImage: `url(${featuredPhoto})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-              }}
+                // Force light text colors locally — overlay is always dark
+                "--foreground": "#f5f2e8",
+                "--brand": "#d9c89a",
+                "--color-foreground": "#f5f2e8",
+                "--color-brand": "#d9c89a",
+                color: "#f5f2e8",
+              } as React.CSSProperties}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80 transition-opacity duration-700 group-hover:opacity-75" />
               <div className="absolute inset-0 mix-blend-multiply bg-[#1a0e05]/30" />
