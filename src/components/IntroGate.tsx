@@ -389,11 +389,11 @@ export default function IntroGate() {
               strokeWidth="1"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-foreground/55 group-hover:text-brand group-hover:translate-y-1 transition-all duration-700"
+              className="text-foreground/55 group-hover:text-brand group-hover:-translate-y-1 transition-all duration-700"
               style={{ animation: logoIsBright ? "arrowFloat 3.6s ease-in-out infinite" : "none" }}
             >
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <polyline points="5 12 12 19 19 12" />
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
             </svg>
           </button>
         </div>
@@ -425,7 +425,7 @@ export default function IntroGate() {
         }
         @keyframes arrowFloat {
           0%, 100% { transform: translateY(0); }
-          50%      { transform: translateY(8px); }
+          50%      { transform: translateY(-8px); }
         }
       `}</style>
     </div>
