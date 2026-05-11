@@ -17,45 +17,38 @@ export default function NotFound() {
   const t = useTranslations("NotFound");
 
   return (
-    <section className="py-32 lg:py-40">
+    <section className="py-40 lg:py-56">
       <div className="max-w-3xl mx-auto px-6 lg:px-10 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-brand-soft px-4 py-2 text-xs font-bold uppercase tracking-widest text-brand">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="12" />
-            <line x1="12" y1="16" x2="12.01" y2="16" />
-          </svg>
-          {t("errorLabel")}
+        <div className="text-[10px] tracking-[0.5em] uppercase text-brand">
+          — {t("errorLabel")}
         </div>
 
-        <h1 className="mt-8 text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
+        <h1 className="mt-12 text-6xl sm:text-7xl lg:text-8xl leading-[1.05]">
           {t("heading")}
         </h1>
 
-        <p className="mt-8 text-lg text-foreground/70 max-w-md mx-auto leading-relaxed">
+        <p className="mt-12 text-lg text-foreground/80 max-w-md mx-auto leading-relaxed font-light">
           {t("description")}
         </p>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="mt-16 flex flex-col sm:flex-row gap-8 sm:gap-12 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand text-white px-6 py-3.5 text-sm font-semibold hover:bg-brand-hover transition"
+            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-brand hover:text-foreground transition-colors duration-700"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-            {t("buttonHome")}
+            <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
+            <span>{t("buttonHome")}</span>
           </Link>
           <a
             href="mailto:web.candb@gmail.com"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold hover:border-foreground/40 transition"
+            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-foreground/60 hover:text-foreground transition-colors duration-700"
           >
-            {t("buttonContact")}
+            <span>{t("buttonContact")}</span>
+            <span className="w-8 h-px bg-current transition-all duration-700 group-hover:w-14" />
           </a>
         </div>
 
-        <div className="mt-16 text-xs text-muted">
+        <div className="mt-24 text-xs text-foreground/45 font-light tracking-wide max-w-md mx-auto leading-relaxed">
           {t("footerNote")}
         </div>
       </div>
