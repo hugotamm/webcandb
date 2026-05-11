@@ -131,10 +131,19 @@ export default function IntroGate() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-[#040302] flex items-center justify-center text-foreground overflow-hidden transition-opacity duration-[1400ms] ease-out ${
+      className={`fixed inset-0 z-[100] bg-[#040302] flex items-center justify-center overflow-hidden transition-opacity duration-[1400ms] ease-out ${
         phase === "fading-out" ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
-      style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+      style={{
+        fontFamily: "var(--font-playfair), Georgia, serif",
+        // Force dark-mode colors inside the gate regardless of site theme.
+        // Override both the raw variables and the Tailwind theme aliases.
+        "--foreground": "#f5f2e8",
+        "--brand": "#d9c89a",
+        "--color-foreground": "#f5f2e8",
+        "--color-brand": "#d9c89a",
+        color: "#f5f2e8",
+      } as React.CSSProperties}
     >
       {/* Atmospheric background */}
       <div
@@ -347,8 +356,9 @@ export default function IntroGate() {
             filter: logoIsHidden ? "blur(40px)" : logoIsBright ? "blur(0)" : undefined,
             transform: logoIsHidden ? "scale(0.85)" : logoIsBright ? "scale(1)" : undefined,
             transition: logoIsBright
-              ? "filter 1.8s cubic-bezier(0.22,1,0.36,1), opacity 1.8s cubic-bezier(0.22,1,0.36,1), transform 1.8s cubic-bezier(0.22,1,0.36,1)"
+              ? "filter 1.4s cubic-bezier(0.22,1,0.36,1), opacity 1.4s cubic-bezier(0.22,1,0.36,1), transform 1.4s cubic-bezier(0.22,1,0.36,1)"
               : undefined,
+            willChange: "filter, opacity, transform",
           }}
         >
           <div className="select-none">
@@ -415,13 +425,14 @@ export default function IntroGate() {
           100% { transform: translateX(-25px) scale(0.95); opacity: 0; filter: blur(10px); }
         }
         @keyframes logoEmerge {
-          /* Smoother zoom-in, capped blur for GPU performance */
+          /* Smoother zoom-in, capped blur for GPU performance.
+             Ends at full final state so the transition to 'ready' is seamless. */
           0%   { opacity: 0;    filter: blur(24px); transform: scale(0.50); }
-          20%  { opacity: 0.18; filter: blur(20px); transform: scale(0.58); }
-          45%  { opacity: 0.45; filter: blur(13px); transform: scale(0.72); }
-          70%  { opacity: 0.75; filter: blur(6px);  transform: scale(0.86); }
-          88%  { opacity: 0.92; filter: blur(2px);  transform: scale(0.96); }
-          100% { opacity: 0.97; filter: blur(0);    transform: scale(0.99); }
+          20%  { opacity: 0.20; filter: blur(20px); transform: scale(0.58); }
+          45%  { opacity: 0.50; filter: blur(12px); transform: scale(0.72); }
+          70%  { opacity: 0.82; filter: blur(5px);  transform: scale(0.88); }
+          88%  { opacity: 0.96; filter: blur(1px);  transform: scale(0.97); }
+          100% { opacity: 1;    filter: blur(0);    transform: scale(1); }
         }
         @keyframes pressPulse {
           0%, 100% { opacity: 0.55; }
