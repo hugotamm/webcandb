@@ -413,16 +413,17 @@ export default function IntroGate() {
 
       <style jsx>{`
         @keyframes emergeL {
-          0%   { transform: translateX(-50px) scale(0.9); opacity: 0; filter: blur(14px); }
-          30%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
-          70%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
-          100% { transform: translateX(25px)  scale(0.95); opacity: 0; filter: blur(10px); }
+          /* Glide in from far off-screen left, hold, drift gently */
+          0%   { transform: translateX(-240px) scale(0.92); opacity: 0; filter: blur(10px); }
+          35%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
+          70%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
+          100% { transform: translateX(70px)   scale(0.95); opacity: 0; filter: blur(8px); }
         }
         @keyframes emergeR {
-          0%   { transform: translateX(50px)  scale(0.9); opacity: 0; filter: blur(14px); }
-          30%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
-          70%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
-          100% { transform: translateX(-25px) scale(0.95); opacity: 0; filter: blur(10px); }
+          0%   { transform: translateX(240px)  scale(0.92); opacity: 0; filter: blur(10px); }
+          35%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
+          70%  { transform: translateX(0)      scale(1);    opacity: 1; filter: blur(0); }
+          100% { transform: translateX(-70px)  scale(0.95); opacity: 0; filter: blur(8px); }
         }
         @keyframes logoEmerge {
           /* Smoother zoom-in, capped blur for GPU performance.
