@@ -331,17 +331,22 @@ export default function IntroGate() {
       )}
 
       {/* =================================================================
-          CENTER LOGO — emerges from deep shadow throughout the trailer
+          CENTER LOGO — emerges gradually from deep shadow throughout the
+          trailer (parallel with side phrases), then sharpens fully on ready.
           ================================================================= */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-8 pointer-events-none">
         <div
           className="flex flex-col items-center gap-14"
           style={{
-            filter: logoIsBright ? "blur(0)" : logoIsInShadow ? "blur(18px)" : "blur(40px)",
-            opacity: logoIsHidden ? 0 : logoIsInShadow ? 0.18 : 1,
-            transform: logoIsBright ? "scale(1)" : "scale(0.92)",
-            transition:
-              "filter 2.8s cubic-bezier(0.22,1,0.36,1), opacity 2.8s cubic-bezier(0.22,1,0.36,1), transform 2.8s cubic-bezier(0.22,1,0.36,1)",
+            animation: logoIsInShadow
+              ? "logoEmerge 8s cubic-bezier(0.22,1,0.36,1) forwards"
+              : undefined,
+            opacity: logoIsHidden ? 0 : logoIsBright ? 1 : undefined,
+            filter: logoIsHidden ? "blur(40px)" : logoIsBright ? "blur(0)" : undefined,
+            transform: logoIsHidden ? "scale(0.85)" : logoIsBright ? "scale(1)" : undefined,
+            transition: logoIsBright
+              ? "filter 1.8s cubic-bezier(0.22,1,0.36,1), opacity 1.8s cubic-bezier(0.22,1,0.36,1), transform 1.8s cubic-bezier(0.22,1,0.36,1)"
+              : undefined,
           }}
         >
           <div className="select-none">
@@ -406,6 +411,13 @@ export default function IntroGate() {
           30%  { transform: translateX(0)     scale(1);    opacity: 1; filter: blur(0)    brightness(1); }
           70%  { transform: translateX(0)     scale(1);    opacity: 1; filter: blur(0)    brightness(1); }
           100% { transform: translateX(-35px) scale(0.94); opacity: 0; filter: blur(18px) brightness(0.1); }
+        }
+        @keyframes logoEmerge {
+          0%   { opacity: 0;    filter: blur(40px); transform: scale(0.85); }
+          18%  { opacity: 0.18; filter: blur(28px); transform: scale(0.88); }
+          45%  { opacity: 0.45; filter: blur(14px); transform: scale(0.93); }
+          75%  { opacity: 0.78; filter: blur(6px);  transform: scale(0.97); }
+          100% { opacity: 0.95; filter: blur(2px);  transform: scale(0.99); }
         }
         @keyframes pressPulse {
           0%, 100% { opacity: 0.55; }
