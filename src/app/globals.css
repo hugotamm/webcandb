@@ -127,12 +127,14 @@ h1, h2, h3, blockquote {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.09;
+  opacity: 0.04;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.8 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
   background-size: 400px 400px;
   animation: grainShift 8s steps(6) infinite;
 }
+
+.dark .film-grain { opacity: 0.09; }
 
 @keyframes grainShift {
   0%   { transform: translate(0, 0); }
@@ -144,13 +146,14 @@ h1, h2, h3, blockquote {
   100% { transform: translate(0, 0); }
 }
 
-/* Soft vignette for cinematic depth */
+/* Soft vignette for cinematic depth.
+   Very subtle in light mode (warm shade), stronger in dark mode. */
 .cinema-vignette {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9998;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
+  background: radial-gradient(ellipse at center, transparent 75%, rgba(60, 40, 20, 0.06) 100%);
 }
 
 .dark .cinema-vignette {
@@ -179,9 +182,13 @@ h1, h2, h3, blockquote {
 :root:not(.dark) .cinema-light-leak {
   background: radial-gradient(
     ellipse at center,
-    rgba(154, 122, 58, 0.10) 0%,
+    rgba(154, 122, 58, 0.04) 0%,
     transparent 60%
   );
+}
+
+:root:not(.dark) .cinema-flare {
+  display: none;
 }
 
 @keyframes leakBreathe {

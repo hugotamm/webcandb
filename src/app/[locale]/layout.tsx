@@ -105,10 +105,9 @@ const themeInitScript = `
 (function(){
   try {
     var t = localStorage.getItem('theme');
-    // Default to dark for the cinematic playground experience.
-    var d = t !== 'light';
-    if (d) document.documentElement.classList.add('dark');
-  } catch(e) { document.documentElement.classList.add('dark'); }
+    // Default to light. Only apply dark if user explicitly chose it.
+    if (t === 'dark') document.documentElement.classList.add('dark');
+  } catch(e) {}
 })();
 `;
 

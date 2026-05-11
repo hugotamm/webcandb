@@ -8,12 +8,12 @@ type DocumentWithVT = Document & {
 };
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const t = useTranslations("ThemeToggle");
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    setTheme(stored === "light" ? "light" : "dark");
+    setTheme(stored === "dark" ? "dark" : "light");
   }, []);
 
   const applyTheme = (next: "light" | "dark") => {
