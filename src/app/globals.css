@@ -36,7 +36,12 @@
   --color-border: var(--border);
   --color-dark-bg: var(--dark-bg);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-inter);
+  --font-display: var(--font-playfair);
+}
+
+h1, h2, h3, blockquote {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  letter-spacing: -0.02em;
 }
 
 html {
