@@ -3,21 +3,35 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
+type DocumentWithVT = Document & {
+  startViewTransition?: (cb: () => void) => { finished: Promise<void> };
+};
+
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const t = useTranslations("ThemeToggle");
 
   useEffect(() => {
     const stored = localStorage.getItem("theme");
-    // Default to dark for cinematic playground
     setTheme(stored === "light" ? "light" : "dark");
   }, []);
 
-  const toggle = () => {
-    const next = theme === "dark" ? "light" : "dark";
+  const applyTheme = (next: "light" | "dark") => {
     setTheme(next);
     localStorage.setItem("theme", next);
     document.documentElement.classList.toggle("dark", next === "dark");
+  };
+
+  const toggle = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    const docVT = document as DocumentWithVT;
+
+    if (docVT.startViewTransition) {
+      // Smooth crossfade via View Transitions API (Chrome/Edge/Safari)
+      docVT.startViewTransition(() => applyTheme(next));
+    } else {
+      applyTheme(next);
+    }
   };
 
   const nextTheme = theme === "dark" ? t("themeLight") : t("themeDark");
@@ -26,7 +40,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={t("ariaLabel", { theme: nextTheme })}
-      className="flex items-center justify-center text-foreground/60 hover:text-brand transition-colors duration-700"
+      className="flex items-center justify-center text-foreground/70 hover:text-brand transition-colors duration-700"
     >
       {theme === "dark" ? (
         // Sun icon = "switch to light"

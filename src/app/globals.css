@@ -30,6 +30,18 @@
   --dark-bg: #050403;
 }
 
+/* Always-dark sections — text must remain readable in any theme.
+   Overrides palette vars locally inside the section. */
+.bg-dark-bg {
+  --foreground: #f5f2e8;
+  --muted: #b8b3a8;
+  --brand: #d9c89a;
+  --brand-hover: #ead9a8;
+  --brand-soft: #1a1814;
+  --card: #131210;
+  --border: rgba(245, 242, 232, 0.12);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -52,7 +64,34 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 1.2s ease, color 1.2s ease;
+}
+
+/* View Transitions API — gives a smooth crossfade when toggling theme */
+@keyframes themeFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-old(root) {
+  animation-name: themeFade;
+  animation-direction: reverse;
+}
+::view-transition-new(root) {
+  animation-name: themeFade;
+}
+
+/* Fallback for browsers without View Transitions: smooth color transitions
+   on common text + surface elements. Specific transitions on individual
+   elements still win because the universal selector has the lowest priority. */
+html, body, section, header, footer, main, article, nav, aside, div,
+p, span, a, li, ul, ol, h1, h2, h3, h4, h5, h6, button, input, textarea {
+  transition-property: color, background-color, border-color, text-shadow;
+  transition-duration: 0.9s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Subtle cinematic shadow on all text in dark mode for that "lit on film" feel */
