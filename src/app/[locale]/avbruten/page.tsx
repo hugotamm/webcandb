@@ -31,49 +31,62 @@ function CancelPageContent() {
   const t = useTranslations("Cancelled");
 
   return (
-    <section className="py-20 lg:py-28">
-      <div className="max-w-3xl mx-auto px-6 lg:px-10">
-        <div className="inline-flex items-center gap-2 rounded-full bg-foreground/[0.06] border border-border px-4 py-2 text-xs font-bold uppercase tracking-widest text-muted">
-          {t("badge")}
-        </div>
+    <section className="py-32 lg:py-48">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+        <span className="eyebrow">{t("badge")}</span>
 
-        <h1 className="mt-8 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+        <h1 className="mt-10 text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
           {t("heading")}
         </h1>
 
-        <p className="mt-8 text-lg text-foreground/70 leading-relaxed max-w-xl">
+        <p className="mt-10 text-lg text-foreground/80 leading-relaxed max-w-2xl font-light">
           {t("description")}
         </p>
 
-        <div className="mt-12 grid sm:grid-cols-2 gap-4">
+        <div className="mt-20 grid sm:grid-cols-2 gap-px bg-foreground/10">
           <a
             href="/#priser"
-            className="rounded-2xl bg-card border border-border p-6 hover:border-brand/40 hover:shadow-md transition"
+            className="group bg-background p-8 lg:p-10 hover:bg-foreground/[0.02] transition-colors duration-700"
           >
-            <div className="text-xs font-bold uppercase tracking-widest text-brand">{t("option1Label")}</div>
-            <div className="mt-2 font-bold">{t("option1Title")}</div>
-            <div className="mt-1 text-sm text-muted">{t("option1Description")}</div>
+            <div className="text-[10px] tracking-[0.4em] uppercase text-brand">
+              — {t("option1Label")}
+            </div>
+            <div
+              className="mt-4 text-2xl text-foreground/90 group-hover:text-foreground transition-colors duration-700"
+              style={{ fontFamily: "var(--font-playfair), serif" }}
+            >
+              {t("option1Title")}
+            </div>
+            <div className="mt-3 text-sm text-foreground/65 font-light leading-relaxed">
+              {t("option1Description")}
+            </div>
           </a>
           <a
             href="mailto:web.candb@gmail.com?subject=Fr%C3%A5ga%20om%20paket"
-            className="rounded-2xl bg-card border border-border p-6 hover:border-brand/40 hover:shadow-md transition"
+            className="group bg-background p-8 lg:p-10 hover:bg-foreground/[0.02] transition-colors duration-700"
           >
-            <div className="text-xs font-bold uppercase tracking-widest text-brand">{t("option2Label")}</div>
-            <div className="mt-2 font-bold">{t("option2Title")}</div>
-            <div className="mt-1 text-sm text-muted">{t("option2Description")}</div>
+            <div className="text-[10px] tracking-[0.4em] uppercase text-brand">
+              — {t("option2Label")}
+            </div>
+            <div
+              className="mt-4 text-2xl text-foreground/90 group-hover:text-foreground transition-colors duration-700"
+              style={{ fontFamily: "var(--font-playfair), serif" }}
+            >
+              {t("option2Title")}
+            </div>
+            <div className="mt-3 text-sm text-foreground/65 font-light leading-relaxed">
+              {t("option2Description")}
+            </div>
           </a>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-16">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition"
+            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-foreground/60 hover:text-brand transition-colors duration-700"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-            {t("buttonHome")}
+            <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
+            <span>{t("buttonHome")}</span>
           </Link>
         </div>
       </div>

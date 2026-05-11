@@ -19,52 +19,43 @@ export default function LegalShell({
   children: React.ReactNode;
 }) {
   return (
-    <article className="py-20 lg:py-28">
+    <article className="py-32 lg:py-48">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <a
           href="/"
-          className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition"
+          className="group inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-foreground/60 hover:text-brand transition-colors duration-700"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12" />
-            <polyline points="12 19 5 12 12 5" />
-          </svg>
-          Tillbaka till start
+          <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
+          <span>Tillbaka till start</span>
         </a>
 
-        <header className="mt-10 pb-10 border-b border-border">
+        <header className="mt-16 pb-16 border-b border-foreground/10">
           <span className="eyebrow">{eyebrow}</span>
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="mt-10 text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
             {title}
           </h1>
-          <p className="mt-6 text-lg text-foreground/70 max-w-2xl leading-relaxed">
+          <p className="mt-10 text-lg text-foreground/80 max-w-3xl leading-relaxed font-light">
             {intro}
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-muted">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            Senast uppdaterad: {updated}
+          <div className="mt-10 text-[10px] tracking-[0.4em] uppercase text-foreground/55">
+            — Senast uppdaterad: {updated}
           </div>
         </header>
 
-        <div className="mt-12 grid lg:grid-cols-[260px_1fr] gap-12">
+        <div className="mt-16 grid lg:grid-cols-[280px_1fr] gap-16 lg:gap-24">
           <aside className="hidden lg:block">
             <div className="sticky top-28">
-              <div className="text-xs font-bold uppercase tracking-widest text-muted mb-4">
-                På denna sida
+              <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-8">
+                — På denna sida
               </div>
-              <nav className="space-y-2 text-sm">
+              <nav className="space-y-3 text-sm font-light">
                 {sections.map((s, i) => (
                   <a
                     key={s.id}
                     href={`#${s.id}`}
-                    className="flex gap-3 text-foreground/70 hover:text-brand transition py-1"
+                    className="flex gap-4 text-foreground/70 hover:text-brand transition-colors duration-700 py-1"
                   >
-                    <span className="text-muted/60 tabular-nums">
+                    <span className="text-brand tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span>{s.title}</span>
@@ -74,7 +65,7 @@ export default function LegalShell({
             </div>
           </aside>
 
-          <div className="legal-content space-y-12 max-w-3xl">{children}</div>
+          <div className="legal-content space-y-16 max-w-3xl text-foreground/85 font-light leading-relaxed">{children}</div>
         </div>
       </div>
     </article>
@@ -94,13 +85,18 @@ export function LegalSection({
 }) {
   return (
     <section id={id} className="scroll-mt-28">
-      <div className="flex items-baseline gap-4 mb-5">
-        <span className="text-sm font-bold text-brand tabular-nums">
+      <div className="flex items-baseline gap-6 mb-8">
+        <span className="text-xs tracking-[0.3em] text-brand tabular-nums font-sans">
           §{number.toString().padStart(2, "0")}
         </span>
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
+        <h2
+          className="text-2xl sm:text-3xl leading-snug"
+          style={{ fontFamily: "var(--font-playfair), serif" }}
+        >
+          {title}
+        </h2>
       </div>
-      <div className="space-y-4 text-foreground/80 leading-relaxed">{children}</div>
+      <div className="space-y-5 text-foreground/80 leading-relaxed font-light">{children}</div>
     </section>
   );
 }

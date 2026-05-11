@@ -16,28 +16,31 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-dark-bg text-white pt-20 pb-10">
+    <footer className="bg-dark-bg pt-24 lg:pt-32 pb-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div className="grid md:grid-cols-4 gap-12 pb-16 border-b border-foreground/10">
           <div className="md:col-span-2">
-            <div className="text-2xl font-bold tracking-tight">
-              Web <span className="text-brand">C&B</span>
+            <div
+              className="text-3xl tracking-tight"
+              style={{ fontFamily: "var(--font-playfair), serif" }}
+            >
+              Web <span className="text-brand">C&amp;B</span>
             </div>
-            <p className="mt-4 text-sm text-white/60 leading-relaxed max-w-xs">
+            <p className="mt-6 text-sm text-foreground/70 leading-relaxed max-w-xs font-light">
               {t("tagline")}
             </p>
           </div>
 
           <div>
-            <div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">
-              {t("sectionSite")}
+            <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-6">
+              — {t("sectionSite")}
             </div>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-3 text-sm font-light">
               {navItems.map((item) => (
                 <li key={item.key}>
                   <a
                     href={`/#${item.key}`}
-                    className="text-white/80 hover:text-brand transition"
+                    className="text-foreground/80 hover:text-brand transition-colors duration-700"
                   >
                     {item.label}
                   </a>
@@ -47,22 +50,22 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">
-              {t("sectionLegal")}
+            <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-6">
+              — {t("sectionLegal")}
             </div>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-3 text-sm font-light">
               <li>
-                <Link href="/villkor" className="text-white/80 hover:text-brand transition">
+                <Link href="/villkor" className="text-foreground/80 hover:text-brand transition-colors duration-700">
                   {t("linkTerms")}
                 </Link>
               </li>
               <li>
-                <Link href="/integritet" className="text-white/80 hover:text-brand transition">
+                <Link href="/integritet" className="text-foreground/80 hover:text-brand transition-colors duration-700">
                   {t("linkPrivacy")}
                 </Link>
               </li>
               <li>
-                <Link href="/cookies" className="text-white/80 hover:text-brand transition">
+                <Link href="/cookies" className="text-foreground/80 hover:text-brand transition-colors duration-700">
                   {t("linkCookies")}
                 </Link>
               </li>
@@ -71,30 +74,30 @@ export default function Footer() {
               </li>
             </ul>
 
-            <div className="mt-6 text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
-              {t("sectionContact")}
+            <div className="mt-10 text-[10px] tracking-[0.4em] uppercase text-brand mb-4">
+              — {t("sectionContact")}
             </div>
             <a
               href="mailto:web.candb@gmail.com"
-              className="text-sm text-white/80 hover:text-brand transition block break-all"
+              className="text-sm text-foreground/80 hover:text-brand transition-colors duration-700 block break-all font-light"
             >
               web.candb@gmail.com
             </a>
-            <p className="mt-2 text-xs text-white/50 leading-relaxed">
+            <p className="mt-3 text-xs text-foreground/55 leading-relaxed font-light">
               {t("contactHours")}
             </p>
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+        <div className="pt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] tracking-[0.3em] uppercase text-foreground/40">
           <div>{t("copyright", { year: new Date().getFullYear() })}</div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <span>{t("builtLabel")}</span>
-            <span className="font-semibold text-white/70">Next.js</span>
-            <span>·</span>
-            <span className="font-semibold text-white/70">Tailwind</span>
-            <span>·</span>
-            <span className="font-semibold text-white/70">Vercel</span>
+            <span className="text-foreground/70">Next.js</span>
+            <span className="text-foreground/30">·</span>
+            <span className="text-foreground/70">Tailwind</span>
+            <span className="text-foreground/30">·</span>
+            <span className="text-foreground/70">Vercel</span>
           </div>
         </div>
       </div>

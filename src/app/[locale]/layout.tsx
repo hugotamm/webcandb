@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,11 +9,19 @@ import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import DemoViewer from "@/components/DemoViewer";
+import IntroGate from "@/components/IntroGate";
+import CursorAura from "@/components/CursorAura";
 import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
 });
@@ -97,8 +105,8 @@ const themeInitScript = `
 (function(){
   try {
     var t = localStorage.getItem('theme');
-    var d = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    if (d) document.documentElement.classList.add('dark');
+    // Default to light. Only apply dark if user explicitly chose it.
+    if (t === 'dark') document.documentElement.classList.add('dark');
   } catch(e) {}
 })();
 `;
@@ -183,7 +191,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${inter.variable} h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
@@ -197,6 +205,8 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NextIntlClientProvider>
+          <IntroGate />
+          <CursorAura />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
@@ -204,6 +214,10 @@ export default async function LocaleLayout({
           <StickyMobileCTA />
           <DemoViewer />
         </NextIntlClientProvider>
+        <div className="cinema-light-leak" aria-hidden="true" />
+        <div className="cinema-flare" aria-hidden="true" />
+        <div className="cinema-vignette" aria-hidden="true" />
+        <div className="film-grain" aria-hidden="true" />
         <Analytics />
       </body>
     </html>

@@ -59,60 +59,64 @@ export default async function SuccessPage({
     : [1, 2, 3, 4].map((n) => t(`stepsDemo${n}`));
 
   return (
-    <section className="py-20 lg:py-28">
-      <div className="max-w-3xl mx-auto px-6 lg:px-10">
-        <div className="inline-flex items-center gap-2 rounded-full bg-brand-soft px-4 py-2 text-xs font-bold uppercase tracking-widest text-brand">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-          {t("badge")}
-        </div>
+    <section className="py-32 lg:py-48">
+      <div className="max-w-4xl mx-auto px-6 lg:px-10">
+        <span className="eyebrow">{t("badge")}</span>
 
-        <h1 className="mt-8 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+        <h1 className="mt-10 text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
           {t("heading")}
         </h1>
 
-        <p className="mt-8 text-lg text-foreground/70 leading-relaxed max-w-xl">
-          {t("descriptionPrefix")} <strong className="text-foreground">{pkgName}</strong> {t("descriptionSuffix")}
+        <p className="mt-10 text-lg text-foreground/80 leading-relaxed max-w-2xl font-light">
+          {t("descriptionPrefix")}{" "}
+          <em className="text-brand not-italic" style={{ fontFamily: "var(--font-playfair), serif", fontStyle: "italic" }}>
+            {pkgName}
+          </em>{" "}
+          {t("descriptionSuffix")}
           {session?.customer_details?.email && (
             <>
-              {" "}{t("receiptPrefix")} <strong className="text-foreground">{session.customer_details.email}</strong>.
+              {" "}{t("receiptPrefix")}{" "}
+              <span className="text-foreground">{session.customer_details.email}</span>.
             </>
           )}
         </p>
 
-        <div className="mt-12 rounded-2xl bg-card border border-border p-8">
-          <div className="text-xs font-bold uppercase tracking-widest text-brand mb-4">
-            {t("stepsLabel")}
+        <div className="mt-20">
+          <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-10">
+            — {t("stepsLabel")}
           </div>
-          <ol className="space-y-4">
+          <ol className="divide-y divide-foreground/10 border-y border-foreground/10">
             {steps.map((step, i) => (
-              <li key={i} className="flex gap-4">
-                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-brand text-white flex items-center justify-center font-bold text-sm">
-                  {i + 1}
+              <li key={i} className="grid grid-cols-[40px_1fr] gap-6 py-6">
+                <span className="text-xs tracking-[0.3em] uppercase text-brand tabular-nums pt-1">
+                  0{i + 1}
                 </span>
-                <p className="pt-0.5 text-foreground/80 leading-relaxed">{step}</p>
+                <p className="text-base lg:text-lg text-foreground/80 leading-relaxed font-light">
+                  {step}
+                </p>
               </li>
             ))}
           </ol>
         </div>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-3">
+        <div className="mt-16 flex flex-col sm:flex-row gap-8 sm:gap-12">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand text-white px-6 py-3.5 text-sm font-semibold hover:bg-brand-hover transition"
+            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-brand hover:text-foreground transition-colors duration-700"
           >
-            {t("buttonHome")}
+            <span>{t("buttonHome")}</span>
+            <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
           </Link>
           <a
             href="mailto:web.candb@gmail.com"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold hover:border-foreground/40 transition"
+            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-foreground/60 hover:text-foreground transition-colors duration-700"
           >
-            {t("buttonEmail")}
+            <span>{t("buttonEmail")}</span>
+            <span className="w-8 h-px bg-current transition-all duration-700 group-hover:w-14" />
           </a>
         </div>
 
-        <p className="mt-12 text-xs text-muted">
+        <p className="mt-20 text-xs text-foreground/50 font-light tracking-wide">
           {t("footerNote")}
         </p>
       </div>

@@ -4,54 +4,36 @@ export default function WhyUs() {
   const t = useTranslations("WhyUs");
 
   const reasons = [
-    {
-      title: t("reason1Title"),
-      body: t("reason1Body"),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
-          <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
-        </svg>
-      ),
-    },
-    {
-      title: t("reason2Title"),
-      body: t("reason2Body"),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
-        </svg>
-      ),
-    },
-    {
-      title: t("reason3Title"),
-      body: t("reason3Body"),
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.74-8z" />
-        </svg>
-      ),
-    },
+    { num: "01", title: t("reason1Title"), body: t("reason1Body") },
+    { num: "02", title: t("reason2Title"), body: t("reason2Body") },
+    { num: "03", title: t("reason3Title"), body: t("reason3Body") },
   ];
 
   return (
-    <section className="py-24 lg:py-32">
+    <section className="py-32 lg:py-48">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <span className="eyebrow">{t("eyebrow")}</span>
-        <h2 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight max-w-3xl">
+        <h2 className="mt-8 text-4xl sm:text-5xl lg:text-6xl leading-tight max-w-3xl">
           {t("titleLine1")}
           <br />
-          {t("titleLine2")}
+          <em className="text-brand">{t("titleLine2")}</em>
         </h2>
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
           {reasons.map((r) => (
             <div key={r.title} className="group">
-              <div className="w-14 h-14 rounded-xl bg-foreground text-background flex items-center justify-center mb-6 group-hover:scale-105 transition">
-                {r.icon}
+              <div className="text-xs tracking-[0.4em] uppercase text-brand tabular-nums mb-6">
+                — {r.num}
               </div>
-              <h3 className="text-xl font-bold leading-snug">{r.title}</h3>
-              <p className="mt-3 text-base text-muted leading-relaxed">{r.body}</p>
+              <h3
+                className="text-2xl lg:text-3xl text-foreground/90 group-hover:text-foreground transition-colors duration-700 leading-snug"
+                style={{ fontFamily: "var(--font-playfair), serif" }}
+              >
+                {r.title}
+              </h3>
+              <p className="mt-5 text-base text-foreground/70 leading-relaxed font-light max-w-md">
+                {r.body}
+              </p>
             </div>
           ))}
         </div>

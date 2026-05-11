@@ -35,49 +35,38 @@ export default function CookieBanner() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-4 inset-x-4 sm:bottom-6 sm:inset-x-auto sm:right-6 sm:max-w-md z-[60] animate-[slideUp_0.4s_ease-out]">
+    <div className="fixed bottom-6 inset-x-6 sm:inset-x-auto sm:right-6 sm:max-w-md z-[60] animate-[slideUp_0.6s_cubic-bezier(0.22,1,0.36,1)]">
       <style jsx>{`
         @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-      <div className="rounded-2xl bg-card border border-border shadow-2xl p-5 sm:p-6">
-        <div className="flex items-start gap-3 mb-4">
-          <span className="flex-shrink-0 w-9 h-9 rounded-full bg-brand-soft text-brand flex items-center justify-center">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" />
-              <path d="M7 3.34V5a3 3 0 0 0 3 3" />
-              <path d="M11 21.95V18a2 2 0 0 0-2-2H2.05" />
-              <path d="M21.54 15a8 8 0 1 1-9.07-12.95" />
-              <circle cx="12" cy="12" r="0.5" fill="currentColor" />
-              <circle cx="6.5" cy="12" r="0.5" fill="currentColor" />
-              <circle cx="17" cy="7" r="0.5" fill="currentColor" />
-            </svg>
-          </span>
-          <div>
-            <h3 className="font-bold text-base">{t("title")}</h3>
-            <p className="text-sm text-muted mt-1 leading-relaxed">
-              {t("description")}{" "}
-              <a href="/cookies" className="text-brand font-semibold hover:underline">
-                {t("linkMore")}
-              </a>
-            </p>
-          </div>
+      <div className="bg-dark-bg border border-foreground/10 p-7">
+        <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-4">
+          — {t("title")}
         </div>
+        <p className="text-sm text-foreground/80 leading-relaxed font-light">
+          {t("description")}{" "}
+          <a href="/cookies" className="text-brand hover:text-foreground transition-colors duration-700 underline-offset-4 underline">
+            {t("linkMore")}
+          </a>
+        </p>
 
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="mt-8 flex flex-col sm:flex-row gap-5 sm:gap-8 text-[10px] tracking-[0.35em] uppercase">
           <button
             onClick={() => setChoice("necessary")}
-            className="flex-1 px-4 py-2.5 text-sm font-semibold rounded-full border border-border hover:border-foreground/40 transition"
+            className="group inline-flex items-center gap-3 text-foreground/60 hover:text-foreground transition-colors duration-700"
           >
-            {t("buttonNecessary")}
+            <span>{t("buttonNecessary")}</span>
+            <span className="w-6 h-px bg-current transition-all duration-700 group-hover:w-10" />
           </button>
           <button
             onClick={() => setChoice("all")}
-            className="flex-1 px-4 py-2.5 text-sm font-semibold rounded-full bg-brand text-white hover:bg-brand-hover transition"
+            className="group inline-flex items-center gap-3 text-brand hover:text-foreground transition-colors duration-700"
           >
-            {t("buttonAll")}
+            <span>{t("buttonAll")}</span>
+            <span className="w-6 h-px bg-current transition-all duration-700 group-hover:w-10" />
           </button>
         </div>
       </div>

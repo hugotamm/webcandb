@@ -8,7 +8,7 @@ export default function CookieSettingsLink() {
   return (
     <button
       onClick={openCookieSettings}
-      className="text-white/80 hover:text-brand transition text-left"
+      className="text-foreground/80 hover:text-brand transition-colors duration-700 text-left font-light"
     >
       {t("label")}
     </button>
