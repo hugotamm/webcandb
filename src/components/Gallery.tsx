@@ -84,9 +84,9 @@ export default function Gallery() {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   "--foreground": "#f5f2e8",
-                  "--brand": "#d9c89a",
+                  "--brand": "#ecd9a3",
                   "--color-foreground": "#f5f2e8",
-                  "--color-brand": "#d9c89a",
+                  "--color-brand": "#ecd9a3",
                   color: "#f5f2e8",
                 } as React.CSSProperties}
               >

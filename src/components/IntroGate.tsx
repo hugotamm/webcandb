@@ -139,9 +139,9 @@ export default function IntroGate() {
         // Force dark-mode colors inside the gate regardless of site theme.
         // Override both the raw variables and the Tailwind theme aliases.
         "--foreground": "#f5f2e8",
-        "--brand": "#d9c89a",
+        "--brand": "#ecd9a3",
         "--color-foreground": "#f5f2e8",
-        "--color-brand": "#d9c89a",
+        "--color-brand": "#ecd9a3",
         color: "#f5f2e8",
       } as React.CSSProperties}
     >
