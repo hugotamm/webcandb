@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import DemoViewer from "@/components/DemoViewer";
+import IntroGate from "@/components/IntroGate";
+import CursorAura from "@/components/CursorAura";
 import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
 
@@ -189,7 +191,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} ${playfair.variable} dark h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
@@ -203,6 +205,8 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NextIntlClientProvider>
+          <IntroGate />
+          <CursorAura />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
@@ -210,6 +214,8 @@ export default async function LocaleLayout({
           <StickyMobileCTA />
           <DemoViewer />
         </NextIntlClientProvider>
+        <div className="cinema-vignette" aria-hidden="true" />
+        <div className="film-grain" aria-hidden="true" />
         <Analytics />
       </body>
     </html>
