@@ -4,90 +4,65 @@ export default function Booking() {
   const t = useTranslations("Booking");
 
   const benefits = [
-    {
-      title: t("benefit1Title"),
-      body: t("benefit1Body"),
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="12 6 12 12 16 14" />
-        </svg>
-      ),
-    },
-    {
-      title: t("benefit2Title"),
-      body: t("benefit2Body"),
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-      ),
-    },
-    {
-      title: t("benefit3Title"),
-      body: t("benefit3Body"),
-      icon: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-          <line x1="16" y1="2" x2="16" y2="6" />
-          <line x1="8" y1="2" x2="8" y2="6" />
-          <line x1="3" y1="10" x2="21" y2="10" />
-        </svg>
-      ),
-    },
+    { num: "01", title: t("benefit1Title"), body: t("benefit1Body") },
+    { num: "02", title: t("benefit2Title"), body: t("benefit2Body") },
+    { num: "03", title: t("benefit3Title"), body: t("benefit3Body") },
   ];
 
   return (
-    <section id="boka" className="py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16">
+    <section id="boka" className="py-32 lg:py-48">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24">
         <div>
           <span className="eyebrow">{t("eyebrow")}</span>
-          <h2 className="mt-6 text-5xl sm:text-6xl font-bold tracking-tight leading-[1.05]">
+          <h2 className="mt-8 text-4xl sm:text-5xl lg:text-6xl leading-tight">
             {t("title")}
           </h2>
-          <p className="mt-8 text-lg text-foreground/70 leading-relaxed max-w-md">
+          <p className="mt-10 text-lg text-foreground/75 leading-relaxed max-w-lg font-light">
             {t("description")}
           </p>
 
-          <ul className="mt-10 space-y-6">
+          <ul className="mt-14 divide-y divide-foreground/10 border-y border-foreground/10">
             {benefits.map((b) => (
-              <li key={b.title} className="flex gap-4 items-start">
-                <span className="flex-shrink-0 w-10 h-10 rounded-full bg-brand-soft text-brand flex items-center justify-center">
-                  {b.icon}
+              <li key={b.title} className="grid grid-cols-[40px_1fr] gap-6 py-6">
+                <span className="text-xs tracking-[0.4em] uppercase text-brand tabular-nums pt-1">
+                  {b.num}
                 </span>
                 <div>
-                  <div className="font-bold">{b.title}</div>
-                  <div className="text-sm text-muted mt-0.5">{b.body}</div>
+                  <div
+                    className="text-xl text-foreground"
+                    style={{ fontFamily: "var(--font-playfair), serif" }}
+                  >
+                    {b.title}
+                  </div>
+                  <div className="text-sm text-foreground/65 mt-1.5 font-light leading-relaxed">
+                    {b.body}
+                  </div>
                 </div>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="lg:mt-16">
-          <div className="rounded-3xl bg-dark-bg text-white p-10 lg:p-12">
-            <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-brand">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              {t("contactLabel")}
+        <div className="lg:mt-24">
+          <div className="bg-dark-bg p-10 lg:p-14 border border-foreground/10">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-brand">
+              — {t("contactLabel")}
             </span>
-            <div className="mt-8 text-3xl sm:text-4xl font-bold tracking-tight break-all">
+            <div
+              className="mt-8 text-3xl sm:text-4xl lg:text-5xl tracking-tight break-all leading-tight"
+              style={{ fontFamily: "var(--font-playfair), serif" }}
+            >
               web.candb@gmail.com
             </div>
-            <p className="mt-6 text-white/60 leading-relaxed">
+            <p className="mt-8 text-base text-foreground/65 leading-relaxed font-light">
               {t("contactNote")}
             </p>
             <a
               href="mailto:web.candb@gmail.com"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand text-white px-6 py-3.5 font-semibold hover:bg-brand-hover transition"
+              className="group mt-10 inline-flex items-center gap-4 text-[11px] tracking-[0.35em] uppercase text-brand hover:text-foreground transition-colors duration-700"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              {t("contactCta")}
+              <span>{t("contactCta")}</span>
+              <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
             </a>
           </div>
         </div>

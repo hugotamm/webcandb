@@ -44,69 +44,60 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" aria-hidden="true" />
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-36 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div>
-          <span className="inline-flex items-center text-xs font-semibold tracking-widest uppercase text-brand bg-brand-soft px-4 py-2 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand mr-2" />
-            {t("eyebrow")}
-          </span>
+          <span className="eyebrow">{t("eyebrow")}</span>
 
-          <h1 className="mt-8 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="mt-10 text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.05]">
             {t("titleLine1")}
             <br />
-            <span className="text-brand italic font-bold">{t("titleLine2")}</span>
+            <em className="text-brand italic">{t("titleLine2")}</em>
           </h1>
 
-          <p className="mt-8 text-lg text-foreground/70 max-w-lg leading-relaxed">
+          <p className="mt-10 text-lg text-foreground/80 max-w-lg leading-relaxed font-light">
             {t.rich("subtitle", {
-              strong: (chunks) => <strong className="text-foreground">{chunks}</strong>,
+              strong: (chunks) => <strong className="text-foreground font-normal">{chunks}</strong>,
             })}
           </p>
 
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-soft border border-brand/20 px-4 py-2 text-sm">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand flex-shrink-0">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            <span className="text-foreground">
-              <strong>{t("badge")}</strong> <span className="text-muted">{t("badgeSubtitle")}</span>
-            </span>
+          <div className="mt-8 flex items-center gap-3 text-[11px] tracking-[0.35em] uppercase text-foreground/65">
+            <span className="text-brand">—</span>
+            <span><strong className="text-foreground font-normal">{t("badge")}</strong></span>
+            <span className="text-foreground/40">{t("badgeSubtitle")}</span>
           </div>
 
-          <div className="mt-6 flex items-start gap-3">
-            <div className="w-10 h-px bg-foreground mt-3" />
-            <p className="text-base font-semibold italic">
-              {t("quote")}
-            </p>
-          </div>
+          <p
+            className="mt-10 text-xl italic text-foreground/80 max-w-md leading-snug"
+            style={{ fontFamily: "var(--font-playfair), serif" }}
+          >
+            {t("quote")}
+          </p>
 
-          <form onSubmit={handleSubmit} className="mt-10 flex flex-col sm:flex-row gap-3 max-w-lg">
+          <form onSubmit={handleSubmit} className="mt-12 flex flex-col sm:flex-row gap-4 max-w-lg">
             <input
               type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder={t("inputPlaceholder")}
-              className="flex-1 rounded-full bg-card border border-border px-6 py-4 text-base placeholder:text-muted focus:outline-none focus:border-brand transition"
+              className="flex-1 bg-transparent border-b border-foreground/30 px-1 py-3 text-base placeholder:text-foreground/35 focus:outline-none focus:border-brand transition-colors duration-700"
             />
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand text-white px-7 py-4 text-base font-semibold hover:bg-brand-hover transition shadow-md hover:shadow-lg whitespace-nowrap disabled:opacity-70 disabled:cursor-wait"
+              className="group inline-flex items-center justify-center gap-4 text-[11px] tracking-[0.35em] uppercase text-brand hover:text-foreground transition-colors duration-700 disabled:opacity-50 whitespace-nowrap self-start sm:self-auto py-3"
             >
               {loading ? (
                 <>
-                  <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" strokeOpacity="0.3" />
                     <path d="M22 12a10 10 0 0 1-10 10" strokeLinecap="round" />
                   </svg>
-                  {t("buttonLoading")}
+                  <span>{t("buttonLoading")}</span>
                 </>
               ) : (
                 <>
-                  {t("buttonPrimary")}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
+                  <span>{t("buttonPrimary")}</span>
+                  <span className="w-10 h-px bg-current transition-all duration-700 group-hover:w-16" />
                 </>
               )}
             </button>

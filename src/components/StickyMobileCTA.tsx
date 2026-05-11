@@ -18,19 +18,16 @@ export default function StickyMobileCTA() {
 
   return (
     <div
-      className={`lg:hidden fixed bottom-4 inset-x-4 z-40 transition-all duration-300 ${
-        show ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0 pointer-events-none"
+      className={`lg:hidden fixed bottom-6 inset-x-6 z-40 transition-all duration-700 ${
+        show ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0 pointer-events-none"
       }`}
     >
       <a
         href="/#boka"
-        className="flex items-center justify-center gap-2 w-full rounded-full bg-brand text-white px-6 py-4 font-semibold shadow-2xl hover:bg-brand-hover transition"
+        className="group flex items-center justify-between w-full bg-dark-bg border border-foreground/10 px-6 py-4 text-[11px] tracking-[0.35em] uppercase text-brand hover:text-foreground transition-colors duration-700"
       >
-        {t("button")}
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
+        <span>{t("button")}</span>
+        <span className="w-8 h-px bg-current transition-all duration-700 group-hover:w-14" />
       </a>
     </div>
   );
