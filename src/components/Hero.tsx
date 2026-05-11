@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { startCheckout } from "@/lib/checkout";
 
@@ -18,10 +17,28 @@ export default function Hero() {
   };
 
   const cases = [
-    { name: "Kärna", tag: "Kaffe", url: "https://karna-craft-coffeeshop.lovable.app", image: "/cases/karna.png" },
-    { name: "Sizewall", tag: "B2B Tech", url: "https://demo-sizewall-precision-scan.lovable.app", image: "/cases/sizewall.png" },
-    { name: "Studio Norr", tag: "Salong", url: "https://demo-studio-norr-editorial.lovable.app", image: "/cases/studio-norr.png" },
+    {
+      name: "Kärna",
+      tag: "Kaffe",
+      url: "https://karna-craft-coffeeshop.lovable.app",
+      photo: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80&auto=format&fit=crop",
+    },
+    {
+      name: "Sizewall",
+      tag: "B2B Tech",
+      url: "https://demo-sizewall-precision-scan.lovable.app",
+      photo: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80&auto=format&fit=crop",
+    },
+    {
+      name: "Studio Norr",
+      tag: "Salong",
+      url: "https://demo-studio-norr-editorial.lovable.app",
+      photo: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80&auto=format&fit=crop",
+    },
   ];
+
+  const featuredPhoto =
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80&auto=format&fit=crop";
 
   return (
     <section className="relative overflow-hidden">
@@ -99,28 +116,41 @@ export default function Hero() {
           <div className="mb-4">
             <span className="eyebrow">{t("examplesEyebrow")}</span>
           </div>
+          {/* Featured card — atmospheric photo, not a website screenshot */}
           <a
             href="https://karna-craft-coffeeshop.lovable.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative block rounded-2xl bg-gradient-to-br from-stone-100 to-stone-200 p-3 shadow-xl border border-border overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-500"
+            className="group relative block overflow-hidden border border-border hover:border-brand/60 transition-all duration-700"
           >
-            <div className="aspect-[4/3] rounded-xl overflow-hidden bg-card shadow-md relative">
-              <Image
-                src="/cases/karna.png"
-                alt={t("screenshotAlt", { name: "Kärna" })}
-                fill
-                sizes="(max-width: 1024px) 100vw, 600px"
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                priority
-              />
+            <div
+              className="aspect-[4/3] relative"
+              style={{
+                backgroundImage: `url(${featuredPhoto})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/80 transition-opacity duration-700 group-hover:opacity-75" />
+              <div className="absolute inset-0 mix-blend-multiply bg-[#1a0e05]/30" />
+              <div className="absolute top-5 left-5 text-[10px] tracking-[0.4em] uppercase text-brand"
+                style={{ textShadow: "0 1px 4px rgba(0,0,0,0.95)" }}>
+                — Kaffe · Specialkaffe
+              </div>
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                <h3 className="text-3xl lg:text-4xl text-foreground"
+                  style={{ fontFamily: "var(--font-playfair), serif", textShadow: "0 2px 8px rgba(0,0,0,0.95)" }}>
+                  Kärna
+                </h3>
+                <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-foreground/95"
+                  style={{ textShadow: "0 1px 4px rgba(0,0,0,0.95)" }}>
+                  {t("viewLive")}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 17L17 7M17 7H7M17 7v10" />
+                  </svg>
+                </span>
+              </div>
             </div>
-            <span className="absolute top-6 left-6 inline-flex items-center gap-2 bg-foreground text-background text-xs font-semibold px-3 py-2 rounded-full">
-              {t("viewLive")}
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M7 17L17 7M17 7H7M17 7v10" />
-              </svg>
-            </span>
           </a>
 
           <div className="mt-8">
@@ -133,20 +163,22 @@ export default function Hero() {
                 href={c.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group aspect-[4/5] rounded-xl bg-card border border-border overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
+                className="group aspect-[4/5] border border-border overflow-hidden flex flex-col hover:border-brand/60 transition-all duration-700"
               >
-                <div className="flex-1 overflow-hidden bg-stone-100 relative">
-                  <Image
-                    src={c.image}
-                    alt={t("screenshotAlt", { name: c.name })}
-                    fill
-                    sizes="200px"
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div
+                  className="flex-1 relative"
+                  style={{
+                    backgroundImage: `url(${c.photo})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/55 group-hover:bg-black/40 transition-colors duration-700" />
+                  <div className="absolute inset-0 mix-blend-multiply bg-[#1a0e05]/30" />
                 </div>
-                <div className="p-3">
-                  <div className="text-[10px] uppercase tracking-widest text-muted/70">{c.tag}</div>
-                  <div className="font-semibold text-sm mt-0.5">{c.name}</div>
+                <div className="p-3 bg-card">
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-brand">{c.tag}</div>
+                  <div className="text-base mt-1" style={{ fontFamily: "var(--font-playfair), serif" }}>{c.name}</div>
                 </div>
               </a>
             ))}

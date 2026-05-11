@@ -403,26 +403,25 @@ export default function IntroGate() {
 
       <style jsx>{`
         @keyframes emergeL {
-          0%   { transform: translateX(-60px) scale(0.85); opacity: 0; filter: blur(22px) brightness(0.05); }
-          30%  { transform: translateX(0)     scale(1);    opacity: 1; filter: blur(0)    brightness(1); }
-          70%  { transform: translateX(0)     scale(1);    opacity: 1; filter: blur(0)    brightness(1); }
-          100% { transform: translateX(35px)  scale(0.94); opacity: 0; filter: blur(18px) brightness(0.1); }
+          0%   { transform: translateX(-50px) scale(0.9); opacity: 0; filter: blur(14px); }
+          30%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
+          70%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
+          100% { transform: translateX(25px)  scale(0.95); opacity: 0; filter: blur(10px); }
         }
         @keyframes emergeR {
-          0%   { transform: translateX(60px)  scale(0.85); opacity: 0; filter: blur(22px) brightness(0.05); }
-          30%  { transform: translateX(0)     scale(1);    opacity: 1; filter: blur(0)    brightness(1); }
-          70%  { transform: translateX(0)     scale(1);    opacity: 1; filter: blur(0)    brightness(1); }
-          100% { transform: translateX(-35px) scale(0.94); opacity: 0; filter: blur(18px) brightness(0.1); }
+          0%   { transform: translateX(50px)  scale(0.9); opacity: 0; filter: blur(14px); }
+          30%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
+          70%  { transform: translateX(0)     scale(1);   opacity: 1; filter: blur(0); }
+          100% { transform: translateX(-25px) scale(0.95); opacity: 0; filter: blur(10px); }
         }
         @keyframes logoEmerge {
-          /* Zoom in from far away — small + very blurry + dim → close + sharp */
-          0%   { opacity: 0;    filter: blur(60px); transform: scale(0.40); }
-          15%  { opacity: 0.10; filter: blur(50px); transform: scale(0.48); }
-          35%  { opacity: 0.30; filter: blur(34px); transform: scale(0.60); }
-          55%  { opacity: 0.55; filter: blur(20px); transform: scale(0.75); }
-          75%  { opacity: 0.78; filter: blur(10px); transform: scale(0.88); }
-          90%  { opacity: 0.90; filter: blur(4px);  transform: scale(0.96); }
-          100% { opacity: 0.97; filter: blur(1px);  transform: scale(0.99); }
+          /* Smoother zoom-in, capped blur for GPU performance */
+          0%   { opacity: 0;    filter: blur(24px); transform: scale(0.50); }
+          20%  { opacity: 0.18; filter: blur(20px); transform: scale(0.58); }
+          45%  { opacity: 0.45; filter: blur(13px); transform: scale(0.72); }
+          70%  { opacity: 0.75; filter: blur(6px);  transform: scale(0.86); }
+          88%  { opacity: 0.92; filter: blur(2px);  transform: scale(0.96); }
+          100% { opacity: 0.97; filter: blur(0);    transform: scale(0.99); }
         }
         @keyframes pressPulse {
           0%, 100% { opacity: 0.55; }
