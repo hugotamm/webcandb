@@ -35,38 +35,38 @@ export default function CookieBanner() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-6 inset-x-6 sm:inset-x-auto sm:right-6 sm:max-w-md z-[60] animate-[slideUp_0.6s_cubic-bezier(0.22,1,0.36,1)]">
+    <div className="fixed bottom-4 inset-x-4 sm:bottom-6 sm:inset-x-auto sm:right-6 sm:max-w-md z-[60] animate-[slideUp_0.6s_cubic-bezier(0.22,1,0.36,1)]">
       <style jsx>{`
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-      <div className="bg-dark-bg border border-foreground/10 p-7">
-        <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-4">
+      <div className="bg-dark-bg border border-foreground/10 p-5 sm:p-7">
+        <div className="text-[10px] tracking-[0.4em] uppercase text-brand mb-3 sm:mb-4">
           — {t("title")}
         </div>
-        <p className="text-sm text-foreground/80 leading-relaxed font-light">
+        <p className="text-[13px] sm:text-sm text-foreground/80 leading-relaxed font-light">
           {t("description")}{" "}
           <a href="/cookies" className="text-brand hover:text-foreground transition-colors duration-700 underline-offset-4 underline">
             {t("linkMore")}
           </a>
         </p>
 
-        <div className="mt-8 flex flex-col sm:flex-row gap-5 sm:gap-8 text-[10px] tracking-[0.35em] uppercase">
+        <div className="mt-6 sm:mt-8 flex flex-row items-center justify-between gap-4 sm:gap-8 text-[10px] tracking-[0.25em] sm:tracking-[0.35em] uppercase">
           <button
             onClick={() => setChoice("necessary")}
             className="group inline-flex items-center gap-3 text-foreground/60 hover:text-foreground transition-colors duration-700"
           >
-            <span>{t("buttonNecessary")}</span>
-            <span className="w-6 h-px bg-current transition-all duration-700 group-hover:w-10" />
+            <span className="whitespace-nowrap">{t("buttonNecessary")}</span>
+            <span className="hidden sm:block w-6 h-px bg-current transition-all duration-700 group-hover:w-10" />
           </button>
           <button
             onClick={() => setChoice("all")}
             className="group inline-flex items-center gap-3 text-brand hover:text-foreground transition-colors duration-700"
           >
-            <span>{t("buttonAll")}</span>
-            <span className="w-6 h-px bg-current transition-all duration-700 group-hover:w-10" />
+            <span className="whitespace-nowrap">{t("buttonAll")}</span>
+            <span className="hidden sm:block w-6 h-px bg-current transition-all duration-700 group-hover:w-10" />
           </button>
         </div>
       </div>
