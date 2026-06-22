@@ -66,13 +66,6 @@ export default function Hero() {
             <span className="text-foreground/40">{t("badgeSubtitle")}</span>
           </div>
 
-          <p
-            className="mt-10 text-xl italic text-foreground/80 max-w-md leading-snug"
-            style={{ fontFamily: "var(--font-playfair), serif" }}
-          >
-            {t("quote")}
-          </p>
-
           <form onSubmit={handleSubmit} className="mt-12 flex flex-col sm:flex-row gap-4 max-w-lg">
             <input
               type="url"

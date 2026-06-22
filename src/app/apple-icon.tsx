@@ -10,17 +10,17 @@ export default function AppleIcon() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#0d4a3a",
+          background: "#0a0a0c",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
-          fontFamily: "sans-serif",
+          color: "#ecd9a3",
+          fontFamily: "serif",
           position: "relative",
         }}
       >
-        {/* Subtle gradient accent in corner */}
+        {/* Subtle gold gradient accent in corner */}
         <div
           style={{
             position: "absolute",
@@ -29,7 +29,7 @@ export default function AppleIcon() {
             width: 60,
             height: 60,
             background:
-              "radial-gradient(circle at top right, rgba(52,211,153,0.4), transparent 70%)",
+              "radial-gradient(circle at top right, rgba(236,217,163,0.4), transparent 70%)",
           }}
         />
         <div

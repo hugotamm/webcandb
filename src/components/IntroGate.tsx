@@ -120,22 +120,22 @@ export default function IntroGate() {
           CENTER LOGO — emerges from shadow into the light
           ================================================================= */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-8 pointer-events-none">
-        <div
-          className="flex flex-col items-center gap-14"
-          style={{
-            animation: logoIsInShadow
-              ? "logoEmerge 4.5s cubic-bezier(0.16,1,0.3,1) forwards"
-              : undefined,
-            opacity: logoIsHidden ? 0 : logoIsBright ? 1 : undefined,
-            filter: logoIsHidden ? "blur(40px)" : logoIsBright ? "blur(0)" : undefined,
-            transform: logoIsHidden ? "scale(0.85)" : logoIsBright ? "scale(1)" : undefined,
-            transition: logoIsBright
-              ? "filter 1.4s cubic-bezier(0.22,1,0.36,1), opacity 1.4s cubic-bezier(0.22,1,0.36,1), transform 1.4s cubic-bezier(0.22,1,0.36,1)"
-              : undefined,
-            willChange: "filter, opacity, transform",
-          }}
-        >
-          <div className="select-none">
+        <div className="flex flex-col items-center gap-14">
+          <div
+            className="select-none"
+            style={{
+              animation: logoIsInShadow
+                ? "logoEmerge 4.5s cubic-bezier(0.16,1,0.3,1) forwards"
+                : undefined,
+              opacity: logoIsHidden ? 0 : logoIsBright ? 1 : undefined,
+              filter: logoIsHidden ? "blur(40px)" : logoIsBright ? "blur(0)" : undefined,
+              transform: logoIsHidden ? "scale(0.85)" : logoIsBright ? "scale(1)" : undefined,
+              transition: logoIsBright
+                ? "filter 1.4s cubic-bezier(0.22,1,0.36,1), opacity 1.4s cubic-bezier(0.22,1,0.36,1), transform 1.4s cubic-bezier(0.22,1,0.36,1)"
+                : undefined,
+              willChange: "filter, opacity, transform",
+            }}
+          >
             <div
               className="text-7xl sm:text-8xl lg:text-[10rem] tracking-[-0.02em] font-normal leading-none"
               style={{
@@ -151,18 +151,15 @@ export default function IntroGate() {
             </div>
           </div>
 
-          {/* PRESS button — only at ready phase */}
+          {/* PRESS button — visible from the very start, independent of the trailer */}
           <button
             onClick={dismiss}
             aria-label={c.press}
-            className={`pointer-events-auto group flex flex-col items-center gap-5 cursor-pointer outline-none transition-opacity duration-[1600ms] ease-out ${
-              logoIsBright ? "opacity-100" : "opacity-0"
-            }`}
-            style={{ transitionDelay: logoIsBright ? "400ms" : "0ms" }}
+            className="pointer-events-auto group flex flex-col items-center gap-5 cursor-pointer outline-none opacity-100"
           >
             <div
               className="text-[12px] tracking-[0.5em] uppercase text-foreground/75 font-sans font-light group-hover:text-brand transition-colors duration-700"
-              style={{ animation: logoIsBright ? "pressPulse 3.6s ease-in-out infinite" : "none" }}
+              style={{ animation: "pressPulse 3.6s ease-in-out infinite" }}
             >
               {c.press}
             </div>
@@ -176,7 +173,7 @@ export default function IntroGate() {
               strokeLinecap="round"
               strokeLinejoin="round"
               className="text-foreground/55 group-hover:text-brand group-hover:-translate-y-1 transition-all duration-700"
-              style={{ animation: logoIsBright ? "arrowFloat 3.6s ease-in-out infinite" : "none" }}
+              style={{ animation: "arrowFloat 3.6s ease-in-out infinite" }}
             >
               <line x1="12" y1="19" x2="12" y2="5" />
               <polyline points="5 12 12 5 19 12" />
